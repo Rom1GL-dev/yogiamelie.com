@@ -9,6 +9,21 @@ const pricingData = [
   { courses: 1, price: 15, unit: "l'unité" }
 ];
 
+const ApostropheSafe = ({ children }: { children: string }) => {
+  return (
+    <>
+      {children.split("'").map((part, idx, arr) => (
+        <span key={idx}>
+          {part}
+          {idx < arr.length - 1 && (
+            <span className="font-sans not-italic">'</span>
+          )}
+        </span>
+      ))}
+    </>
+  );
+};
+
 export const Tarifs = () => {
   const [visibleButton] = useState(false);
   const [visibleText] = useState(false);
@@ -34,7 +49,7 @@ export const Tarifs = () => {
               <p
                 className={`text-[#caa168] ${unit ? 'text-7xl' : 'text-8xl'} spectral-regular mt-2 font-[Seasons] font-bold`}
               >
-                {unit ? unit : courses}
+                {unit ? <ApostropheSafe>{unit}</ApostropheSafe> : courses}
               </p>
               {!unit && (
                 <p className="text-shadow mt-2 mb-10 font-[Calmius] text-4xl font-semibold text-[#caa168]">

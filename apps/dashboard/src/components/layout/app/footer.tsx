@@ -11,7 +11,7 @@ const Footer = () => {
           src="/images/amelieFooter.jpg"
           alt="Footer Image"
           title="Footer Image"
-          className="h-full w-full"
+          className="h-full w-full object-cover"
         />
       </div>
 
