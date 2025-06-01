@@ -154,15 +154,13 @@ export default function Navbar() {
                 </button>
               </li>
               <li>
-                <button
-                  onClick={() => {
-                    toggleSidebar();
-                    scrollToSection('universe');
-                  }}
+                <Link
+                  to={APP_ROUTES.app.cours.getHref()}
+                  title={'Cours'}
                   className="text-sm font-bold text-[#353F34]"
                 >
                   Cours
-                </button>
+                </Link>
               </li>
               <li>
                 <button
