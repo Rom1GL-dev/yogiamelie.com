@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String  @id @default(cuid())
+  name     String?
+  email    String  @unique
+  password String
+  role     String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Event {
+  id        String   @id @default(cuid())
+  title     String
+  subtitle  String?
+  startDate DateTime
+  startHour String?
+
+  endDate DateTime
+  endHour String?
+
+  description  String?
+  image        String
+  linkRegister String?
+  location     String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Blog {
+  id          String    @id @default(cuid())
+  title       String
+  subtitle    String?
+  description String
+  image       String
+  published   Boolean
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
+}
+
+model Log {
+  id      String @id @default(cuid())
+  type    String
+  message String
+  userId  String
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Link {
+  id        String  @id @default(cuid())
+  youtube   String?
+  instagram String?
+  facebook  String?
+  tiktok    String?
+}
+
+model SiteWebDetail {
+  id          String @id @default(cuid())
+  section     String
+  contentType String
+  value       String
+  extra       Json?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Location {
+  id    String @id @default(cuid())
+  title String @unique
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}

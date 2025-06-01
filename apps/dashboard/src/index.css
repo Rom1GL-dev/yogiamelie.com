@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@font-face {
+  font-family: 'Mistrully';
+  src: url('/fonts/Mistrully.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: "Seasons";
+  src: url("/fonts/Seasons.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Calmius Sans";
+  src: url("/fonts/CalmiusSans-LowExtraLight.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TT Chocolates";
+  src: url("/fonts/TT-Chocolates.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  color: black;
+}
+
+.swiper-button-next1::after,
+.swiper-button-prev1::after {
+  font-size: 14px !important;
+  color: black;
+}
+
+.swiper-pagination-bullet {
+  background-color: #ccc !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff6600 !important;
+}
+
+@media (max-width: 768px) {
+  .custom-html-content h2 {
+    font-size: 1.25rem; /* ~20px */
+  }
+
+  .custom-html-content p {
+    font-size: 0.9375rem; /* ~15px */
+  }
+}

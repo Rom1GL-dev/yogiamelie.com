@@ -1,0 +1,70 @@
+services:
+  database:
+    image: postgres:17
+    container_name: yogiamelie_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+      TZ: Europe/Paris
+    networks:
+      - postgres-network
+    volumes:
+      - yogiamelie_data:/var/lib/postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: yogiamelie_pgadmin
+    ports:
+      - 15433:80
+    depends_on:
+      - database
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    networks:
+      - postgres-network
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin/
+  redis:
+    image: redis:alpine
+    container_name: yogiamelie_redis
+    ports:
+      - 6379:6379
+    networks:
+      - postgres-network
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    restart: always
+  api:
+    container_name: yogiamelie_api
+    build:
+      context: .
+      dockerfile: ../apps/api/Dockerfile
+    depends_on:
+      - database
+    ports:
+      - '3000:3000'
+    networks:
+      - postgres-network
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+      DATABASE_URL: postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:5432/${DATABASE_NAME}?schema=public
+      APP_URL: ${APP_URL}
+    restart: always
+  web:
+    container_name: yogiamelie_dashboard
+    build:
+      context: .
+      dockerfile: ../apps/dashboard/Dockerfile
+    restart: always
+    ports:
+      - '3001:5173'
+
+volumes:
+  yogiamelie_data:
+  pgadmin_data:
+
+networks:
+  postgres-network:
+    driver: bridge
