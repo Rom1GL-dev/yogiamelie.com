@@ -1,6 +1,7 @@
 import { TBlogModel } from '@/features/blogs/types/blogs.type.ts';
 import { useNavigate } from 'react-router-dom';
 import { reformatForUrl } from '@/lib/utils.ts';
+import { apiUrl } from '@/config/content.config.ts';
 
 interface BlogProps {
   blog: TBlogModel;
@@ -17,7 +18,7 @@ export default function BlogCard({ blog }: BlogProps) {
       onClick={() => navigate(`/blog/${reformatForUrl(blog.title)}`)}
     >
       <img
-        src={`http://localhost:3000/v1/images/blogs/${blog.image}`}
+        src={`${apiUrl}/v1/images/blogs/${blog.image}`}
         alt={blog.title}
         title={blog.title}
         className={'h-1/2 w-full rounded-3xl object-cover'}

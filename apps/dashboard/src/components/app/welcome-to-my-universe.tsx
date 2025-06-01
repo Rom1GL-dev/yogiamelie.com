@@ -2,6 +2,7 @@ import LayoutApp from '@/components/layout/app/layout-app.tsx';
 import { useStores } from '@/providers/stores-provider.tsx';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
+import { apiUrl } from '@/config/content.config.ts';
 
 export const WelcomeToMyUniverse = observer(() => {
   const { siteWebStore } = useStores();
@@ -44,7 +45,7 @@ export const WelcomeToMyUniverse = observer(() => {
           data-aos-delay="400"
         >
           <img
-            src={`http://localhost:3000/v1/images/site-web/${fields.image}`}
+            src={`${apiUrl}/v1/images/site-web/${fields.image}`}
             title={fields.title}
             alt={fields.title}
             className={

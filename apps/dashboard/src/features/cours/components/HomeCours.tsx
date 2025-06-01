@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useStores } from '@/providers/stores-provider.tsx';
 import { useEffect, useState } from 'react';
+import { apiUrl } from '@/config/content.config.ts';
 
 export const HomeCours = () => {
   const { siteWebStore } = useStores();
@@ -76,7 +77,7 @@ export const HomeCours = () => {
       </div>
       <div className="font-[TT Chocolates] mt-10 flex w-full justify-center lg:mt-0 lg:ml-5">
         <img
-          src={`http://localhost:3000/v1/images/site-web/${fields.image}`}
+          src={`${apiUrl}/v1/images/site-web/${fields.image}`}
           alt="Image Home"
           title="Image Home"
           className="h-[486px] w-full max-w-full rounded-xl object-cover md:h-[586px] lg:h-[686px] lg:max-w-[686px]"

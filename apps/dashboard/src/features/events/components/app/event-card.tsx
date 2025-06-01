@@ -1,6 +1,7 @@
 import { formatDate, reformatForUrl } from '@/lib/utils.ts';
 import { TEventModel } from '@/features/events/types/events.type.ts';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '@/config/content.config.ts';
 
 interface EventProps {
   event: TEventModel;
@@ -17,7 +18,7 @@ export default function EventCard({ event }: EventProps) {
       onClick={() => navigate(`/evenement/${reformatForUrl(event.title)}`)}
     >
       <img
-        src={`http://localhost:3000/v1/images/events/${event.image}`}
+        src={`${apiUrl}/v1/images/events/${event.image}`}
         title={event.title}
         alt={event.title}
         className={'h-1/2 w-full rounded-3xl object-cover'}

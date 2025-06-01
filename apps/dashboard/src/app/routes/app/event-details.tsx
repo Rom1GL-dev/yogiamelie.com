@@ -3,6 +3,7 @@ import { useStores } from '@/providers/stores-provider.tsx';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { APP_ROUTES } from '@/config/routes.config.ts';
 import { formatDate } from '@/lib/utils.ts';
+import { apiUrl } from '@/config/content.config.ts';
 
 export default function EventDetailsAppRoute() {
   const { eventStore } = useStores();
@@ -64,7 +65,7 @@ export default function EventDetailsAppRoute() {
           </div>
           <div className={'flex justify-center md:block'}>
             <img
-              src={`http://localhost:3000/v1/images/events/${event.image}`}
+              src={`${apiUrl}/v1/images/events/${event.image}`}
               alt={event.title}
               className="h-auto max-h-[300px] w-full rounded-3xl object-cover md:h-[400px] md:w-[400px]"
             />

@@ -2,6 +2,7 @@ import GoBackBanner from '@/components/app/go-back-banner.tsx';
 import { useStores } from '@/providers/stores-provider.tsx';
 import { APP_ROUTES } from '@/config/routes.config.ts';
 import { useNavigate, useParams } from 'react-router-dom';
+import { apiUrl } from '@/config/content.config.ts';
 
 export default function BlogDetailsAppRoute() {
   const { blogStore } = useStores();
@@ -20,7 +21,7 @@ export default function BlogDetailsAppRoute() {
       <GoBackBanner />
       <div className="relative h-96 w-full">
         <img
-          src={`http://localhost:3000/v1/images/blogs/${blog?.image}`}
+          src={`${apiUrl}/v1/images/blogs/${blog?.image}`}
           alt={blog?.title || 'Image de l’article'}
           className="h-full w-full rounded-b-[20%] object-cover"
         />

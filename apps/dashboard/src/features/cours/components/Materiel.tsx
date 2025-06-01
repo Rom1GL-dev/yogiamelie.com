@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import TitleCours from '@/features/cours/components/title-cours.tsx';
 import { useStores } from '@/providers/stores-provider.tsx';
 import { useEffect, useState } from 'react';
+import { apiUrl } from '@/config/content.config.ts';
 
 export const Materiel = () => {
   const { siteWebStore } = useStores();
@@ -59,7 +60,7 @@ export const Materiel = () => {
         <div className="flex h-full w-full flex-col lg:ml-5 lg:w-3/5 lg:flex-row">
           <div className="h-auto w-full lg:w-2/3">
             <img
-              src={`http://localhost:3000/v1/images/site-web/${fields.image1}`}
+              src={`${apiUrl}/v1/images/site-web/${fields.image1}`}
               alt="Matériel 1"
               width={500}
               height={600}
@@ -69,14 +70,14 @@ export const Materiel = () => {
 
           <div className="flex w-full flex-col md:ml-5 lg:w-1/3">
             <img
-              src={`http://localhost:3000/v1/images/site-web/${fields.image2}`}
+              src={`${apiUrl}/v1/images/site-web/${fields.image2}`}
               alt="Matériel 2"
               width={500}
               height={300}
               className="mb-5 rounded-xl object-cover"
             />
             <img
-              src={`http://localhost:3000/v1/images/site-web/${fields.image3}`}
+              src={`${apiUrl}/v1/images/site-web/${fields.image3}`}
               alt="Matériel 3"
               width={500}
               height={200}
