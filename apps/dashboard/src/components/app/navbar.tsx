@@ -2,16 +2,25 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { APP_ROUTES } from '@/config/routes.config.ts';
 import { clsx } from 'clsx';
-
-const scrollToSection = (id: string) => {
-  const el = document.getElementById(id);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth' });
-  }
-};
+import AOS from 'aos';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    if (!isSidebarOpen) {
+      AOS.refresh();
+    }
+  };
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +33,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 z-10 flex w-full justify-between transition-colors duration-300 ${
+      className={`top-0 left-0 z-10 flex w-full justify-between transition-colors duration-300 lg:fixed ${
         scrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
@@ -48,9 +57,12 @@ export default function Navbar() {
         </li>
       </ul>
       <ul
-        className={clsx('flex w-full justify-end space-x-8 p-5 lg:w-1/3', {
-          'items-center': scrolled
-        })}
+        className={clsx(
+          'hidden w-full justify-end space-x-8 p-5 lg:flex lg:w-1/3',
+          {
+            'items-center': scrolled
+          }
+        )}
       >
         <li>
           <button
@@ -94,6 +106,102 @@ export default function Navbar() {
           </button>
         </li>
       </ul>
+      <ul className="flex w-full items-center justify-end space-x-8 p-5 lg:flex lg:hidden lg:w-1/3">
+        <button
+          onClick={toggleSidebar}
+          className="text-xl text-[#353F34]"
+          aria-label="Open menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="h-6 w-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </ul>
+
+      {isSidebarOpen && (
+        <div
+          className="bg-opacity-50 fixed inset-0 z-20 bg-black lg:hidden"
+          onClick={toggleSidebar}
+        >
+          <div
+            className="w-2.5/4 fixed top-0 right-0 z-30 h-full space-y-6 bg-white p-6"
+            data-aos="fade-left"
+            data-aos-duration="500"
+            data-aos-offset="200"
+            data-aos-easing="ease-in-out"
+          >
+            <ul className="flex flex-col space-y-4">
+              <li>
+                <button
+                  onClick={() => {
+                    toggleSidebar();
+                    scrollToSection('universe');
+                  }}
+                  className="text-sm font-bold text-[#353F34]"
+                >
+                  À props
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    toggleSidebar();
+                    scrollToSection('universe');
+                  }}
+                  className="text-sm font-bold text-[#353F34]"
+                >
+                  Cours
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    toggleSidebar();
+                    scrollToSection('join');
+                  }}
+                  className="text-sm font-bold text-[#353F34]"
+                >
+                  Agenda
+                </button>
+              </li>
+
+              <li>
+                <button
+                  onClick={() => {
+                    toggleSidebar();
+                    scrollToSection('blog');
+                  }}
+                  className="text-sm font-bold text-[#353F34]"
+                >
+                  Blog
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    toggleSidebar();
+                    scrollToSection('contact');
+                  }}
+                  className="text-sm font-bold text-[#353F34]"
+                >
+                  Contact
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
