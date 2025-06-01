@@ -18,7 +18,6 @@ import { DeleteLocationDto } from './dto/delete-location.dto';
 export class LocationController {
   constructor(private readonly locationService: LocationService) {}
 
-  @UseGuards(AuthGuard)
   @Get(routesV1.location.root)
   async getAll() {
     const locations = await this.locationService.getAll();
