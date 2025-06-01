@@ -26,12 +26,17 @@ export default function HomePresentation() {
 
   return (
     <div className={'relative flex h-3/4 w-full items-center justify-center'}>
+      <img
+        src={'/images/homeAmelie.webp'}
+        alt="Home background"
+        className={'block h-[50vh] w-full object-cover md:hidden'}
+      />
       <video
         autoPlay
         loop
         muted
         playsInline
-        className={'h-full w-full object-cover'}
+        className={'hidden h-full w-full object-cover md:block'}
       >
         <source src={'/home-amelie.mp4'} type="video/mp4" />
         Votre navigateur ne supporte pas la vidéo HTML5.
