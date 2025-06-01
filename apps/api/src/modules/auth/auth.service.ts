@@ -11,12 +11,14 @@ import { getSessionStorageKey, SESSION_TTL_MS } from './config/storage';
 import { v4 as uuidv4 } from 'uuid';
 import { CacheStorage } from '../../shared/ports/cache-storage';
 import { Session } from '../../types/session';
+import { LogsService } from '../logs/logs.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly cache: CacheStorage,
+    private readonly logsService: LogsService,
   ) {}
 
   async getUser(sessionId: string): Promise<Session['user'] | null> {
@@ -30,7 +32,13 @@ export class AuthService {
   }
 
   async logout(sessionId: string) {
+    const user = await this.getUser(sessionId);
     await this.cache.del(getSessionStorageKey(sessionId));
+    await this.logsService.add({
+      type: 'DÉCONNEXION',
+      message: `${user?.name} s'est connecté`,
+      userId: user?.id ?? '',
+    });
   }
 
   async refreshSession(sessionId: string) {
@@ -74,6 +82,12 @@ export class AuthService {
     };
 
     await this.createSession(sessionId, session);
+
+    await this.logsService.add({
+      type: 'CONNEXION',
+      message: `${user.name} s'est connecté`,
+      userId: user.id,
+    });
 
     return { sessionId, user: session };
   }
