@@ -16,36 +16,38 @@ export const Tarifs = () => {
   return (
     <div
       id="tarifs"
-      className="bg-[#caa168] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20"
+      className="bg-[#c08562] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20"
     >
       <TitleCours title="Tarifs" />
       <div className="mt-10 flex flex-wrap justify-center gap-6 md:justify-between">
         {pricingData.map(({ courses, price, unit }, index) => (
           <div
             key={index}
-            className="pricing-card relative flex w-56 flex-col items-center rounded-[2rem] border-[3px] border-[#b5bda4] bg-[#d9dec8] p-6 text-center shadow-lg"
+            className="pricing-card relative flex w-56 flex-col items-center rounded-[2rem] border-[3px] border-[#b5bda4] bg-[#fff5e6] p-6 text-center shadow-lg"
             data-aos="fade-up"
             data-aos-delay={`${index * 300}`}
           >
             <div className={'mb-10'}>
-              <p className="text-shadow font-[Calmius] text-4xl text-white">
+              <p className="text-shadow font-[Calmius] text-4xl text-[#caa168]">
                 {unit ? 'Cours à' : 'Carte'}
               </p>
               <p
-                className={`text-black ${unit ? 'text-7xl' : 'text-8xl'} spectral-regular mt-2 font-bold`}
+                className={`text-[#caa168] ${unit ? 'text-7xl' : 'text-8xl'} spectral-regular mt-2 font-[Seasons] font-bold`}
               >
                 {unit ? unit : courses}
               </p>
               {!unit && (
-                <p className="text-shadow font-[Calmius Sans] mt-2 mb-10 text-4xl font-semibold text-white">
+                <p className="text-shadow mt-2 mb-10 font-[Calmius] text-4xl font-semibold text-[#caa168]">
                   cours
                 </p>
               )}
             </div>
 
             <div className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform">
-              <div className="w-full rounded-2xl border-2 border-black bg-[#b5bda4] p-2">
-                <p className="spectral-regular text-5xl text-black">{price}€</p>
+              <div className="w-full rounded-2xl border-2 border-[#fff5e6] bg-[#caa168] p-2">
+                <p className="spectral-regular font-[Seasons] text-5xl text-white">
+                  {price}€
+                </p>
               </div>
             </div>
           </div>

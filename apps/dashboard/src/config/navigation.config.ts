@@ -33,10 +33,6 @@ export const navigationCours = [
     href: '#home'
   },
   {
-    label: 'À propos',
-    href: '#welcome'
-  },
-  {
     label: 'Infos pratique',
     href: '#info'
   },

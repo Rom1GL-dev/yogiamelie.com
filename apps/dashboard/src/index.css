@@ -8,13 +8,13 @@
 
 @font-face {
   font-family: "Seasons";
-  src: url("/fonts/Seasons.ttf") format("truetype");
+  src: url("/fonts/Seasons.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Calmius Sans";
+  font-family: "Calmius";
   src: url("/fonts/CalmiusSans-LowExtraLight.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;

@@ -25,14 +25,14 @@ export const Faq = () => {
   return (
     <div
       className={
-        'bg-[#caa168] px-5 py-10 font-extralight md:px-24 md:py-10 lg:px-32 lg:py-20'
+        'bg-[#d5ddcb] px-5 py-10 font-extralight md:px-24 md:py-10 lg:px-32 lg:py-20'
       }
       id={'faq'}
     >
       <TitleCours title={'Questions fréquentes'} />
       <div
         dangerouslySetInnerHTML={{ __html: fields.description }}
-        className={'font-[TT Chocolates] text-lg text-white md:text-2xl'}
+        className={'font-[TT Chocolates] text-lg text-[#c08562] md:text-2xl'}
       />
     </div>
   );

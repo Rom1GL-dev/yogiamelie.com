@@ -33,7 +33,7 @@ export const Materiel = () => {
   return (
     <div
       id={'materiel'}
-      className={'bg-[#a9b394] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20'}
+      className={'bg-[#fff5e6] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20'}
     >
       <div
         className={
@@ -41,9 +41,9 @@ export const Materiel = () => {
         }
       >
         <div className={'w-full lg:w-3/5'}>
-          <TitleCours title={fields.title} />
+          <TitleCours title={fields.title} brun />
           <div
-            className={'text-justify text-xl font-extralight text-white'}
+            className={'text-justify text-xl font-extralight text-[#c08562]'}
             dangerouslySetInnerHTML={{ __html: fields.description }}
           />
           <div className={'mt-7 mb-5 flex justify-center md:mb-0'}>

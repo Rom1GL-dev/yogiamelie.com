@@ -33,10 +33,21 @@ export const HomeCours = () => {
   return (
     <div
       id={'home'}
-      className="flex w-full flex-col items-center bg-[#CAA168] p-5 md:p-10 lg:flex-row lg:justify-center"
+      className="flex w-full flex-col items-center bg-[#fff5e6] p-5 md:p-10 lg:flex-row lg:justify-center"
     >
-      <div className={'w-3/4'}>
-        <div className={'flex flex-col items-center'}>
+      <div className="relative w-3/4">
+        <img
+          src="/images/tache.webp"
+          alt="Décor"
+          style={{
+            width: '900px',
+            minWidth: '900px',
+            maxWidth: '900px'
+          }}
+          className="pointer-events-none absolute top-1/2 left-1/2 z-0 z-10 -translate-x-1/2 -translate-y-1/2"
+        />
+
+        <div className="relative z-10 flex flex-col items-center">
           <img
             src={'/images/logo.png'}
             alt={'Logo'}
@@ -45,18 +56,14 @@ export const HomeCours = () => {
             height={190}
           />
           <h1
-            className={
-              'text-shadow mt-10 text-center font-[Seasons] text-5xl text-[#d5ddcb]'
-            }
+            className="text-shadow mt-10 text-center font-[Seasons] text-5xl text-[#c08562]"
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            Cours collectifs <br /> hebdomadaires <br /> à Noiseux & Assesse.
+            {fields.title}
           </h1>
           <h2
-            className={
-              'font-[Calmius Sans] text-shadow mt-7 text-center text-xl font-light tracking-[.15em] text-[#d5ddcb] uppercase'
-            }
+            className="font-[Calmius Sans] text-shadow mt-7 text-center text-xl font-light tracking-[.15em] text-[#caa168] uppercase"
             data-aos="fade-up"
             data-aos-delay="350"
           >
@@ -65,9 +72,7 @@ export const HomeCours = () => {
           <Link
             to={fields.buttonLink}
             target={'_blank'}
-            className={
-              'font-[TT Chocolates] mt-20 rounded-full border-2 border-[#a9b394] bg-[#d5ddcb] px-9 py-3 text-2xl text-[#CAA168] uppercase'
-            }
+            className="font-[TT Chocolates] mt-20 rounded-full border-2 border-[#a9b394] bg-[#d5ddcb] px-9 py-3 text-2xl text-[#caa168] uppercase"
             data-aos="fade-up"
             data-aos-delay="400"
           >
@@ -75,6 +80,7 @@ export const HomeCours = () => {
           </Link>
         </div>
       </div>
+
       <div className="font-[TT Chocolates] mt-10 flex w-full justify-center lg:mt-0 lg:ml-5">
         <img
           src={`${apiUrl}/v1/images/site-web/${fields.image}`}
