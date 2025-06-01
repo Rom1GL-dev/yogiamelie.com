@@ -81,7 +81,7 @@ export const HomeCours = () => {
         </div>
       </div>
 
-      <div className="font-[TT Chocolates] mt-10 flex w-full justify-center lg:mt-0 lg:ml-5">
+      <div className="font-[TT Chocolates] z-20 mt-10 flex w-full justify-center lg:mt-0 lg:ml-5">
         <img
           src={`${apiUrl}/v1/images/site-web/${fields.image}`}
           alt="Image Home"
