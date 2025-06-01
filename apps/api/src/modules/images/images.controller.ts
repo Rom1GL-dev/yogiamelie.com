@@ -17,7 +17,7 @@ import { routesV1 } from '../../config/app.routes';
 
 @Controller(routesV1.version)
 export class ImagesController {
-  private basePath = 'apps/images';
+  private basePath = '/home/debian/apps/images/';
 
   @Post(routesV1.image.upload)
   @UseInterceptors(
@@ -25,7 +25,7 @@ export class ImagesController {
       storage: diskStorage({
         destination: (req, file, cb) => {
           const category = req.params.category;
-          const uploadPath = path.join('apps/images', category);
+          const uploadPath = path.join('/home/debian/apps/images/', category);
           fs.mkdirSync(uploadPath, { recursive: true });
           cb(null, uploadPath);
         },
