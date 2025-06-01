@@ -36,7 +36,7 @@ export class AuthService {
     await this.cache.del(getSessionStorageKey(sessionId));
     await this.logsService.add({
       type: 'DÉCONNEXION',
-      message: `${user?.name} s'est connecté`,
+      message: `${user?.name} s'est déconnecté`,
       userId: user?.id ?? '',
     });
   }
