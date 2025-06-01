@@ -17,7 +17,7 @@ import { routesV1 } from '../../config/app.routes';
 
 @Controller(routesV1.version)
 export class ImagesController {
-  private basePath = '/Users/romaingilot/Desktop/uploads/yogiamelie/';
+  private basePath = 'apps/yogiamelie.com/images';
 
   @Post(routesV1.image.upload)
   @UseInterceptors(
@@ -25,10 +25,7 @@ export class ImagesController {
       storage: diskStorage({
         destination: (req, file, cb) => {
           const category = req.params.category;
-          const uploadPath = path.join(
-            '/Users/romaingilot/Desktop/uploads/yogiamelie/',
-            category,
-          );
+          const uploadPath = path.join('apps/yogiamelie.com/images', category);
           fs.mkdirSync(uploadPath, { recursive: true });
           cb(null, uploadPath);
         },
