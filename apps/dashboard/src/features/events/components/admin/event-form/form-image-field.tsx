@@ -1,4 +1,5 @@
 import EventFormEventImageDrop from '@/features/events/components/admin/event-form/event-form-event-image-drop.tsx';
+import { apiUrl } from '@/config/content.config.ts';
 
 type Props = {
   image?: File | string;
@@ -37,7 +38,7 @@ const FormImageField = ({
           <img
             src={
               typeof image === 'string'
-                ? `http://localhost:3000/v1/images/${category}/${image}`
+                ? `${apiUrl}/v1/images/${category}/${image}`
                 : URL.createObjectURL(image)
             }
             alt="Preview"
