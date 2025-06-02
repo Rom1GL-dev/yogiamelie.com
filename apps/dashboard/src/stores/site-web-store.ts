@@ -49,7 +49,6 @@ export class SiteWebStore {
   }
 
   getDetailsBySection(section: string) {
-    console.log(this.details[section]);
     return this.details[section] || {};
   }
 }

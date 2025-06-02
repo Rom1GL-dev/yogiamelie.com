@@ -135,7 +135,6 @@ export class EventStore {
 
     const resLocation = await getAllLocation();
     this.locations = resLocation.locations;
-    console.log(this.locations);
     this.loaded = true;
   }
 }

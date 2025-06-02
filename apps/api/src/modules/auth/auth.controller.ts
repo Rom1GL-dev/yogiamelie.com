@@ -26,7 +26,6 @@ export class AuthController {
 
   @Post(routesV1.auth.login)
   async login(@Body() loginDto: LoginDto, @Res() res: Response) {
-    console.log(loginDto);
     const result = await this.authService.login(loginDto);
     this.setCookie(res, result.sessionId);
     res.status(HttpStatus.OK).json({

@@ -23,7 +23,6 @@ export class AuthStore {
       password
     });
 
-    console.log(account);
     runInAction(() => {
       this.account = observable.object(account);
     });

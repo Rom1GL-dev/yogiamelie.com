@@ -65,10 +65,11 @@ export class ImagesController {
     @Param('imageName') imageName: string,
     @Res() res: ExpressResponse,
   ) {
-    const imagePath = path.join(this.basePath, category, imageName);
+    const imageDir = path.join(this.basePath, category);
+    const imagePath = path.join(imageDir, imageName);
 
     if (fs.existsSync(imagePath)) {
-      return res.sendFile(imagePath);
+      return res.sendFile(imageName, { root: imageDir });
     } else {
       return res.status(404).json({ message: 'Image not found' });
     }

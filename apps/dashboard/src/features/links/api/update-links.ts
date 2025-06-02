@@ -12,7 +12,6 @@ export const useUpdateLinks = () => {
   return useMutation({
     mutationKey: ['update-links'],
     mutationFn: async (payload: Partial<UpdateLinksForm>) => {
-      console.log('Updating links with payload:', payload);
       updateLinks(payload);
     }
   });
