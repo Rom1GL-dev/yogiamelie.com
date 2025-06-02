@@ -43,6 +43,7 @@ export class ImagesController {
     @Param('category') category: string,
     @Body() body: any,
   ) {
+    console.log('je suis la', file, category, body);
     if (!file) {
       return { message: 'No file uploaded.' };
     }
@@ -65,11 +66,10 @@ export class ImagesController {
     @Param('imageName') imageName: string,
     @Res() res: ExpressResponse,
   ) {
-    const imageDir = path.join(this.basePath, category);
-    const imagePath = path.join(imageDir, imageName);
+    const imagePath = path.join(this.basePath, category, imageName);
 
     if (fs.existsSync(imagePath)) {
-      return res.sendFile(imageName, { root: imageDir });
+      return res.sendFile(imagePath);
     } else {
       return res.status(404).json({ message: 'Image not found' });
     }
