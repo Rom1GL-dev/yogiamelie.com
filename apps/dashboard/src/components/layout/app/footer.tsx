@@ -15,7 +15,7 @@ const Footer = () => {
         />
       </div>
 
-      <div className="absolute inset-0 z-10 flex w-full items-center justify-center px-5 py-10 tracking-[0.09rem] text-[#d5ddcb] md:static md:items-start md:justify-start md:px-32 md:py-20 md:text-left">
+      <div className="absolute inset-0 z-20 flex w-full items-center justify-center px-5 py-10 tracking-[0.09rem] text-[#d5ddcb] md:relative md:items-start md:justify-start md:px-32 md:py-20 md:text-left">
         <div className="text-left">
           <h2
             className="mb-5 text-lg font-bold uppercase md:text-[1.80rem]"
