@@ -31,7 +31,7 @@ export default function BlogDetailsAppRoute() {
             className="rounded-lg p-6"
             style={{ backgroundColor: 'rgba(255, 245, 230, 0.5)' }}
           >
-            <h1 className="font-[Mistrully] text-xl font-bold text-black md:text-3xl lg:text-6xl">
+            <h1 className="font-[Mistrully] text-3xl font-bold text-black md:text-4xl lg:text-6xl">
               {blog?.title}
             </h1>
             <h2 className="mt-5 text-xl font-medium text-gray-800">
