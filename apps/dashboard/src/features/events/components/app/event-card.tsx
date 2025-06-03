@@ -13,7 +13,7 @@ export default function EventCard({ event }: EventProps) {
     <div
       key={event.id}
       className={
-        'mb-7 h-[325px] w-full cursor-pointer rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-101 lg:h-[350px]'
+        'mb-7 h-[345px] w-full cursor-pointer rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-101 lg:h-[350px]'
       }
       onClick={() => navigate(`/evenement/${reformatForUrl(event.title)}`)}
     >
