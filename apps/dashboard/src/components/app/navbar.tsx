@@ -150,7 +150,7 @@ export default function Navbar() {
                   }}
                   className="text-sm font-bold text-[#353F34]"
                 >
-                  À props
+                  À propos
                 </button>
               </li>
               <li>
