@@ -51,5 +51,9 @@ export const navigationCours = [
   {
     label: 'Contact',
     href: '#contact'
+  },
+  {
+    label: 'Revenir sur le site principal',
+    href: APP_ROUTES.app.getHref()
   }
 ];
