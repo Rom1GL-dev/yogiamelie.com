@@ -26,10 +26,10 @@ export default function BlogCard({ blog }: BlogProps) {
       <div className={'flex flex-grow flex-col px-3 lg:p-3'}>
         <div className={'mt-3 flex flex-col'}>
           <p className={'text-md font-bold'}>{blog.title}</p>
-          <p className={'mt-2 font-light tracking-[0.06em]'}>{blog.subtitle}</p>
+          <p className={'mt-1 font-bold tracking-[0.06em]'}>{blog.subtitle}</p>
           <p
             className={
-              'mt-2 mb-3 line-clamp-1 font-light tracking-[0.06em] lg:mb-3 lg:line-clamp-2'
+              'mt-3 mb-3 line-clamp-1 font-light tracking-[0.06em] lg:mb-3 lg:line-clamp-2'
             }
           >
             {blog.description.replace(/<[^>]+>/g, '')}

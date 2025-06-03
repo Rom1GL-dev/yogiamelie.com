@@ -17,7 +17,7 @@ export default function BlogDetailsAppRoute() {
   const blog = blogStore.getBlogByTitle(slug);
 
   return (
-    <div className={'h-screen w-full bg-[#d5ddcb]'}>
+    <div className={'min-h-screen w-full bg-[#d5ddcb]'}>
       <GoBackBanner />
       <div className="relative h-96 w-full">
         <img
