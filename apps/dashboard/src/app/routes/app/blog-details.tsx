@@ -26,7 +26,7 @@ export default function BlogDetailsAppRoute() {
           className="h-1/3 w-full rounded-b-[20%] object-cover md:h-1/2 lg:h-full"
         />
 
-        <div className="inset-0 flex items-center px-9 md:px-20 lg:absolute lg:px-32">
+        <div className="inset-0 mt-10 flex items-center px-9 md:px-20 lg:absolute lg:mt-0 lg:px-32">
           <div
             className="rounded-lg p-6"
             style={{ backgroundColor: 'rgba(255, 245, 230, 0.5)' }}
@@ -41,7 +41,7 @@ export default function BlogDetailsAppRoute() {
         </div>
       </div>
 
-      <div className={'mt-10 pb-5'}>
+      <div className={'mt-5 pb-5 lg:mt-10'}>
         <div
           dangerouslySetInnerHTML={{ __html: blog?.description || '' }}
           className="px-9 md:px-20 lg:px-32"
