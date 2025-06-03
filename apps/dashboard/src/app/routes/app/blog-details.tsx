@@ -41,7 +41,7 @@ export default function BlogDetailsAppRoute() {
         </div>
       </div>
 
-      <div className={'mt-10'}>
+      <div className={'mt-10 mb-5'}>
         <div
           dangerouslySetInnerHTML={{ __html: blog?.description || '' }}
           className="px-32"
