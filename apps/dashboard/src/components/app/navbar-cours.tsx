@@ -35,17 +35,20 @@ export const NavbarCours = () => {
         </li>
       </ul>
       <ul className="hidden items-center justify-end space-x-8 lg:flex">
-        {navigationCours.map((item) => (
-          <li key={item.label} className="group relative">
-            <button
-              onClick={() => scrollToSection(item.href.substring(1))}
-              className="flex cursor-pointer items-center text-sm font-bold"
-              title={item.label}
-            >
-              {item.label}
-            </button>
-          </li>
-        ))}
+        {navigationCours.map((item, index) => {
+          if (index === 6) return null;
+          return (
+            <li key={item.label} className="group relative">
+              <button
+                onClick={() => scrollToSection(item.href.substring(1))}
+                className="flex cursor-pointer items-center text-sm font-bold"
+                title={item.label}
+              >
+                {item.label}
+              </button>
+            </li>
+          );
+        })}
       </ul>
 
       {/* Mobile navbar */}
