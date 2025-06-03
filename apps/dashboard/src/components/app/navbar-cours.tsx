@@ -88,19 +88,33 @@ export const NavbarCours = () => {
             data-aos-easing="ease-in-out"
           >
             <ul className="flex flex-col space-y-4">
-              {navigationCours.map((item) => (
-                <li key={item.label}>
-                  <button
-                    onClick={() => {
-                      scrollToSection(item.href.substring(1));
-                      toggleSidebar();
-                    }}
-                    className="text-sm font-bold text-[#353F34]"
-                  >
-                    {item.label}
-                  </button>
-                </li>
-              ))}
+              {navigationCours.map((item, index) => {
+                if (index === 6) {
+                  return (
+                    <li key={item.label}>
+                      <Link
+                        to={item.href}
+                        className="text-sm font-bold text-[#353F34]"
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                }
+                return (
+                  <li key={item.label}>
+                    <button
+                      onClick={() => {
+                        scrollToSection(item.href.substring(1));
+                        toggleSidebar();
+                      }}
+                      className="text-sm font-bold text-[#353F34]"
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
