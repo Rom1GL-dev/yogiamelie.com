@@ -26,7 +26,7 @@ export default function BlogDetailsAppRoute() {
           className="h-full w-full rounded-b-[20%] object-cover"
         />
 
-        <div className="absolute inset-0 flex items-center px-32">
+        <div className="absolute inset-0 flex items-center px-9 md:px-20 lg:px-32">
           <div
             className="rounded-lg p-6"
             style={{ backgroundColor: 'rgba(255, 245, 230, 0.5)' }}
