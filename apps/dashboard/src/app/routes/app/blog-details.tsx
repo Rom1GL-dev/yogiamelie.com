@@ -23,7 +23,7 @@ export default function BlogDetailsAppRoute() {
         <img
           src={`${apiUrl}/v1/images/blogs/${blog?.image}`}
           alt={blog?.title || 'Image de l’article'}
-          className="h-full w-full rounded-b-[20%] object-cover"
+          className="h-1/3 w-full rounded-b-[20%] object-cover md:h-1/2 lg:h-full"
         />
 
         <div className="absolute inset-0 flex items-center px-9 md:px-20 lg:px-32">
