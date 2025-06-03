@@ -7,7 +7,7 @@ import HomePresentation from '@/components/app/HomePresentation.tsx';
 
 export const AppRoute = () => {
   return (
-    <div className="scroll-smooth select-none">
+    <div className="scroll-smooth">
       <Navbar />
       <div id="home">
         <HomePresentation />

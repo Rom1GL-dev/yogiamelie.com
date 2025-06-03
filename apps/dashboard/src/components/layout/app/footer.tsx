@@ -28,18 +28,20 @@ const Footer = () => {
           <p className="text-lg font-extralight md:text-[1.30rem]">
             Amélie Vetcour - Yogi Amélie
           </p>
-          <a
-            href="mailto:hello@yogiamelie.be"
-            className="text-lg font-extralight hover:underline md:text-[1.30rem]"
-          >
-            hello@yogiamelie.be
-          </a>
-          <a
-            href="tel:+32493574615"
-            className="text-lg font-extralight hover:underline md:text-[1.30rem]"
-          >
-            +32 493 57 46 15
-          </a>
+          <div className={'flex flex-col'}>
+            <a
+              href="mailto:hello@yogiamelie.be"
+              className="text-lg font-extralight hover:underline md:text-[1.30rem]"
+            >
+              hello@yogiamelie.be
+            </a>
+            <a
+              href="tel:+32493574615"
+              className="text-lg font-extralight hover:underline md:text-[1.30rem]"
+            >
+              +32 493 57 46 15
+            </a>
+          </div>
 
           <p className="text-lg font-extralight md:text-[1.30rem]">
             TVA : BE1015 003 050
