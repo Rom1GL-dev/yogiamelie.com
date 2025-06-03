@@ -28,12 +28,19 @@ const Footer = () => {
           <p className="text-lg font-extralight md:text-[1.30rem]">
             Amélie Vetcour - Yogi Amélie
           </p>
-          <p className="text-lg font-extralight md:text-[1.30rem]">
+          <a
+            href="mailto:hello@yogiamelie.be"
+            className="text-lg font-extralight hover:underline md:text-[1.30rem]"
+          >
             hello@yogiamelie.be
-          </p>
-          <p className="text-lg font-extralight md:text-[1.30rem]">
+          </a>
+          <a
+            href="tel:+32493574615"
+            className="text-lg font-extralight hover:underline md:text-[1.30rem]"
+          >
             +32 493 57 46 15
-          </p>
+          </a>
+
           <p className="text-lg font-extralight md:text-[1.30rem]">
             TVA : BE1015 003 050
           </p>
