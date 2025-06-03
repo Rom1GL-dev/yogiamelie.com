@@ -13,7 +13,7 @@ export default function BlogCard({ blog }: BlogProps) {
     <div
       key={blog.id}
       className={
-        'mb-7 flex h-[300px] w-full cursor-pointer flex-col rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-101 md:h-[325px] lg:h-[350px]'
+        'mb-7 flex h-[300px] w-full cursor-pointer flex-col rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-101 md:h-[250px] lg:h-[350px]'
       }
       onClick={() => navigate(`/blog/${reformatForUrl(blog.title)}`)}
     >
