@@ -25,14 +25,15 @@ export const About = () => {
   return (
     <div
       id={'a-propos'}
-      className="bg-[#fff5e6] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20"
+      className="bg-[#c08562] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20"
     >
       <div data-aos="fade-up" data-aos-delay="300">
-        <TitleCours title={fields.title} brun />
+        <TitleCours title={fields.title} />
       </div>
 
       <div
         className="text-shadow text-justify text-lg leading-relaxed font-extralight text-white md:text-2xl"
+        style={{ color: '#FFF5E6 !important' }}
         dangerouslySetInnerHTML={{ __html: fields.description }}
       />
     </div>
