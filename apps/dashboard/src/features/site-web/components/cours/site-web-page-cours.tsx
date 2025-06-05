@@ -4,9 +4,11 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import SiteWebPageCoursFaq from '@/features/site-web/components/cours/site-web-page-cours-faq.tsx';
 import SiteWebPageCoursMateriels from '@/features/site-web/components/cours/site-web-page-cours-materiels.tsx';
 import SiteWebPageCoursPresentation from '@/features/site-web/components/cours/site-web-page-cours-presentation.tsx';
+import SiteWebPageCoursBienvenue from '@/features/site-web/components/cours/site-web-page-cours-bienvenue.tsx';
 
 const sections = [
   { id: 'presentationCours', title: 'Section présentation' },
+  { id: 'aboutCours', title: 'Section à propos' },
   { id: 'infosCours', title: 'Section informations' },
   { id: 'tarifsCours', title: 'Section tarifications' },
   { id: 'materielsCours', title: 'Section matériels' },
@@ -44,6 +46,7 @@ export default function SiteWebPageCours() {
                 {section.id === 'presentationCours' && (
                   <SiteWebPageCoursPresentation />
                 )}
+                {section.id === 'aboutCours' && <SiteWebPageCoursBienvenue />}
                 {section.id === 'faqCours' && <SiteWebPageCoursFaq />}
                 {section.id === 'materielsCours' && (
                   <SiteWebPageCoursMateriels />

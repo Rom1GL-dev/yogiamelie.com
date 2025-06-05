@@ -30,11 +30,15 @@ export const navigation = [
 export const navigationCours = [
   {
     label: 'Accueil',
-    href: '#home'
+    href: APP_ROUTES.app.getHref()
   },
   {
-    label: 'Infos pratique',
-    href: '#info'
+    label: 'À propos',
+    href: '#a-propos'
+  },
+  {
+    label: 'Lieux',
+    href: '#lieux'
   },
   {
     label: 'Tarifs',
@@ -51,9 +55,5 @@ export const navigationCours = [
   {
     label: 'Contact',
     href: '#contact'
-  },
-  {
-    label: 'Revenir sur le site principal',
-    href: APP_ROUTES.app.getHref()
   }
 ];

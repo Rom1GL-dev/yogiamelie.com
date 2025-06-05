@@ -89,7 +89,7 @@ export const NavbarCours = () => {
           >
             <ul className="flex flex-col space-y-4">
               {navigationCours.map((item, index) => {
-                if (index === 6) {
+                if (index === 0) {
                   return (
                     <li key={item.label}>
                       <Link

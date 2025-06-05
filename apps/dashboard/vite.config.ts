@@ -12,7 +12,7 @@ export default defineConfig({
     }
   },
   server: {
-    allowedHosts: ['yogiamelie.com'],
+    allowedHosts: ['yogiamelie.com', 'www.yogiamelie.com'],
     host: true
   }
 });

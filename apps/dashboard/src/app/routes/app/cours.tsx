@@ -5,6 +5,7 @@ import { NavbarCours } from '@/components/app/navbar-cours.tsx';
 import { Tarifs } from '@/features/cours/components/Tarifs.tsx';
 import { HomeCours } from '@/features/cours/components/HomeCours.tsx';
 import { Info } from '@/features/cours/components/Info.tsx';
+import { About } from '@/features/cours/components/about.tsx';
 
 export const CoursRoute = () => {
   return (
@@ -12,6 +13,9 @@ export const CoursRoute = () => {
       <NavbarCours />
       <div id="home">
         <HomeCours />
+      </div>
+      <div className={'a-propos'}>
+        <About />
       </div>
       <div id="welcome">
         <Info />

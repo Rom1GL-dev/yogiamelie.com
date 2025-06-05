@@ -59,7 +59,7 @@ export default function HomePresentation() {
           to={fields.buttonLink}
           title={fields.button}
           className={
-            'text-md cursor-pointer rounded-lg bg-[#d08349] px-12 py-2.5 font-light underline shadow-md transition hover:bg-[#ab6a39]'
+            'text-md cursor-pointer rounded-lg bg-[#d08349] px-12 py-2.5 font-light shadow-md transition hover:bg-[#ab6a39]'
           }
           data-aos="fade-up"
           data-aos-delay="350"

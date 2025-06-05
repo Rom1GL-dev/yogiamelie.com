@@ -37,13 +37,13 @@ export default function Navbar() {
         scrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
-      <ul className="hidden lg:flex lg:w-1/3" />
+      <ul className="hidden w-1/3 lg:flex" />
       <ul
         className={clsx(
-          'hidden items-center justify-center py-2 duration-300 lg:flex',
+          'items-center justify-center py-2 duration-300 lg:flex',
           {
-            'h-[22%] w-[22%]': !scrolled,
-            'h-[12%] w-[12%]': scrolled
+            'h-[40%] w-[40%] md:h-[22%] md:w-[22%]': !scrolled,
+            'h-[12%] w-[12%] md:h-[12%] md:w-[12%]': scrolled
           }
         )}
       >
@@ -57,12 +57,9 @@ export default function Navbar() {
         </li>
       </ul>
       <ul
-        className={clsx(
-          'hidden w-full justify-end space-x-8 p-5 lg:flex lg:w-1/3',
-          {
-            'items-center': scrolled
-          }
-        )}
+        className={clsx('hidden w-1/3 justify-end space-x-8 p-5 lg:flex', {
+          'items-center': scrolled
+        })}
       >
         <li>
           <button

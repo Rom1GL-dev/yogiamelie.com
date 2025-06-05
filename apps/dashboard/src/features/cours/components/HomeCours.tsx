@@ -33,7 +33,7 @@ export const HomeCours = () => {
   return (
     <div
       id={'home'}
-      className="flex w-full flex-col items-center bg-[#fff5e6] p-5 md:p-10 lg:flex-row lg:justify-center"
+      className="flex w-full flex-col items-center border-b-2 border-[#c08562] bg-[#fff5e6] p-5 md:p-10 lg:flex-row lg:justify-center"
     >
       <div className="relative w-3/4">
         <img
