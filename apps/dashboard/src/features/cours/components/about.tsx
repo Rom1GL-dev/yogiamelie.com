@@ -32,8 +32,7 @@ export const About = () => {
       </div>
 
       <div
-        className="text-shadow text-justify text-lg leading-relaxed font-extralight text-white md:text-2xl"
-        style={{ color: '#FFF5E6' }}
+        className="text-shadow text-justify text-lg leading-relaxed font-extralight text-[#FFF5E6] md:text-2xl"
         dangerouslySetInnerHTML={{ __html: fields.description }}
       />
     </div>
