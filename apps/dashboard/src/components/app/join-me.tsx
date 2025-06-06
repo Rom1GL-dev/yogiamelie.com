@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import { EVENT_TYPE } from '@/features/events/types/events.type.ts';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const JoinMe = observer(() => {
   const { eventStore } = useStores();
@@ -20,22 +21,26 @@ export const JoinMe = observer(() => {
       {
         <div className="relative" data-aos="fade-up" data-aos-delay="350">
           <button
-            className="swiper-button-prev1 absolute top-1/2 -left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
+            className="swiper-button-prev-event absolute top-1/2 -left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
             aria-label="Précédent"
             style={{ left: '-40px' }}
-          ></button>
+          >
+            <ChevronLeft />
+          </button>
 
           <button
-            className="swiper-button-next1 absolute top-1/2 -right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
+            className="swiper-button-next-event absolute top-1/2 -right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
             aria-label="Suivant"
             style={{ right: '-40px' }}
-          ></button>
+          >
+            <ChevronRight />
+          </button>
 
           <Swiper
             modules={[Navigation, Pagination]}
             navigation={{
-              nextEl: '.swiper-button-next1',
-              prevEl: '.swiper-button-prev1'
+              nextEl: '.swiper-button-next-event',
+              prevEl: '.swiper-button-prev-event'
             }}
             pagination={{ clickable: true }}
             spaceBetween={20}

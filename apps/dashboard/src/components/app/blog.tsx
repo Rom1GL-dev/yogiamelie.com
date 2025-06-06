@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const Blog = observer(() => {
   const { blogStore } = useStores();
@@ -18,22 +19,26 @@ export const Blog = observer(() => {
     <LayoutApp title={'Blog'} background={'#fff5e6'}>
       <div className="relative" data-aos="fade-up" data-aos-delay="350">
         <button
-          className="swiper-button-prev absolute top-1/2 -left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
+          className="swiper-button-prev-blog absolute top-1/2 -left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
           aria-label="Précédent"
           style={{ left: '-40px' }}
-        ></button>
+        >
+          <ChevronLeft />
+        </button>
 
         <button
-          className="swiper-button-next absolute top-1/2 -right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
+          className="swiper-button-next-blog absolute top-1/2 -right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
           aria-label="Suivant"
           style={{ right: '-40px' }}
-        ></button>
+        >
+          <ChevronRight />
+        </button>
 
         <Swiper
           modules={[Navigation, Pagination]}
           navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
+            nextEl: '.swiper-button-next-blog',
+            prevEl: '.swiper-button-prev-blog'
           }}
           pagination={{ clickable: true }}
           spaceBetween={20}

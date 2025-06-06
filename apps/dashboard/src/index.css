@@ -27,14 +27,14 @@
   font-style: normal;
 }
 
-.swiper-button-next::after,
-.swiper-button-prev::after {
+.swiper-button-next-blog::after,
+.swiper-button-prev-blog::after {
   font-size: 14px !important;
   color: black;
 }
 
-.swiper-button-next1::after,
-.swiper-button-prev1::after {
+.swiper-button-next-event::after,
+.swiper-button-prev-event::after {
   font-size: 14px !important;
   color: black;
 }
