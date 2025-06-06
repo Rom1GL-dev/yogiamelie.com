@@ -4,6 +4,7 @@ import Footer from '@/components/layout/app/footer.tsx';
 import { Blog } from '@/components/app/blog.tsx';
 import Navbar from '@/components/app/navbar.tsx';
 import HomePresentation from '@/components/app/HomePresentation.tsx';
+import Newsletter from '@/components/app/newsletter.tsx';
 
 export const AppRoute = () => {
   return (
@@ -20,6 +21,9 @@ export const AppRoute = () => {
       </div>
       <div id="blog">
         <Blog />
+      </div>
+      <div id="newsletter">
+        <Newsletter />
       </div>
       <div id="contact">
         <Footer />

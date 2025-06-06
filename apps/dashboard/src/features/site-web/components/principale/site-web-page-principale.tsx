@@ -3,10 +3,12 @@ import SiteWebPagePrincipalePresentation from '@/features/site-web/components/pr
 import SiteWebPagePrincipaleBienvenue from '@/features/site-web/components/principale/site-web-page-principale-bienvenue.tsx';
 import { SiteWebPagePrincipaleFooter } from '@/features/site-web/components/principale/site-web-page-principale-footer.tsx';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import SiteWebPagePrincipaleNewsLetter from '@/features/site-web/components/principale/site-web-page-principale-newsletter.tsx';
 
 const sections = [
   { id: 'presentation', title: 'Section présentation' },
   { id: 'bienvenue', title: 'Bienvenue dans mon univers' },
+  { id: 'newsletter', title: 'Newsletter' },
   { id: 'footer', title: 'Pied de Page' }
 ];
 
@@ -40,6 +42,9 @@ export default function SiteWebPagePrincipale() {
               <div className="space-y-4 border-t border-gray-200 bg-white p-4">
                 {section.id === 'presentation' && (
                   <SiteWebPagePrincipalePresentation />
+                )}
+                {section.id === 'newsletter' && (
+                  <SiteWebPagePrincipaleNewsLetter />
                 )}
                 {section.id === 'bienvenue' && (
                   <SiteWebPagePrincipaleBienvenue />
