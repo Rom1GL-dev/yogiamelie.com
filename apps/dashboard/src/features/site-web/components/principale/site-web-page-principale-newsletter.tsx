@@ -64,7 +64,7 @@ const SiteWebPagePrincipaleNewsLetter = observer(() => {
     }
     showToast({
       type: 'success',
-      message: 'Section "Présentation" mise à jour avec succès !'
+      message: 'Section "Newsletter" mise à jour avec succès !'
     });
     await siteWebStore.onInit(SECTION);
   };

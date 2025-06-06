@@ -33,7 +33,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`top-0 left-0 z-10 flex w-full justify-between transition-colors duration-300 lg:fixed ${
+      className={`top-0 left-0 z-10 flex w-full justify-between whitespace-nowrap transition-colors duration-300 lg:fixed ${
         scrolled ? 'bg-white shadow-md' : 'bg-transparent'
       }`}
     >
@@ -92,6 +92,14 @@ export default function Navbar() {
             className="cursor-pointer"
           >
             Blog
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => scrollToSection('newsletter')}
+            className="cursor-pointer"
+          >
+            Newsletter
           </button>
         </li>
         <li>
@@ -180,6 +188,17 @@ export default function Navbar() {
                   className="text-sm font-bold text-[#353F34]"
                 >
                   Blog
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => {
+                    toggleSidebar();
+                    scrollToSection('newsletter');
+                  }}
+                  className="text-sm font-bold text-[#353F34]"
+                >
+                  Newsletter
                 </button>
               </li>
               <li>
