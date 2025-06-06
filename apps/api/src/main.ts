@@ -10,14 +10,22 @@ async function bootstrap() {
   });
   const configService = app.get(ConfigService);
 
-  const appUrl = configService.get('APP_URL');
+  const appUrlEnv = configService.get<string>('APP_URL');
 
-  if (!appUrl) {
+  if (!appUrlEnv) {
     throw new Error('APP_URL is required to allow CORS');
   }
 
+  const allowedOrigins = appUrlEnv.split(',').map((url) => url.trim());
+
   app.enableCors({
-    origin: appUrl,
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error(`CORS blocked for origin: ${origin}`));
+      }
+    },
     credentials: true,
   });
 
@@ -33,7 +41,7 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  const port = parseInt(configService.get('PORT') ?? '3000', 10) || 3000;
+  const port = parseInt(configService.get('PORT') ?? '3000', 10);
   await app.listen(port);
 }
 void bootstrap();
