@@ -14,6 +14,10 @@ export const APP_ROUTES = {
     eventsDetails: {
       path: '/evenement/:slug',
       getHref: () => '/evenement/:slug'
+    },
+    mentions: {
+      path: 'mentions-legales',
+      getHref: () => 'mentions-legales'
     }
   },
   admin: {
@@ -60,10 +64,6 @@ export const APP_ROUTES = {
     userDetails: {
       path: '/admin/utilisateurs/:slug',
       getHref: () => '/admin/utilisateurs/:slug'
-    },
-    mentions: {
-      path: '/admin/mentions',
-      getHref: () => '/admin/mentions'
     },
     siteWeb: {
       path: '/admin/site-web',

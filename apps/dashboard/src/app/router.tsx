@@ -13,13 +13,13 @@ import EventDetailsRoute from '@/app/routes/admin/events/event-details.tsx';
 import EventNewRoute from '@/app/routes/admin/events/event-new.tsx';
 import BlogDetailsRoute from '@/app/routes/admin/blogs/blog-details.tsx';
 import BlogNewRoute from '@/app/routes/admin/blogs/blog-new.tsx';
-import MentionsRoute from '@/app/routes/admin/mentions.tsx';
 import { SiteWebRoute } from '@/app/routes/admin/site-web.tsx';
 import { UserNewRoute } from '@/app/routes/admin/users/user-new.tsx';
 import { UserDetailsRoute } from '@/app/routes/admin/users/user-details.tsx';
 import { CoursRoute } from '@/app/routes/app/cours.tsx';
 import EventDetailsAppRoute from '@/app/routes/app/event-details.tsx';
 import BlogDetailsAppRoute from '@/app/routes/app/blog-details.tsx';
+import MentionsLegalesAppRoute from '@/app/routes/app/mentions-legales.tsx';
 
 const queryClient = new QueryClient();
 
@@ -163,11 +163,11 @@ export const createAppRouter = () =>
       )
     },
     {
-      path: APP_ROUTES.admin.mentions.getHref(),
+      path: APP_ROUTES.app.mentions.getHref(),
       element: (
-        <ProtectedRoute>
-          <MentionsRoute />
-        </ProtectedRoute>
+        <PublicRoutes>
+          <MentionsLegalesAppRoute />
+        </PublicRoutes>
       )
     }
   ]);

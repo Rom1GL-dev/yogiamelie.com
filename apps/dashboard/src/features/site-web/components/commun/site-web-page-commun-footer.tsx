@@ -6,7 +6,7 @@ import { useUpdateLinks } from '@/features/links/api/update-links.ts';
 import { TLinkModel } from '@/features/links/types/links.type.ts';
 import { AxiosError } from '@/types/axios.ts';
 
-export const SiteWebPagePrincipaleFooter = observer(() => {
+export const SiteWebPageCommunFooter = observer(() => {
   const { linkStore } = useStores();
   const { showToast } = useToast();
   const updateLinksMutation = useUpdateLinks();

@@ -6,6 +6,8 @@ import SiteWebPageCours from '@/features/site-web/components/cours/site-web-page
 import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 import { FaChevronRight } from 'react-icons/fa';
+import SiteWebPageCommun from '@/features/site-web/components/commun/site-web-page-commun.tsx';
+import { SITE_WEB_TYPE } from '@/features/site-web/site-web.type.ts';
 
 export const SiteWebRoute = observer(() => {
   const navigation = useNavigate();
@@ -31,11 +33,17 @@ export const SiteWebRoute = observer(() => {
         onSelect={siteWebStore.setSelectedType.bind(siteWebStore)}
       />
 
-      {siteWebStore.selectedType === 'pagePrincipale' && (
+      {siteWebStore.selectedType === SITE_WEB_TYPE.PAGE_PRINCIPAL && (
         <SiteWebPagePrincipale />
       )}
 
-      {siteWebStore.selectedType === 'pageCours' && <SiteWebPageCours />}
+      {siteWebStore.selectedType === SITE_WEB_TYPE.PAGE_COURS && (
+        <SiteWebPageCours />
+      )}
+
+      {siteWebStore.selectedType === SITE_WEB_TYPE.PAGE_COMMUN && (
+        <SiteWebPageCommun />
+      )}
     </LayoutAdmin>
   );
 });

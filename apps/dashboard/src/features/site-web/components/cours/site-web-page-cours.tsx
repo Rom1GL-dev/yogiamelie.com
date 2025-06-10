@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SiteWebPagePrincipaleFooter } from '@/features/site-web/components/principale/site-web-page-principale-footer.tsx';
+import { SiteWebPageCommunFooter } from '@/features/site-web/components/commun/site-web-page-commun-footer.tsx';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import SiteWebPageCoursFaq from '@/features/site-web/components/cours/site-web-page-cours-faq.tsx';
 import SiteWebPageCoursMateriels from '@/features/site-web/components/cours/site-web-page-cours-materiels.tsx';
@@ -51,7 +51,7 @@ export default function SiteWebPageCours() {
                 {section.id === 'materielsCours' && (
                   <SiteWebPageCoursMateriels />
                 )}
-                {section.id === 'footer' && <SiteWebPagePrincipaleFooter />}
+                {section.id === 'footer' && <SiteWebPageCommunFooter />}
               </div>
             )}
           </div>

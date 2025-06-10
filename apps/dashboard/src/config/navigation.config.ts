@@ -3,7 +3,6 @@ import {
   FaBlogger,
   FaCalendarAlt,
   FaGlobe,
-  FaInfo,
   FaTachometerAlt,
   FaUsers
 } from 'react-icons/fa';
@@ -22,9 +21,7 @@ export const navigation = [
   },
   { path: APP_ROUTES.admin.blogs.path, name: 'Blogs', icon: FaBlogger },
   { path: APP_ROUTES.admin.users.path, name: 'Utilisateurs', icon: FaUsers },
-  { title: 'Paramétrage' },
-  { path: APP_ROUTES.admin.siteWeb.path, name: 'Site web', icon: FaGlobe },
-  { path: APP_ROUTES.admin.mentions.path, name: 'Mentions', icon: FaInfo }
+  { path: APP_ROUTES.admin.siteWeb.path, name: 'Site web', icon: FaGlobe }
 ];
 
 export const navigationCours = [

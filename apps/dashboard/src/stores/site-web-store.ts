@@ -18,7 +18,8 @@ export class SiteWebStore {
   get siteWebParametreType() {
     return [
       { key: SITE_WEB_TYPE.PAGE_PRINCIPAL, label: 'Page Principale' },
-      { key: SITE_WEB_TYPE.PAGE_COURS, label: 'Page Cours' }
+      { key: SITE_WEB_TYPE.PAGE_COURS, label: 'Page Cours' },
+      { key: SITE_WEB_TYPE.PAGE_COMMUN, label: 'Page Commune' }
     ];
   }
 

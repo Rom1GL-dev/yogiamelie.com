@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useStores } from '@/providers/stores-provider.tsx';
+import { APP_ROUTES } from '@/config/routes.config.ts';
 
 const Footer = () => {
   const { linkStore } = useStores();
@@ -94,6 +95,15 @@ const Footer = () => {
             />
           </Link>
         </div>
+      </div>
+
+      <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 text-center text-sm text-gray-400">
+        <Link
+          to={APP_ROUTES.app.mentions.getHref()}
+          className="hover:underline"
+        >
+          Mentions légales
+        </Link>
       </div>
     </div>
   );

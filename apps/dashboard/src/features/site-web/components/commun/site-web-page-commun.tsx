@@ -1,18 +1,14 @@
 import { useState } from 'react';
-import SiteWebPagePrincipalePresentation from '@/features/site-web/components/principale/site-web-page-principale-presentation.tsx';
-import SiteWebPagePrincipaleBienvenue from '@/features/site-web/components/principale/site-web-page-principale-bienvenue.tsx';
 import { SiteWebPageCommunFooter } from '@/features/site-web/components/commun/site-web-page-commun-footer.tsx';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import SiteWebPagePrincipaleNewsLetter from '@/features/site-web/components/principale/site-web-page-principale-newsletter.tsx';
+import SiteWebPageCommunMention from '@/features/site-web/components/commun/site-web-page-commun-mention.tsx';
 
 const sections = [
-  { id: 'presentation', title: 'Section présentation' },
-  { id: 'bienvenue', title: 'Bienvenue dans mon univers' },
-  { id: 'newsletter', title: 'Newsletter' },
+  { id: 'mentionLegales', title: 'Mentions Légales' },
   { id: 'footer', title: 'Pied de Page' }
 ];
 
-export default function SiteWebPagePrincipale() {
+export default function SiteWebPageCommun() {
   const [openSection, setOpenSection] = useState<string | null>(null);
 
   const toggleSection = (id: string) => {
@@ -40,16 +36,9 @@ export default function SiteWebPagePrincipale() {
 
             {openSection === section.id && (
               <div className="space-y-4 border-t border-gray-200 bg-white p-4">
-                {section.id === 'presentation' && (
-                  <SiteWebPagePrincipalePresentation />
+                {section.id === 'mentionLegales' && (
+                  <SiteWebPageCommunMention />
                 )}
-                {section.id === 'newsletter' && (
-                  <SiteWebPagePrincipaleNewsLetter />
-                )}
-                {section.id === 'bienvenue' && (
-                  <SiteWebPagePrincipaleBienvenue />
-                )}
-
                 {section.id === 'footer' && <SiteWebPageCommunFooter />}
               </div>
             )}
