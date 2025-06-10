@@ -3,7 +3,7 @@ import { SITE_WEB_TYPE } from '@/features/site-web/site-web.type.ts';
 import { getBySection } from '@/features/site-web/api/get-by-section.ts';
 
 export class SiteWebStore {
-  details: Record<string, any> = {}; // ✅ chaque section est une clé avec ses données
+  details: Record<string, any> = {};
   loaded = false;
 
   selectedType: string =

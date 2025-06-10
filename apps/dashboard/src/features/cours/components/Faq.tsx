@@ -12,8 +12,8 @@ export const Faq = () => {
 
   useEffect(() => {
     (async () => {
-      await siteWebStore.onInit('welcome');
-      const sectionDetails = siteWebStore.getDetailsBySection('welcome');
+      await siteWebStore.onInit('faqCours');
+      const sectionDetails = siteWebStore.getDetailsBySection('faqCours');
 
       setFields({
         title: sectionDetails?.details?.title,
