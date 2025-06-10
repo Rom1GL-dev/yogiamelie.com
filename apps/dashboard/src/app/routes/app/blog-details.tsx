@@ -19,7 +19,7 @@ export default function BlogDetailsAppRoute() {
   return (
     <div className={'min-h-screen w-full bg-[#d5ddcb]'}>
       <GoBackBanner />
-      <div className="relative h-96 w-full">
+      <div className="relative mt-15 h-96 w-full">
         <img
           src={`${apiUrl}/v1/images/blogs/${blog?.image}`}
           alt={blog?.title || 'Image de l’article'}

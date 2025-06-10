@@ -24,7 +24,7 @@ export default function EventDetailsAppRoute() {
   return (
     <div className={'min-h-screen w-full bg-[#fff5e6]'}>
       <GoBackBanner />
-      <div className={'px-4 py-6 md:px-8 lg:px-32'}>
+      <div className={'mt-15 px-4 py-6 md:px-8 lg:px-32'}>
         <h1 className="mb-5 font-[Mistrully] text-4xl font-bold text-black md:text-5xl lg:text-6xl">
           {event?.title}
         </h1>
