@@ -14,7 +14,9 @@ export const EventCard = ({ event }: { event: TEventModel }) => {
 
   const handleClick = () => {
     const formattedTitle = reformatForUrl(event.title);
-    navigate(APP_ROUTES.admin.events.path + '/' + formattedTitle);
+    navigate(
+      APP_ROUTES.admin.events.path + '/' + formattedTitle + '-' + event.id
+    );
   };
 
   return (

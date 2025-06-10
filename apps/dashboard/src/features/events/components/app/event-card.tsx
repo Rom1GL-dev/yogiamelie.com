@@ -15,7 +15,9 @@ export default function EventCard({ event }: EventProps) {
       className={
         'mb-7 h-full w-full cursor-pointer rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-101 md:h-[345px] lg:h-[350px]'
       }
-      onClick={() => navigate(`/evenement/${reformatForUrl(event.title)}`)}
+      onClick={() =>
+        navigate(`/evenement/${reformatForUrl(event.title)}-${event.id}`)
+      }
     >
       <img
         src={`${apiUrl}/v1/images/events/${event.image}`}

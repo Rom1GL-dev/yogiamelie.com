@@ -76,7 +76,9 @@ export default function EventDetailsRoute() {
         navigation(
           APP_ROUTES.admin.events.getHref() +
             '/' +
-            reformatForUrl(payload.title)
+            reformatForUrl(payload.title) +
+            '-' +
+            payload.id
         );
       },
       onError: () => {

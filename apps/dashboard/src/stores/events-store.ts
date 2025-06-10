@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import dayjs from 'dayjs';
-import { normalizeString, reformatForUrl } from '@/lib/utils';
+import { normalizeString } from '@/lib/utils';
 import { EVENT_TYPE, TEventModel } from '@/features/events/types/events.type';
 import { getAllEvents } from '@/features/events/api/get-all-events';
 import { getAllLocation } from '@/features/events/api/get-all-locations.ts';
@@ -105,9 +105,11 @@ export class EventStore {
   }
 
   getEventByTitle(title: string) {
-    return this.processedEvents.find(
-      (event) => reformatForUrl(event.title) === reformatForUrl(title)
-    );
+    const id = title.split('-').pop()?.trim();
+
+    if (!id) return null;
+
+    return this.processedEvents.find((event) => String(event.id) === id);
   }
 
   setSelectedType(type: string) {
