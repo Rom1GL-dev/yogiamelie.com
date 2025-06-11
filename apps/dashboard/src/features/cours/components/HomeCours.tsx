@@ -35,14 +35,6 @@ export const HomeCours = () => {
     <>
       <Helmet>
         <link rel="preload" href="/images/tache.webp" as="image" />
-        <link rel="preload" href="/images/logo.png" as="image" />
-        {fields.image && (
-          <link
-            rel="preload"
-            href={`${apiUrl}/v1/images/site-web/${fields.image}`}
-            as="image"
-          />
-        )}
       </Helmet>
 
       <div
@@ -53,7 +45,7 @@ export const HomeCours = () => {
           <img
             src="/images/tache.webp"
             alt="Décor"
-            loading="lazy"
+            loading="eager" // Charger cette image en priorité
             style={{ width: '900px', height: 'auto' }}
             className="pointer-events-none absolute top-1/2 left-1/2 z-0 -translate-x-1/2 -translate-y-1/2"
           />
