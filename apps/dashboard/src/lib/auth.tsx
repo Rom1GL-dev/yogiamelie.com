@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { PropsWithChildren } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { APP_ROUTES } from '@/config/routes.config.ts';
+import { ScrollToTop } from '@/components/scroll-to-top.tsx';
 
 export const ProtectedRoute = observer(({ children }: PropsWithChildren) => {
   const {
@@ -14,9 +15,19 @@ export const ProtectedRoute = observer(({ children }: PropsWithChildren) => {
     navigation(APP_ROUTES.admin.login.getHref());
   }
 
-  return children;
+  return (
+    <>
+      <ScrollToTop />
+      {children}
+    </>
+  );
 });
 
 export const PublicRoutes = observer(({ children }: PropsWithChildren) => {
-  return children;
+  return (
+    <>
+      <ScrollToTop />
+      {children}
+    </>
+  );
 });
