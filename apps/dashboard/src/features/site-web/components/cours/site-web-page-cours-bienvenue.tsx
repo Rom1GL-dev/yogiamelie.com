@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import FormField from '@/components/form-field.tsx';
 import { observer } from 'mobx-react-lite';
 import { useAddDetail } from '@/features/site-web/api/add-detail.ts';
@@ -60,13 +60,13 @@ const SiteWebPageCoursBienvenue = observer(() => {
           await updateDetailMutation.mutateAsync({
             id,
             contentType: key,
-            value: value
+            value: value as string
           });
         } else {
           await addDetailMutation.mutateAsync({
             section: SECTION,
             contentType: key,
-            value: value
+            value: value as string
           });
         }
       }
@@ -94,7 +94,7 @@ const SiteWebPageCoursBienvenue = observer(() => {
     <>
       <FormField
         label="Titre de la section"
-        value={fields.title.value}
+        value={fields.title.value as string}
         onChange={(e) => onChangeField('title', e.target.value)}
         required
       />
@@ -102,7 +102,7 @@ const SiteWebPageCoursBienvenue = observer(() => {
       <FormField
         label="Description"
         type="quill"
-        value={fields.description.value}
+        value={fields.description.value as string}
         onChange={(val: string) => onChangeField('description', val)}
         required
       />

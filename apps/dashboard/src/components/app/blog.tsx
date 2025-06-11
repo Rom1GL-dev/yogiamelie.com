@@ -19,7 +19,7 @@ export const Blog = observer(() => {
     <LayoutApp title={'Blog'} background={'#fff5e6'}>
       <div className="relative" data-aos="fade-up" data-aos-delay="350">
         <button
-          className="swiper-button-prev-blog absolute top-1/2 -left-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
+          className="swiper-button-prev-blog absolute top-1/2 -left-6 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
           aria-label="Précédent"
           style={{ left: '-40px' }}
         >
@@ -27,7 +27,7 @@ export const Blog = observer(() => {
         </button>
 
         <button
-          className="swiper-button-next-blog absolute top-1/2 -right-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
+          className="swiper-button-next-blog absolute top-1/2 -right-6 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-gray-300 text-white hover:bg-gray-400"
           aria-label="Suivant"
           style={{ right: '-40px' }}
         >

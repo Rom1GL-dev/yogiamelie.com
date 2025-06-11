@@ -67,7 +67,10 @@ const SiteWebPagePrincipaleBienvenue = observer(() => {
       let imageValue = fields.image.value;
 
       if (imageValue instanceof File) {
-        const imageName = generateImageName(fields.title.value, imageValue);
+        const imageName = generateImageName(
+          fields.title.value as string,
+          imageValue
+        );
         const renamedFile = renameFile(imageValue, imageName);
 
         await uploadImageMutation.mutateAsync({
@@ -85,13 +88,13 @@ const SiteWebPagePrincipaleBienvenue = observer(() => {
           await updateDetailMutation.mutateAsync({
             id,
             contentType: key,
-            value: valToSave
+            value: valToSave as string
           });
         } else {
           await addDetailMutation.mutateAsync({
             section: SECTION,
             contentType: key,
-            value: valToSave
+            value: valToSave as string
           });
         }
       }
@@ -119,7 +122,7 @@ const SiteWebPagePrincipaleBienvenue = observer(() => {
     <>
       <FormField
         label="Titre de la section"
-        value={fields.title.value}
+        value={fields.title.value as string}
         onChange={(e) => onChangeField('title', e.target.value)}
         required
       />
@@ -127,7 +130,7 @@ const SiteWebPagePrincipaleBienvenue = observer(() => {
       <FormField
         label="Description"
         type="quill"
-        value={fields.description.value}
+        value={fields.description.value as string}
         onChange={(val: string) => onChangeField('description', val)}
         required
       />

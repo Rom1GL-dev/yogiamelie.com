@@ -77,7 +77,10 @@ const SiteWebPageCoursPresentation = observer(() => {
       let imageValue = fields.image.value;
 
       if (imageValue instanceof File) {
-        const imageName = generateImageName(fields.title.value, imageValue);
+        const imageName = generateImageName(
+          fields.title.value as string,
+          imageValue
+        );
         const renamedFile = renameFile(imageValue, imageName);
 
         await uploadImageMutation.mutateAsync({
@@ -95,13 +98,13 @@ const SiteWebPageCoursPresentation = observer(() => {
           await updateDetailMutation.mutateAsync({
             id,
             contentType: key,
-            value: valToSave
+            value: valToSave as string
           });
         } else {
           await addDetailMutation.mutateAsync({
             section: SECTION,
             contentType: key,
-            value: valToSave
+            value: valToSave as string
           });
         }
       }
@@ -129,28 +132,28 @@ const SiteWebPageCoursPresentation = observer(() => {
     <>
       <FormField
         label="Titre de la section"
-        value={fields.title.value}
+        value={fields.title.value as string}
         onChange={(e) => onChangeField('title', e.target.value)}
         required
       />
 
       <FormField
         label="Description de la section"
-        value={fields.description.value}
+        value={fields.description.value as string}
         onChange={(e) => onChangeField('description', e.target.value)}
         required
       />
 
       <FormField
         label="Texte du bouton"
-        value={fields.button.value}
+        value={fields.button.value as string}
         onChange={(e) => onChangeField('button', e.target.value)}
         required
       />
 
       <FormField
         label="Lien du bouton"
-        value={fields.buttonLink.value}
+        value={fields.buttonLink.value as string}
         onChange={(e) => onChangeField('buttonLink', e.target.value)}
         required
       />

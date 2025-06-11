@@ -128,7 +128,7 @@ export default function EventDetailsRoute() {
       ]}
     >
       <EventFormComponent
-        event={event}
+        event={event ?? undefined}
         onSave={handleSaveEvent}
         onDelete={handleRemoveEvent}
       />

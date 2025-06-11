@@ -57,17 +57,21 @@ const SiteWebPageCoursFaq = observer(() => {
     try {
       for (const [key, { id, value }] of Object.entries(fields)) {
         if (id) {
-          await updateDetailMutation.mutateAsync({
-            id,
-            contentType: key,
-            value: value
-          });
+          if (typeof value === 'string') {
+            await updateDetailMutation.mutateAsync({
+              id,
+              contentType: key,
+              value
+            });
+          }
         } else {
-          await addDetailMutation.mutateAsync({
-            section: SECTION,
-            contentType: key,
-            value: value
-          });
+          if (typeof value === 'string') {
+            await addDetailMutation.mutateAsync({
+              section: SECTION,
+              contentType: key,
+              value
+            });
+          }
         }
       }
 
@@ -94,7 +98,7 @@ const SiteWebPageCoursFaq = observer(() => {
     <>
       <FormField
         label="Titre de la section"
-        value={fields.title.value}
+        value={fields.title.value as string}
         onChange={(e) => onChangeField('title', e.target.value)}
         required
       />
@@ -102,7 +106,7 @@ const SiteWebPageCoursFaq = observer(() => {
       <FormField
         label="Description"
         type="quill"
-        value={fields.description.value}
+        value={fields.description.value as string}
         onChange={(val: string) => onChangeField('description', val)}
         required
       />

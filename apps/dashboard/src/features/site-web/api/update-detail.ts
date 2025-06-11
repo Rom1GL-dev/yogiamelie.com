@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 export interface UpdateDetailDto {
   id: string;
   contentType: string;
-  value: string;
+  value: string | File;
   extra?: any;
 }
 

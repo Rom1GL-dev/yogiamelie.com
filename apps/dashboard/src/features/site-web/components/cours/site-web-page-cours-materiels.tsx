@@ -92,15 +92,15 @@ const SiteWebPageCoursMateriels = observer(() => {
     try {
       const image1Value = await uploadIfFile(
         fields.image1.value,
-        fields.title.value
+        fields.title.value as string
       );
       const image2Value = await uploadIfFile(
         fields.image2.value,
-        fields.title.value
+        fields.title.value as string
       );
       const image3Value = await uploadIfFile(
         fields.image3.value,
-        fields.title.value
+        fields.title.value as string
       );
 
       for (const [key, { id, value }] of Object.entries(fields)) {
@@ -120,7 +120,7 @@ const SiteWebPageCoursMateriels = observer(() => {
           await addDetailMutation.mutateAsync({
             section: SECTION,
             contentType: key,
-            value: valToSave
+            value: valToSave as string
           });
         }
       }
@@ -148,7 +148,7 @@ const SiteWebPageCoursMateriels = observer(() => {
     <>
       <FormField
         label="Titre de la section"
-        value={fields.title.value}
+        value={fields.title.value as string}
         onChange={(e) => onChangeField('title', e.target.value)}
         required
       />
@@ -156,7 +156,7 @@ const SiteWebPageCoursMateriels = observer(() => {
       <FormField
         label="Description"
         type="quill"
-        value={fields.description.value}
+        value={fields.description.value as string}
         onChange={(val: string) => onChangeField('description', val)}
         required
       />

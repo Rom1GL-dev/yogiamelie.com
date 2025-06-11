@@ -1,6 +1,6 @@
 export type Field = {
   id: string | null;
-  value: string;
+  value: string | File;
 };
 
 export type FieldMap = {

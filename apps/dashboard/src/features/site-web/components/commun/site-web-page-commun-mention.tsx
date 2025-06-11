@@ -49,13 +49,21 @@ const SiteWebPageCommunMention = observer(() => {
   const handleSave = async () => {
     for (const [key, { id, value }] of Object.entries(fields)) {
       if (id) {
-        await updateDetailMutation.mutateAsync({ id, contentType: key, value });
+        if (typeof value === 'string') {
+          await updateDetailMutation.mutateAsync({
+            id,
+            contentType: key,
+            value
+          });
+        }
       } else {
-        await addDetailMutation.mutateAsync({
-          section: SECTION,
-          contentType: key,
-          value
-        });
+        if (typeof value === 'string') {
+          await addDetailMutation.mutateAsync({
+            section: SECTION,
+            contentType: key,
+            value
+          });
+        }
       }
     }
     showToast({
@@ -72,7 +80,7 @@ const SiteWebPageCommunMention = observer(() => {
       <FormField
         label="Description de la section"
         type={'quill'}
-        value={fields.description.value}
+        value={fields.description.value as string}
         onChange={(value) => onChangeField('description', value)}
         required
       />
