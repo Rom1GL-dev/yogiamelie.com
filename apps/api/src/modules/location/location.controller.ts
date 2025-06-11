@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Post,
+  Put,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { AuthenticatedRequest } from '../../types/auth-request';
 import { LocationService } from './location.service';
 import { AddLocationDto } from './dto/add-location.dto';
 import { DeleteLocationDto } from './dto/delete-location.dto';
+import { UpdateLocationDto } from './dto/update-location.dto';
 
 @Controller(routesV1.version)
 export class LocationController {
@@ -46,6 +48,20 @@ export class LocationController {
   ) {
     const location = await this.locationService.delete(
       deleteLocationDto,
+      request.session.user,
+    );
+
+    return { location: location };
+  }
+
+  @UseGuards(AuthGuard)
+  @Put(routesV1.location.root)
+  async update(
+    @Body() updateLocationDto: UpdateLocationDto,
+    @Req() request: AuthenticatedRequest,
+  ) {
+    const location = await this.locationService.update(
+      updateLocationDto,
       request.session.user,
     );
 

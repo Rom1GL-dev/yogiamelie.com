@@ -20,6 +20,9 @@ import { CoursRoute } from '@/app/routes/app/cours.tsx';
 import EventDetailsAppRoute from '@/app/routes/app/event-details.tsx';
 import BlogDetailsAppRoute from '@/app/routes/app/blog-details.tsx';
 import MentionsLegalesAppRoute from '@/app/routes/app/mentions-legales.tsx';
+import LocationNewRoute from '@/app/routes/admin/locations/location-new.tsx';
+import LocationDetailsRoute from '@/app/routes/admin/locations/location-details.tsx';
+import LocationsRoute from '@/app/routes/admin/locations/locations.tsx';
 
 const queryClient = new QueryClient();
 
@@ -103,6 +106,30 @@ export const createAppRouter = () =>
       element: (
         <ProtectedRoute>
           <BlogNewRoute />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.admin.locations.getHref(),
+      element: (
+        <ProtectedRoute>
+          <LocationsRoute />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.admin.locationDetails.getHref(),
+      element: (
+        <ProtectedRoute>
+          <LocationDetailsRoute />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.admin.locationNew.getHref(),
+      element: (
+        <ProtectedRoute>
+          <LocationNewRoute />
         </ProtectedRoute>
       )
     },

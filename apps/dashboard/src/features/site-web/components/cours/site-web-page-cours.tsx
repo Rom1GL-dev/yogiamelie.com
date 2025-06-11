@@ -5,6 +5,8 @@ import SiteWebPageCoursFaq from '@/features/site-web/components/cours/site-web-p
 import SiteWebPageCoursMateriels from '@/features/site-web/components/cours/site-web-page-cours-materiels.tsx';
 import SiteWebPageCoursPresentation from '@/features/site-web/components/cours/site-web-page-cours-presentation.tsx';
 import SiteWebPageCoursBienvenue from '@/features/site-web/components/cours/site-web-page-cours-bienvenue.tsx';
+import { Link } from 'react-router-dom';
+import { APP_ROUTES } from '@/config/routes.config.ts';
 
 const sections = [
   { id: 'presentationCours', title: 'Section présentation' },
@@ -27,19 +29,35 @@ export default function SiteWebPageCours() {
       <div className="space-y-4">
         {sections.map((section) => (
           <div key={section.id} className="rounded-lg border border-gray-200">
-            <button
-              onClick={() => toggleSection(section.id)}
-              className="flex w-full cursor-pointer items-center justify-between rounded-t-lg bg-gray-100 px-4 py-3 text-left font-medium text-gray-800 transition hover:bg-gray-200"
-            >
-              {section.title}
-              <span>
-                {openSection === section.id ? (
-                  <FaChevronUp />
-                ) : (
-                  <FaChevronDown />
-                )}
-              </span>
-            </button>
+            {section.id !== 'infosCours' ? (
+              <button
+                onClick={() => toggleSection(section.id)}
+                className="flex w-full cursor-pointer items-center justify-between rounded-t-lg bg-gray-100 px-4 py-3 text-left font-medium text-gray-800 transition hover:bg-gray-200"
+              >
+                {section.title}
+                <span>
+                  {openSection === section.id ? (
+                    <FaChevronUp />
+                  ) : (
+                    <FaChevronDown />
+                  )}
+                </span>
+              </button>
+            ) : (
+              <Link
+                to={APP_ROUTES.admin.locations.path}
+                className="flex w-full cursor-pointer items-center justify-between rounded-t-lg bg-gray-100 px-4 py-3 text-left font-medium text-gray-800 transition hover:bg-gray-200"
+              >
+                {section.title}
+                <span>
+                  {openSection === section.id ? (
+                    <FaChevronUp />
+                  ) : (
+                    <FaChevronDown />
+                  )}
+                </span>
+              </Link>
+            )}
 
             {openSection === section.id && (
               <div className="space-y-4 border-t border-gray-200 bg-white p-4">

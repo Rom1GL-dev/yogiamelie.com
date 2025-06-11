@@ -1,19 +1,30 @@
 import { IsOptional, IsString } from 'class-validator';
 
-export class AddLocationDto {
+export class UpdateLocationDto {
   @IsString()
+  id: string;
+
+  @IsString()
+  @IsOptional()
   title: string;
+
   @IsString()
+  @IsOptional()
   subtitle: string;
+
   @IsString()
   @IsOptional()
-  lieu?: string;
+  lieu: string;
+
   @IsString()
   @IsOptional()
-  parking?: string;
+  parking: string;
+
   @IsString()
   @IsOptional()
-  planning?: string;
+  planning: string;
+
   @IsString()
+  @IsOptional()
   image: string;
 }

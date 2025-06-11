@@ -65,6 +65,18 @@ export const APP_ROUTES = {
       path: '/admin/utilisateurs/:slug',
       getHref: () => '/admin/utilisateurs/:slug'
     },
+    locations: {
+      path: '/admin/lieux',
+      getHref: () => '/admin/lieux'
+    },
+    locationNew: {
+      path: '/admin/lieux/nouveau',
+      getHref: () => '/admin/lieux/nouveau'
+    },
+    locationDetails: {
+      path: '/admin/lieux/:slug',
+      getHref: () => '/admin/lieux/:slug'
+    },
     siteWeb: {
       path: '/admin/site-web',
       getHref: () => '/admin/site-web'

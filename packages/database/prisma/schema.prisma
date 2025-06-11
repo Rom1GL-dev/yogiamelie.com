@@ -78,8 +78,14 @@ model SiteWebDetail {
 }
 
 model Location {
-  id    String @id @default(cuid())
-  title String @unique
+  id       String  @id @default(cuid())
+  title    String  @unique
+  subtitle String
+  lieu     String?
+  parking  String?
+  planning String?
+
+  image String
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
