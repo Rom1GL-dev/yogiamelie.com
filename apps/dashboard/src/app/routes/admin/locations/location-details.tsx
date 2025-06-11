@@ -44,7 +44,7 @@ export default function LocationDetailsRoute() {
       try {
         await uploadImageMutation.mutateAsync({
           file: renamedImage,
-          category: 'events'
+          category: 'locations'
         });
       } catch (error) {
         console.error("Erreur lors de l'upload de l'image:", error);
