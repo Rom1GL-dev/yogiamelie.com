@@ -6,4 +6,5 @@ export interface TLocationModel {
   parking?: string;
   planning?: string;
   image: string | File;
+  published: boolean;
 }

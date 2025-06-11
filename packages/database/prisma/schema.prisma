@@ -78,12 +78,13 @@ model SiteWebDetail {
 }
 
 model Location {
-  id       String  @id @default(cuid())
-  title    String  @unique
-  subtitle String
-  lieu     String?
-  parking  String?
-  planning String?
+  id        String  @id @default(cuid())
+  title     String  @unique
+  subtitle  String
+  lieu      String?
+  parking   String?
+  planning  String?
+  published Boolean @default(false)
 
   image String
 

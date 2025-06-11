@@ -60,6 +60,7 @@ export default function LocationDetailsRoute() {
       lieu: locationData.lieu,
       parking: locationData.parking,
       planning: locationData.planning,
+      published: locationData.published,
       image: imageName as string
     };
 

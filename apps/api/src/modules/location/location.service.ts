@@ -53,6 +53,7 @@ export class LocationService {
         parking: data.parking ?? '',
         planning: data.planning ?? '',
         image: data.image,
+        published: data.published,
       },
     });
 

@@ -8,6 +8,7 @@ export interface AddLocationDto {
   parking?: string;
   planning?: string;
   image: string | File;
+  published: boolean;
 }
 
 const BASE_URL = '/v1/location';

@@ -17,6 +17,10 @@ const LocationFormComponent = ({ location, onSave, onDelete }: Props) => {
   const [parking, setParking] = useState(location?.parking || '');
   const [planning, setPlanning] = useState(location?.planning || '');
   const [image, setImage] = useState<File | string>(location?.image || '');
+  const [published, setPublished] = useState<boolean>(
+    location?.published || false
+  );
+
   const [isImageChanged, setIsImageChanged] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
@@ -47,7 +51,8 @@ const LocationFormComponent = ({ location, onSave, onDelete }: Props) => {
         lieu,
         parking,
         planning,
-        image
+        image,
+        published
       },
       isImageChanged
     );
@@ -131,6 +136,18 @@ const LocationFormComponent = ({ location, onSave, onDelete }: Props) => {
           >
             Enregistrer
           </button>
+        </div>
+        <div className="mt-10">
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Publié
+          </label>
+          <input
+            id="published"
+            type="checkbox"
+            checked={published}
+            onChange={() => setPublished(!published)}
+            className="relative h-5 w-10 appearance-none rounded-full bg-gray-300 transition duration-300 outline-none before:absolute before:top-0.5 before:left-0.5 before:h-4 before:w-4 before:rounded-full before:bg-white before:transition before:duration-300 before:content-[''] checked:bg-blue-600 checked:before:translate-x-5"
+          />
         </div>
       </div>
 

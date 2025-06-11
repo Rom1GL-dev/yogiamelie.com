@@ -40,6 +40,7 @@ export default function LocationNewRoute() {
         lieu: locationData.lieu,
         parking: locationData.parking,
         planning: locationData.planning,
+        published: locationData.published,
         image: imageName
       };
 

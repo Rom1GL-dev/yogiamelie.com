@@ -1,4 +1,4 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsOptional, IsString } from 'class-validator';
 
 export class UpdateLocationDto {
   @IsString()
@@ -27,4 +27,8 @@ export class UpdateLocationDto {
   @IsString()
   @IsOptional()
   image: string;
+
+  @IsBoolean()
+  @IsOptional()
+  published: boolean;
 }
