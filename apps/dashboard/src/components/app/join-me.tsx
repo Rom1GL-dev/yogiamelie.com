@@ -57,6 +57,11 @@ export const JoinMe = observer(() => {
                   event.type === EVENT_TYPE.FUTURE ||
                   event.type === EVENT_TYPE.ON_GOING
               )
+              .sort(
+                (a, b) =>
+                  new Date(a.startDate).getTime() -
+                  new Date(b.startDate).getTime()
+              )
               .map((event) => (
                 <SwiperSlide key={event.id}>
                   <div

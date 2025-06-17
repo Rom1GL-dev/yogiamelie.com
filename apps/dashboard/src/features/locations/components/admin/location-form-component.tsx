@@ -16,6 +16,9 @@ const LocationFormComponent = ({ location, onSave, onDelete }: Props) => {
   const [lieu, setLieu] = useState(location?.lieu || '');
   const [parking, setParking] = useState(location?.parking || '');
   const [planning, setPlanning] = useState(location?.planning || '');
+  const [buttonText, setButtonText] = useState(location?.buttonText || '');
+  const [buttonLink, setButtonLink] = useState(location?.buttonLink || '');
+
   const [image, setImage] = useState<File | string>(location?.image || '');
   const [published, setPublished] = useState<boolean>(
     location?.published || false
@@ -52,7 +55,9 @@ const LocationFormComponent = ({ location, onSave, onDelete }: Props) => {
         parking,
         planning,
         image,
-        published
+        published,
+        buttonText,
+        buttonLink
       },
       isImageChanged
     );
@@ -137,7 +142,19 @@ const LocationFormComponent = ({ location, onSave, onDelete }: Props) => {
             Enregistrer
           </button>
         </div>
-        <div className="mt-10">
+        <div className={'space-y-5'}>
+          <FormField
+            label="Texte du bouton"
+            value={buttonText}
+            onChange={(e) => setButtonText(e.target.value)}
+          />
+          <FormField
+            label="Lien du bouton"
+            value={buttonLink}
+            onChange={(e) => setButtonLink(e.target.value)}
+          />
+        </div>
+        <div>
           <label className="mb-2 block text-sm font-medium text-gray-700">
             Publié
           </label>

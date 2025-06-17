@@ -31,4 +31,12 @@ export class UpdateLocationDto {
   @IsBoolean()
   @IsOptional()
   published: boolean;
+
+  @IsString()
+  @IsOptional()
+  buttonText?: string;
+
+  @IsString()
+  @IsOptional()
+  buttonLink?: string;
 }

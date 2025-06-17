@@ -5,6 +5,7 @@ import { BlogStore } from '@/stores/blogs-store.tsx';
 import { LinksStore } from '@/stores/links-store.tsx';
 import { SiteWebStore } from '@/stores/site-web-store.ts';
 import { LocationStore } from '@/stores/location-store.ts';
+import { PricesStore } from '@/stores/prices-store.ts';
 
 export class RootStore {
   authStore: AuthStore;
@@ -14,6 +15,7 @@ export class RootStore {
   linkStore: LinksStore;
   siteWebStore: SiteWebStore;
   locationStore: LocationStore;
+  priceStore: PricesStore;
   constructor() {
     this.authStore = new AuthStore();
     this.eventStore = new EventStore();
@@ -22,5 +24,6 @@ export class RootStore {
     this.linkStore = new LinksStore();
     this.siteWebStore = new SiteWebStore();
     this.locationStore = new LocationStore();
+    this.priceStore = new PricesStore();
   }
 }

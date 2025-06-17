@@ -9,6 +9,8 @@ export interface AddLocationDto {
   planning?: string;
   image: string | File;
   published: boolean;
+  buttonText?: string;
+  buttonLink?: string;
 }
 
 const BASE_URL = '/v1/location';

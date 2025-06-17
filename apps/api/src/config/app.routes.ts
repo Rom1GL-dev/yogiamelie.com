@@ -7,6 +7,7 @@ const imagesRoot = '/images';
 const linksRoot = '/links';
 const locationRoot = '/location';
 const siteWebRoot = '/site-web';
+const priceRoot = '/prices';
 
 const v1 = 'v1';
 
@@ -36,6 +37,9 @@ export const routesV1 = {
   },
   location: {
     root: locationRoot,
+  },
+  price: {
+    root: priceRoot,
   },
   siteWeb: {
     root: siteWebRoot,

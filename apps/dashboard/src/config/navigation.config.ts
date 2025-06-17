@@ -2,6 +2,7 @@ import { APP_ROUTES } from '@/config/routes.config.ts';
 import {
   FaBlogger,
   FaCalendarAlt,
+  FaEuroSign,
   FaGlobe,
   FaMapPin,
   FaTachometerAlt,
@@ -23,7 +24,8 @@ export const navigation = [
   { path: APP_ROUTES.admin.blogs.path, name: 'Blogs', icon: FaBlogger },
   { path: APP_ROUTES.admin.users.path, name: 'Utilisateurs', icon: FaUsers },
   { path: APP_ROUTES.admin.siteWeb.path, name: 'Site web', icon: FaGlobe },
-  { path: APP_ROUTES.admin.locations.path, name: 'Lieux', icon: FaMapPin }
+  { path: APP_ROUTES.admin.locations.path, name: 'Lieux', icon: FaMapPin },
+  { path: APP_ROUTES.admin.prices.path, name: 'Prix', icon: FaEuroSign }
 ];
 
 export const navigationCours = [
@@ -37,7 +39,7 @@ export const navigationCours = [
   },
   {
     label: 'Lieux',
-    href: '#lieux'
+    href: '#info'
   },
   {
     label: 'Tarifs',

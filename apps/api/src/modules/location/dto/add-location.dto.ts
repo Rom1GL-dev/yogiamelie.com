@@ -18,4 +18,10 @@ export class AddLocationDto {
   image: string;
   @IsBoolean()
   published: boolean;
+  @IsString()
+  @IsOptional()
+  buttonText?: string;
+  @IsString()
+  @IsOptional()
+  buttonLink?: string;
 }

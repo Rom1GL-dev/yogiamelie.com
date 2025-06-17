@@ -1,13 +1,8 @@
 import { useState } from 'react';
 import TitleCours from '@/features/cours/components/title-cours.tsx';
 import { Link } from 'react-router-dom';
-
-const pricingData = [
-  { courses: 15, price: 180 },
-  { courses: 10, price: 130 },
-  { courses: 5, price: 70 },
-  { courses: 1, price: 15, unit: "l'unité" }
-];
+import { useStores } from '@/providers/stores-provider.tsx';
+import { FaInfoCircle } from 'react-icons/fa';
 
 const ApostropheSafe = ({ children }: { children: string }) => {
   return (
@@ -27,6 +22,13 @@ const ApostropheSafe = ({ children }: { children: string }) => {
 export const Tarifs = () => {
   const [visibleButton] = useState(false);
   const [visibleText] = useState(false);
+  const { priceStore } = useStores();
+
+  const sortedPrices = [...priceStore.prices].sort((a, b) => {
+    const priceA = parseFloat(a.price.replace('€', '').trim());
+    const priceB = parseFloat(b.price.replace('€', '').trim());
+    return priceB - priceA;
+  });
 
   return (
     <div
@@ -35,25 +37,38 @@ export const Tarifs = () => {
     >
       <TitleCours title="Tarifs" />
       <div className="mt-10 flex flex-wrap justify-center gap-6 md:justify-between">
-        {pricingData.map(({ courses, price, unit }, index) => (
+        {sortedPrices.map((price, index) => (
           <div
             key={index}
-            className="pricing-card relative flex w-56 flex-col items-center rounded-[2rem] border-[3px] border-[#b5bda4] bg-[#fff5e6] p-6 text-center shadow-lg"
+            className="pricing-card relative flex w-56 flex-col items-center rounded-[2rem] border-[3px] border-[#b5bda4] bg-[#fff5e6] p-6 pt-10 text-center shadow-lg"
             data-aos="fade-up"
             data-aos-delay={`${index * 300}`}
           >
-            <div className={'mb-10'}>
+            {price.info && (
+              <div className="group absolute top-4 right-4 cursor-pointer">
+                <FaInfoCircle className="text-2xl text-[#caa168] duration-300 hover:scale-120" />
+                <div className="absolute top-[-10px] right-7 z-10 w-48 rounded-md border border-[#caa168] bg-white p-2 text-sm text-[#caa168] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {price.info}
+                </div>
+              </div>
+            )}
+
+            <div className="mb-10">
               <p className="text-shadow font-[Calmius] text-4xl text-[#caa168]">
-                {unit ? 'Cours à' : 'Carte'}
+                {price.label}
               </p>
               <p
-                className={`text-[#caa168] ${unit ? 'text-7xl' : 'text-8xl'} spectral-regular mt-2 font-[Seasons] font-bold`}
+                className={`text-[#caa168] ${price.extra ? 'text-7xl' : 'text-8xl'} spectral-regular mt-2 font-[Seasons] font-bold`}
               >
-                {unit ? <ApostropheSafe>{unit}</ApostropheSafe> : courses}
+                {price.number ? (
+                  <ApostropheSafe>{price.number}</ApostropheSafe>
+                ) : (
+                  price.extra
+                )}
               </p>
-              {!unit && (
+              {price.extra && (
                 <p className="text-shadow mt-2 mb-10 font-[Calmius] text-4xl font-semibold text-[#caa168]">
-                  cours
+                  {price.extra}
                 </p>
               )}
             </div>
@@ -61,7 +76,7 @@ export const Tarifs = () => {
             <div className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform">
               <div className="w-full rounded-2xl border-2 border-[#fff5e6] bg-[#caa168] p-2">
                 <p className="spectral-regular font-[Seasons] text-5xl text-white">
-                  {price}€
+                  {price.price}
                 </p>
               </div>
             </div>

@@ -3,7 +3,7 @@ import { apiUrl } from '@/config/content.config.ts';
 interface Props {
   location: {
     title: string;
-    image?: string;
+    image: string | File;
   };
 }
 
@@ -23,16 +23,12 @@ export default function InfosCard({ location }: Props) {
       onClick={handleCardClick}
     >
       <div className="absolute flex h-full w-full items-center justify-center">
-        <div className="rounded-lg bg-[#a9b394] px-4 py-6 text-center text-xl text-white opacity-80 sm:text-2xl md:text-3xl lg:text-4xl">
+        <div className="rounded-lg bg-[#a9b394] px-4 py-6 text-center font-[Seasons] text-xl text-white opacity-80 sm:text-2xl md:text-3xl lg:text-4xl">
           {location.title}
         </div>
       </div>
       <img
-        src={
-          location?.image
-            ? `${apiUrl}/v1/images/locations/${location?.image}`
-            : '/images/amelieFooter.jpg'
-        }
+        src={`${apiUrl}/v1/images/locations/${location?.image}`}
         alt={location.title}
         className="h-full w-full rounded-[2rem] object-cover"
       />

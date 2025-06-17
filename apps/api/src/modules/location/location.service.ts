@@ -54,6 +54,8 @@ export class LocationService {
         planning: data.planning ?? '',
         image: data.image,
         published: data.published,
+        buttonText: data.buttonText ?? '',
+        buttonLink: data.buttonLink ?? '',
       },
     });
 

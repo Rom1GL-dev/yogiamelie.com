@@ -7,4 +7,6 @@ export interface TLocationModel {
   planning?: string;
   image: string | File;
   published: boolean;
+  buttonText?: string;
+  buttonLink?: string;
 }

@@ -32,7 +32,7 @@ export const About = () => {
       </div>
 
       <div
-        className="text-shadow text-beige text-justify text-lg leading-relaxed font-extralight text-[#FFF5E6] md:text-2xl"
+        className="text-shadow text-beige text-justify text-lg leading-relaxed font-extralight text-[#FFF5E6] md:text-xl"
         dangerouslySetInnerHTML={{ __html: fields.description }}
       />
     </div>

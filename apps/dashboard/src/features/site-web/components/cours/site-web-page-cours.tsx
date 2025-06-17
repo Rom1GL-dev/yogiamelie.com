@@ -11,7 +11,7 @@ import { APP_ROUTES } from '@/config/routes.config.ts';
 const sections = [
   { id: 'presentationCours', title: 'Section présentation' },
   { id: 'aboutCours', title: 'Section à propos' },
-  { id: 'infosCours', title: 'Section informations' },
+  { id: 'infosCours', title: 'Section lieux' },
   { id: 'tarifsCours', title: 'Section tarifications' },
   { id: 'materielsCours', title: 'Section matériels' },
   { id: 'faqCours', title: 'Section FAQ' }

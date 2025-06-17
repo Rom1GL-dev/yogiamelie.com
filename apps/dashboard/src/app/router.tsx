@@ -23,6 +23,9 @@ import MentionsLegalesAppRoute from '@/app/routes/app/mentions-legales.tsx';
 import LocationNewRoute from '@/app/routes/admin/locations/location-new.tsx';
 import LocationDetailsRoute from '@/app/routes/admin/locations/location-details.tsx';
 import LocationsRoute from '@/app/routes/admin/locations/locations.tsx';
+import PricesRoute from '@/app/routes/admin/prices/prices.tsx';
+import PriceNewRoute from '@/app/routes/admin/prices/price-new.tsx';
+import PriceDetailsRoute from '@/app/routes/admin/prices/price-details.tsx';
 
 const queryClient = new QueryClient();
 
@@ -130,6 +133,30 @@ export const createAppRouter = () =>
       element: (
         <ProtectedRoute>
           <LocationNewRoute />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.admin.prices.getHref(),
+      element: (
+        <ProtectedRoute>
+          <PricesRoute />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.admin.priceNew.getHref(),
+      element: (
+        <ProtectedRoute>
+          <PriceNewRoute />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: APP_ROUTES.admin.priceDetails.getHref(),
+      element: (
+        <ProtectedRoute>
+          <PriceDetailsRoute />
         </ProtectedRoute>
       )
     },

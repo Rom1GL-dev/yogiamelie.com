@@ -11,6 +11,7 @@ import { ImagesModule } from './modules/images/images.module';
 import { LinksModule } from './modules/links/links.module';
 import { SiteWebModule } from './modules/site-web/site-web.module';
 import { LocationModule } from './modules/location/location.module';
+import { PriceModule } from './modules/price/price.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { LocationModule } from './modules/location/location.module';
     LinksModule,
     SiteWebModule,
     LocationModule,
+    PriceModule,
   ],
   controllers: [],
   providers: [],
