@@ -29,7 +29,7 @@ export default function SiteWebPageCours() {
       <div className="space-y-4">
         {sections.map((section) => (
           <div key={section.id} className="rounded-lg border border-gray-200">
-            {section.id !== 'infosCours' ? (
+            {section.id !== 'infosCours' && section.id !== 'tarifsCours' ? (
               <button
                 onClick={() => toggleSection(section.id)}
                 className="flex w-full cursor-pointer items-center justify-between rounded-t-lg bg-gray-100 px-4 py-3 text-left font-medium text-gray-800 transition hover:bg-gray-200"
@@ -45,7 +45,11 @@ export default function SiteWebPageCours() {
               </button>
             ) : (
               <Link
-                to={APP_ROUTES.admin.locations.path}
+                to={
+                  section.id === 'infosCours'
+                    ? APP_ROUTES.admin.locations.path
+                    : APP_ROUTES.admin.prices.path
+                }
                 className="flex w-full cursor-pointer items-center justify-between rounded-t-lg bg-gray-100 px-4 py-3 text-left font-medium text-gray-800 transition hover:bg-gray-200"
               >
                 {section.title}
