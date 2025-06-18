@@ -26,6 +26,7 @@ import LocationsRoute from '@/app/routes/admin/locations/locations.tsx';
 import PricesRoute from '@/app/routes/admin/prices/prices.tsx';
 import PriceNewRoute from '@/app/routes/admin/prices/price-new.tsx';
 import PriceDetailsRoute from '@/app/routes/admin/prices/price-details.tsx';
+import { NotFoundRoute } from '@/app/routes/not-found.tsx';
 
 const queryClient = new QueryClient();
 
@@ -221,6 +222,14 @@ export const createAppRouter = () =>
       element: (
         <PublicRoutes>
           <MentionsLegalesAppRoute />
+        </PublicRoutes>
+      )
+    },
+    {
+      path: '*',
+      element: (
+        <PublicRoutes>
+          <NotFoundRoute />
         </PublicRoutes>
       )
     }
