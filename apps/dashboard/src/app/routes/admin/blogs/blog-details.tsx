@@ -63,7 +63,11 @@ export default function BlogDetailsRoute() {
         blogStore.updateBlogById(payload);
         showToast({ type: 'success', message: 'Blog modifié avec succès !' });
         navigation(
-          APP_ROUTES.admin.blogs.getHref() + '/' + reformatForUrl(payload.title)
+          APP_ROUTES.admin.blogs.getHref() +
+            '/' +
+            reformatForUrl(payload.title) +
+            '-' +
+            payload.id
         );
       },
       onError: () => {

@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { normalizeString, reformatForUrl } from '@/lib/utils';
+import { normalizeString } from '@/lib/utils';
 import { getAllBlogs } from '@/features/blogs/api/get-all-blogs';
 import { BLOG_TYPE, TBlogModel } from '@/features/blogs/types/blogs.type.ts';
 
@@ -89,9 +89,9 @@ export class BlogStore {
   }
 
   getBlogByTitle(title: string) {
-    return this.processedBlogs.find(
-      (blog) => reformatForUrl(blog.title) === reformatForUrl(title)
-    );
+    const id = title.split('-').pop()?.trim();
+    if (!id) return null;
+    return this.processedBlogs.find((blog) => String(blog.id) === id);
   }
 
   setSelectedType(type: string) {

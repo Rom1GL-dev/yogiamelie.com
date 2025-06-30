@@ -15,7 +15,7 @@ export default function BlogCard({ blog }: BlogProps) {
       className={
         'mb-7 flex h-[300px] w-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-101 md:h-[250px] lg:h-[350px]'
       }
-      onClick={() => navigate(`/blog/${reformatForUrl(blog.title)}`)}
+      onClick={() => navigate(`/blog/${reformatForUrl(blog.title)}-${blog.id}`)}
     >
       <img
         src={`${apiUrl}/v1/images/blogs/${blog.image}`}
