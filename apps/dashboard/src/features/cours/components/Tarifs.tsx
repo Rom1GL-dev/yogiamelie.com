@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import TitleCours from '@/features/cours/components/title-cours.tsx';
 import { Link } from 'react-router-dom';
 import { useStores } from '@/providers/stores-provider.tsx';
@@ -22,7 +22,26 @@ const ApostropheSafe = ({ children }: { children: string }) => {
 export const Tarifs = () => {
   const [visibleButton] = useState(false);
   const [visibleText] = useState(false);
-  const { priceStore } = useStores();
+  const { priceStore, siteWebStore } = useStores();
+
+  const [fields, setFields] = useState({
+    phrase: ' ',
+    buttonText: '',
+    buttonLink: ''
+  });
+
+  useEffect(() => {
+    (async () => {
+      await siteWebStore.onInit('tarifsCours');
+      const sectionDetails = siteWebStore.getDetailsBySection('tarifsCours');
+
+      setFields({
+        phrase: sectionDetails?.details?.phrase,
+        buttonText: sectionDetails?.details?.buttonText,
+        buttonLink: sectionDetails?.details?.buttonLink
+      });
+    })();
+  }, []);
 
   const sortedPrices = [...priceStore.prices].sort((a, b) => {
     const priceA = parseFloat(a.price.replace('€', '').trim());
@@ -93,23 +112,20 @@ export const Tarifs = () => {
         data-aos-delay="800"
       >
         <Link
-          to={'https://yogiamelie.fillout.com/t/o64YdH7Zgxus?id='}
+          to={fields.buttonLink}
           target={'_blank'}
           className="signup-button font-[TT Chocolates] rounded-full border-2 border-[#a9b394] bg-[#d5ddcb] px-12 py-5 text-2xl text-[#CAA168] uppercase"
         >
-          Je m&apos;inscris
+          {fields.buttonText}
         </Link>
       </div>
 
-      <p
+      <div
+        dangerouslySetInnerHTML={{ __html: fields.phrase }}
         className={`mt-6 text-center text-lg font-extralight text-black italic md:text-xl ${visibleText ? 'opacity-100' : 'opacity-0'} transition-opacity duration-900`}
         data-aos="fade-up"
         data-aos-delay="900"
-      >
-        Les cartes sont <span className="font-semibold">nominatives</span>,
-        valables durant toute la période (du 03/02/2025 au 28/07/2025) et non
-        remboursables.
-      </p>
+      />
     </div>
   );
 };

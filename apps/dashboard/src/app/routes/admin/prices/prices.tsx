@@ -2,6 +2,7 @@ import { APP_ROUTES } from '@/config/routes.config.ts';
 import { Link } from 'react-router-dom';
 import LayoutAdmin from '@/components/layout/admin/layout-admin.tsx';
 import { useStores } from '@/providers/stores-provider.tsx';
+import SiteWebCoursPrix from '@/features/site-web/components/cours/site-web-cours-prix.tsx';
 
 export default function PricesRoute() {
   const { priceStore } = useStores();
@@ -86,6 +87,7 @@ export default function PricesRoute() {
           ))}
         </tbody>
       </table>
+      <SiteWebCoursPrix />
     </LayoutAdmin>
   );
 }
