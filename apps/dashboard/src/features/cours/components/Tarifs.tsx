@@ -75,8 +75,11 @@ export const Tarifs = () => {
 
             <div className="absolute bottom-0 left-1/2 w-full -translate-x-1/2 transform">
               <div className="w-full rounded-2xl border-2 border-[#fff5e6] bg-[#caa168] p-2">
-                <p className="spectral-regular font-[Seasons] text-5xl text-white">
-                  {price.price}
+                <p className="spectral-regular text-5xl text-white">
+                  <span className="font-[Seasons]">
+                    {price.price.replace('€', '')}
+                  </span>
+                  <span className="font-sans">€</span>
                 </p>
               </div>
             </div>
