@@ -8,12 +8,18 @@ import { getAllLocation } from '@/features/events/api/get-all-locations.ts';
 export class EventStore {
   events: TEventModel[] = [];
   locations: { title: string; id: string }[] = [];
-  selectedType: string = localStorage.getItem('eventType') || 'all';
+  selectedType: string = 'all';
   searchTerm: string = '';
   loaded = false;
 
   constructor() {
     makeAutoObservable(this);
+    if (typeof window !== 'undefined') {
+      const savedType = localStorage.getItem('eventType');
+      if (savedType) {
+        this.selectedType = savedType;
+      }
+    }
     void this.onInit();
   }
 
@@ -106,15 +112,15 @@ export class EventStore {
 
   getEventByTitle(title: string) {
     const id = title.split('-').pop()?.trim();
-
     if (!id) return null;
-
     return this.processedEvents.find((event) => String(event.id) === id);
   }
 
   setSelectedType(type: string) {
     this.selectedType = type;
-    localStorage.setItem('eventType', type);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('eventType', type);
+    }
   }
 
   setSearchTerm(term: string) {
@@ -122,7 +128,7 @@ export class EventStore {
   }
 
   addLocation(title: string) {
-    this.locations.push({ id: '', title: title });
+    this.locations.push({ id: '', title });
   }
 
   removeLocation(title: string) {

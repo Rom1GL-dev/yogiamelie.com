@@ -32,7 +32,9 @@ export const Faq = () => {
       <TitleCours title={'Questions fréquentes'} />
       <div
         dangerouslySetInnerHTML={{ __html: fields.description }}
-        className={'font-[TT Chocolates] text-lg text-[#c08562] md:text-2xl'}
+        className={
+          'font-[TT Chocolates] text-justify text-xl leading-relaxed font-extralight tracking-[.15em] text-[#c08562]'
+        }
       />
     </div>
   );

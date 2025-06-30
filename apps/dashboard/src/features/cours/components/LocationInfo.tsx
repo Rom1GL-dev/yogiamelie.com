@@ -1,14 +1,23 @@
+import { Link } from 'react-router-dom';
+
 interface Props {
   schedule: string;
   address: string;
   parking: string;
   image: string;
+  link: string;
 }
 
 const isValidContent = (content: string) =>
   content.trim() !== '' && content.trim() !== '<p><br></p>';
 
-export const LocationInfo = ({ schedule, parking, address, image }: Props) => {
+export const LocationInfo = ({
+  schedule,
+  parking,
+  address,
+  image,
+  link
+}: Props) => {
   return (
     <div className="font-[TT Chocolates] flex flex-col items-center justify-between tracking-[.1em] lg:flex-row">
       {
@@ -30,7 +39,6 @@ export const LocationInfo = ({ schedule, parking, address, image }: Props) => {
               />
             </div>
           )}
-
           {isValidContent(parking) && (
             <div className="mb-10 flex" data-aos="fade-up" data-aos-delay="600">
               <div className="h-8 w-8">
@@ -47,22 +55,36 @@ export const LocationInfo = ({ schedule, parking, address, image }: Props) => {
               </div>
             </div>
           )}
-
-          {isValidContent(schedule) && (
-            <div className="mb-10 flex" data-aos="fade-up" data-aos-delay="800">
-              <div className="h-8 w-8">
-                <img
-                  src="/images/calendar.png"
-                  alt="Icon calendrier"
-                  width={30}
-                  height={30}
-                />
+          <div className={'mb-10 flex items-center justify-between'}>
+            {isValidContent(schedule) && (
+              <div
+                className="mb-10 flex"
+                data-aos="fade-up"
+                data-aos-delay="800"
+              >
+                <div className="h-8 w-8">
+                  <img
+                    src="/images/calendar.png"
+                    alt="Icon calendrier"
+                    width={30}
+                    height={30}
+                  />
+                </div>
+                <div className="ml-7 flex w-full flex-col text-base text-white md:text-lg lg:text-xl xl:flex-row xl:gap-x-10">
+                  <div dangerouslySetInnerHTML={{ __html: schedule }} />
+                </div>
               </div>
-              <div className="ml-7 flex w-full flex-col text-base text-white md:text-lg lg:text-xl xl:flex-row xl:gap-x-10">
-                <div dangerouslySetInnerHTML={{ __html: schedule }} />
-              </div>
-            </div>
-          )}
+            )}
+          </div>
+          <div data-aos="fade-up" data-aos-delay="1000">
+            <Link
+              to={link}
+              target={'_blank'}
+              className="signup-button font-[TT Chocolates] mt-10 rounded-full border-2 border-[#a9b394] bg-[#d5ddcb] px-12 py-5 text-xl text-[#CAA168] uppercase"
+            >
+              Je m&apos;inscris
+            </Link>
+          </div>
         </div>
       }
 

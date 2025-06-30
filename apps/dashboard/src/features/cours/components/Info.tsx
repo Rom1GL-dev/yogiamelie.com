@@ -24,7 +24,7 @@ export const Info = () => {
         className="bg-[#fff5e6] px-5 py-10 md:px-24 md:py-10 lg:px-32 lg:py-20"
       >
         <TitleCours title="Choisis ton lieu de cours" brun />
-        <div className="mt-10 flex flex-wrap justify-center gap-x-20">
+        <div className="mt-10 flex flex-wrap justify-center gap-x-20 gap-y-20">
           {locationStore.locations.map((location, index) => {
             if (!location.published) return null;
             return (
@@ -70,6 +70,7 @@ export const Info = () => {
             schedule={locations.planning ?? ''}
             address={locations.lieu ?? ''}
             parking={locations.parking ?? ''}
+            link={locations.buttonLink ?? ''}
             image={`${apiUrl}/v1/images/locations/${locations.image}`}
           />
         </div>

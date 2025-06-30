@@ -1,17 +1,23 @@
 import { makeAutoObservable } from 'mobx';
 import { normalizeString, reformatForUrl } from '@/lib/utils';
-import { getAllBlogs } from '@/features/blogs/api/get-all-blogs'; // Assuming this function exists
+import { getAllBlogs } from '@/features/blogs/api/get-all-blogs';
 import { BLOG_TYPE, TBlogModel } from '@/features/blogs/types/blogs.type.ts';
 
 export class BlogStore {
   blogs: TBlogModel[] = [];
-  selectedType: string = localStorage.getItem('blogType') || 'all';
+  selectedType: string = 'all';
   searchTerm: string = '';
   loaded = false;
 
   constructor() {
     makeAutoObservable(this);
     void this.onInit();
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('blogType');
+      if (saved) {
+        this.selectedType = saved;
+      }
+    }
   }
 
   get processedBlogs() {
@@ -90,7 +96,9 @@ export class BlogStore {
 
   setSelectedType(type: string) {
     this.selectedType = type;
-    localStorage.setItem('blogType', type);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('blogType', type);
+    }
   }
 
   setSearchTerm(term: string) {

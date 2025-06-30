@@ -6,12 +6,16 @@ export class SiteWebStore {
   details: Record<string, any> = {};
   loaded = false;
 
-  selectedType: string =
-    localStorage.getItem('siteWebParametreType') ||
-    SITE_WEB_TYPE.PAGE_PRINCIPAL;
+  selectedType: string = SITE_WEB_TYPE.PAGE_PRINCIPAL;
 
   constructor() {
     makeAutoObservable(this);
+    if (typeof window !== 'undefined') {
+      const savedType = localStorage.getItem('siteWebParametreType');
+      if (savedType) {
+        this.selectedType = savedType;
+      }
+    }
     void this.onInit(this.selectedType);
   }
 
@@ -25,7 +29,9 @@ export class SiteWebStore {
 
   setSelectedType(type: string) {
     this.selectedType = type;
-    localStorage.setItem('siteWebParametreType', type);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('siteWebParametreType', type);
+    }
     void this.onInit(type);
   }
 
