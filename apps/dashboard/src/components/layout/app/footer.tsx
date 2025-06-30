@@ -100,6 +100,7 @@ const Footer = () => {
       <div className="absolute bottom-4 left-1/2 z-30 -translate-x-1/2 text-center text-sm text-gray-400">
         <Link
           to={APP_ROUTES.app.mentions.getHref()}
+          replace
           className="hover:underline"
         >
           Mentions légales

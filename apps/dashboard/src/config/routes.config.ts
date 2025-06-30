@@ -16,8 +16,8 @@ export const APP_ROUTES = {
       getHref: () => '/evenement/:slug'
     },
     mentions: {
-      path: 'mentions-legales',
-      getHref: () => 'mentions-legales'
+      path: '/mentions-legales',
+      getHref: () => '/mentions-legales'
     }
   },
   admin: {
