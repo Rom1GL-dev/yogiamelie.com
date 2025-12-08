@@ -8,12 +8,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 5173;
 
-// Servir les fichiers statiques du build
-app.use(express.static(path.join(__dirname, '../../dist/apps/dashboard')));
+// Serve build files
+app.use(express.static(path.join(__dirname, 'dist')));
 
-// Fallback SPA (React / Vite)
+// Fallback SPA routing
 app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, '../../dist/apps/dashboard/index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
