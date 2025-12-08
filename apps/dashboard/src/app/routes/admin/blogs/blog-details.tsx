@@ -23,7 +23,7 @@ export default function BlogDetailsRoute() {
     return null;
   }
 
-  const blog = blogStore.getBlogByTitle(slug);
+  const blog = blogStore.getBlogByTitle(slug) || undefined;
 
   const handleSaveBlog = async (
     blogData: TBlogModel,
