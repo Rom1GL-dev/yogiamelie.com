@@ -1,7 +1,7 @@
 import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'; // https://vite.dev/config/
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -12,7 +12,12 @@ export default defineConfig({
     }
   },
   server: {
-    allowedHosts: ['yogiamelie.com', 'www.yogiamelie.com'],
+    allowedHosts: [
+      'yogiamelie.com',
+      'www.yogiamelie.com',
+      'keshariniyoga.com',
+      'www.keshariniyoga.com'
+    ],
     host: true
   }
 });
