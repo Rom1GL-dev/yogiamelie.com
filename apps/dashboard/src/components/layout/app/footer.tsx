@@ -27,7 +27,7 @@ const Footer = () => {
             Contact
           </h2>
           <p className="text-lg font-extralight md:text-[1.30rem]">
-            Amélie Vetcour - Yogi Amélie
+            Amélie Vetcour - Kesharini Yoga
           </p>
           <div className={'flex flex-col'}>
             <a
