@@ -44,7 +44,7 @@ export const LoginRoute = () => {
     <div className="min flex h-screen items-center justify-center bg-gray-100">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
         <h2 className="text-center text-2xl font-semibold text-slate-600">
-          Yogi Amelie
+          Kesharini Yoga
         </h2>
         <p className="mb-6 text-center text-gray-600">
           Site web d'administration

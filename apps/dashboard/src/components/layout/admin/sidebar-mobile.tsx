@@ -28,7 +28,7 @@ export default function SidebarMobile({
       <div className="fixed top-0 left-0 z-50 flex h-full w-64 flex-col justify-between border-r border-gray-300 bg-white lg:hidden">
         <div className="p-6">
           <h1 className="mb-1 text-center text-2xl font-bold text-slate-600">
-            Yogi Amelie
+            Kesharini Yoga
           </h1>
           <h1 className="text-md mb-10 text-center font-light">
             Administration

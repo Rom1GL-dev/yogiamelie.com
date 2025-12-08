@@ -19,7 +19,7 @@ export const Sidebar = () => {
     <div className="relative flex hidden h-screen w-64 flex-col justify-between border-r border-gray-300 bg-white md:block">
       <div className="flex-grow p-6">
         <h1 className="mb-1 text-center text-3xl font-bold text-slate-600">
-          Yogi Amelie
+          Kesharini Yoga
         </h1>
         <h1 className="mb-10 text-center text-base font-light">
           Administration
