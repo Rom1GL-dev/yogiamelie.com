@@ -8,12 +8,14 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 5173;
 
-// Serve build files
-app.use(express.static(path.join(__dirname, 'dist')));
+// Dossier dist correct !!
+const distPath = path.join(__dirname, 'dist');
 
-// Fallback SPA routing
-app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+app.use(express.static(distPath));
+
+// Fallback React
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
 });
 
 app.listen(PORT, () => {
