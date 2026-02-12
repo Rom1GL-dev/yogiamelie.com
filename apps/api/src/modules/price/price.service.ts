@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../../shared/infrastructure/prisma.service';
-import { LogsService } from '../logs/logs.service';
+import { CreateLogService } from '../logs/usecases/create-log/create-log.service';
 import { AddPriceDto } from './dto/add-price.dto';
 import { Session } from '../../types/session';
 import { DeletePriceDto } from './dto/delete-price.dto';
@@ -10,7 +10,7 @@ import { UpdatePriceDto } from './dto/update-price.dto';
 export class PriceService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly logsService: LogsService,
+    private readonly createLogService: CreateLogService,
   ) {}
 
   getAll() {
@@ -19,29 +19,23 @@ export class PriceService {
 
   async add(data: AddPriceDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
 
-    const price = await this.prisma.price.create({
-      data,
-    });
+    const price = await this.prisma.price.create({ data });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'AJOUT',
-      message: `L'utilisateur ${user.name} a ajouté un prix. ID: ${price.id}`,
+      message: `L'utilisateur ${user.name} a ajoute un prix. ID: ${price.id}`,
       userId: user.id,
     });
 
-    return { message: 'Le prix a été ajouté avec succès', price };
+    return { message: 'Le prix a ete ajoute avec succes', price };
   }
 
   async update(data: UpdatePriceDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
 
     const price = await this.prisma.price.update({
@@ -55,32 +49,28 @@ export class PriceService {
       },
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'MODIFICATION',
-      message: `L'utilisateur ${user.name} a modifié un prix. ID: ${price.id}`,
+      message: `L'utilisateur ${user.name} a modifie un prix. ID: ${price.id}`,
       userId: user.id,
     });
 
-    return { message: 'Le prix a été modifié avec succès', price };
+    return { message: 'Le prix a ete modifie avec succes', price };
   }
 
   async delete(data: DeletePriceDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
 
-    const location = await this.prisma.price.delete({
-      where: { id: data.id },
-    });
+    const price = await this.prisma.price.delete({ where: { id: data.id } });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'SUPPRESSION',
-      message: `L'utilisateur ${user.name} a supprimé un prix. ID: ${location.id}`,
+      message: `L'utilisateur ${user.name} a supprime un prix. ID: ${price.id}`,
       userId: user.id,
     });
 
-    return { message: 'Le prix a été supprimé avec succès', location };
+    return { message: 'Le prix a ete supprime avec succes', price };
   }
 }

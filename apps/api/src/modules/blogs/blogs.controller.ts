@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { routesV1 } from '../../config/app.routes';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../../shared/applications/guards/auth.guard';
 import { BlogsService } from './blogs.service';
 import { AddBlogDto } from './dto/add-blog.dto';
 import { DeleteBlogDto } from './dto/remove-blog.dto';

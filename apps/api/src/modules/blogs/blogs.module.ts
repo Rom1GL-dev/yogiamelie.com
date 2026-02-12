@@ -3,10 +3,10 @@ import { Module } from '@nestjs/common';
 import { SharedModule } from '../../shared/shared.module';
 import { BlogsService } from './blogs.service';
 import { BlogsController } from './blogs.controller';
-import { LogsModule } from '../logs/logs.module';
+import { LogModule } from '../logs/log.module';
 
 @Module({
-  imports: [SharedModule, LogsModule],
+  imports: [SharedModule, LogModule],
   providers: [BlogsService],
   controllers: [BlogsController],
   exports: [],

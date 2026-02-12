@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { routesV1 } from '../../config/app.routes';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../../shared/applications/guards/auth.guard';
 import { AuthenticatedRequest } from '../../types/auth-request';
 import { LocationService } from './location.service';
 import { AddLocationDto } from './dto/add-location.dto';
@@ -23,7 +23,7 @@ export class LocationController {
   @Get(routesV1.location.root)
   async getAll() {
     const locations = await this.locationService.getAll();
-    return { locations: locations };
+    return { locations };
   }
 
   @UseGuards(AuthGuard)
@@ -32,12 +32,8 @@ export class LocationController {
     @Body() addLocation: AddLocationDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const location = await this.locationService.add(
-      addLocation,
-      request.session.user,
-    );
-
-    return { location: location };
+    const location = await this.locationService.add(addLocation, request.session.user);
+    return { location };
   }
 
   @UseGuards(AuthGuard)
@@ -46,12 +42,8 @@ export class LocationController {
     @Body() deleteLocationDto: DeleteLocationDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const location = await this.locationService.delete(
-      deleteLocationDto,
-      request.session.user,
-    );
-
-    return { location: location };
+    const location = await this.locationService.delete(deleteLocationDto, request.session.user);
+    return { location };
   }
 
   @UseGuards(AuthGuard)
@@ -60,11 +52,7 @@ export class LocationController {
     @Body() updateLocationDto: UpdateLocationDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const location = await this.locationService.update(
-      updateLocationDto,
-      request.session.user,
-    );
-
-    return { location: location };
+    const location = await this.locationService.update(updateLocationDto, request.session.user);
+    return { location };
   }
 }

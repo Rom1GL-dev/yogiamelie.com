@@ -1,13 +1,16 @@
 const authRoot = '/auth';
 const usersRoot = '/users';
-const eventsRoot = '/events';
 const logsRoot = '/logs';
 const blogsRoot = '/blogs';
+const faqsRoot = '/faqs';
+const eventsRoot = '/events';
 const imagesRoot = '/images';
 const linksRoot = '/links';
 const locationRoot = '/location';
-const siteWebRoot = '/site-web';
 const priceRoot = '/prices';
+const siteWebRoot = '/site-web';
+const emailRoot = '/email';
+const settingsRoot = '/settings';
 
 const v1 = 'v1';
 
@@ -23,11 +26,14 @@ export const routesV1 = {
     root: usersRoot,
     byCustomerId: `${usersRoot}/user/:userEmail`,
   },
-  events: {
-    root: eventsRoot,
-  },
   blogs: {
     root: blogsRoot,
+  },
+  faqs: {
+    root: faqsRoot,
+  },
+  events: {
+    root: eventsRoot,
   },
   logs: {
     root: logsRoot,
@@ -49,5 +55,11 @@ export const routesV1 = {
     root: imagesRoot,
     upload: `${imagesRoot}/upload/:category`,
     getImage: `${imagesRoot}/:category/:imageName`,
+  },
+  email: {
+    root: emailRoot,
+  },
+  settings: {
+    root: settingsRoot,
   },
 };

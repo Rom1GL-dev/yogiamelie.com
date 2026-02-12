@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { routesV1 } from '../../config/app.routes';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../../shared/applications/guards/auth.guard';
 import { AuthenticatedRequest } from '../../types/auth-request';
 import { PriceService } from './price.service';
 import { AddPriceDto } from './dto/add-price.dto';
@@ -23,7 +23,7 @@ export class PriceController {
   @Get(routesV1.price.root)
   async getAll() {
     const prices = await this.priceService.getAll();
-    return { prices: prices };
+    return { prices };
   }
 
   @UseGuards(AuthGuard)
@@ -32,12 +32,8 @@ export class PriceController {
     @Body() addPriceDto: AddPriceDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const price = await this.priceService.add(
-      addPriceDto,
-      request.session.user,
-    );
-
-    return { price: price };
+    const price = await this.priceService.add(addPriceDto, request.session.user);
+    return { price };
   }
 
   @UseGuards(AuthGuard)
@@ -46,12 +42,8 @@ export class PriceController {
     @Body() deletePriceDto: DeletePriceDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const price = await this.priceService.delete(
-      deletePriceDto,
-      request.session.user,
-    );
-
-    return { price: price };
+    const price = await this.priceService.delete(deletePriceDto, request.session.user);
+    return { price };
   }
 
   @UseGuards(AuthGuard)
@@ -60,11 +52,7 @@ export class PriceController {
     @Body() updatePriceDto: UpdatePriceDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const price = await this.priceService.update(
-      updatePriceDto,
-      request.session.user,
-    );
-
-    return { price: price };
+    const price = await this.priceService.update(updatePriceDto, request.session.user);
+    return { price };
   }
 }

@@ -4,13 +4,13 @@ import { Session } from '../../types/session';
 import { AddEventDto } from './dto/add-event.dto';
 import { DeleteEventDto } from './dto/remove-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
-import { LogsService } from '../logs/logs.service';
+import { CreateLogService } from '../logs/usecases/create-log/create-log.service';
 
 @Injectable()
 export class EventsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly logsService: LogsService,
+    private readonly createLogService: CreateLogService,
   ) {}
 
   async getAllEvents() {
@@ -19,70 +19,55 @@ export class EventsService {
 
   async add(data: AddEventDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
 
-    const event = await this.prisma.event.create({
-      data,
-    });
+    const event = await this.prisma.event.create({ data });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'AJOUT',
-      message: `L'utilisateur ${user.name} a ajouté un évènement. ID: ${event.id}`,
+      message: `L'utilisateur ${user.name} a ajoute un evenement. ID: ${event.id}`,
       userId: user.id,
     });
 
-    return { message: 'Le nouvel évènement a été ajouté.' };
+    return { message: 'Le nouvel evenement a ete ajoute.' };
   }
 
   async delete(data: DeleteEventDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
-    const event = await this.prisma.event.delete({
-      where: {
-        id: data.id,
-      },
-    });
 
-    await this.logsService.add({
+    const event = await this.prisma.event.delete({ where: { id: data.id } });
+
+    await this.createLogService.execute({
       type: 'SUPPRESSION',
-      message: `L'utilisateur ${user.name} a supprimé un évènement.`,
+      message: `L'utilisateur ${user.name} a supprime un evenement.`,
       userId: user.id,
     });
 
     if (!event) {
-      return { message: "L'évènement n'a pas pu être supprimé." };
+      return { message: "L'evenement n'a pas pu etre supprime." };
     }
-    return { message: "L'évènement a bien été supprimé." };
+    return { message: "L'evenement a bien ete supprime." };
   }
 
   async update(data: UpdateEventDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
-    const event = await this.prisma.event.update({
-      where: {
-        id: data.id,
-      },
-      data,
-    });
 
-    await this.logsService.add({
+    const event = await this.prisma.event.update({ where: { id: data.id }, data });
+
+    await this.createLogService.execute({
       type: 'MODIFICATION',
-      message: `L'utilisateur ${user.name} a modifié un évènement. ID: ${event.id}`,
+      message: `L'utilisateur ${user.name} a modifie un evenement. ID: ${event.id}`,
       userId: user.id,
     });
 
     if (!event) {
-      return { message: "L'évènement n'a pas pu être modifié." };
+      return { message: "L'evenement n'a pas pu etre modifie." };
     }
-    return { message: "L'évènement a bien été modifié." };
+    return { message: "L'evenement a bien ete modifie." };
   }
 }

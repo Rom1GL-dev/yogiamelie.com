@@ -1,44 +1,15 @@
-import {
-  StoresProvider,
-  useInitialStores
-} from '@/providers/stores-provider.tsx';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { QUERY_CLIENT } from '@/lib/react-query.ts';
-import { useEffect, useState } from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import { ToastProvider } from '@/providers/toast-provider.tsx';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { queryClient } from '@/lib/react-query';
+import { AuthProvider } from '@/lib/auth';
+import { ToastProvider } from '@/providers/toast-provider';
 
-type AppProviderProps = {
-  children: React.ReactNode;
-};
-
-export const AppProvider = ({ children }: AppProviderProps) => {
-  const [queryClient] = useState(() => QUERY_CLIENT);
-  const { rehydrated } = useInitialStores();
-
-  useEffect(() => {
-    AOS.init({
-      duration: 500,
-      easing: 'ease-in-out',
-      once: true
-    });
-  }, []);
-
-  if (!rehydrated) {
-    return 'loading...';
-  }
-
+export function AppProvider({ children }: { children: React.ReactNode }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <StoresProvider>
-        <ToastProvider>
-          {children}
-          <ToastContainer />
-        </ToastProvider>
-      </StoresProvider>
+      <AuthProvider>
+        {children}
+        <ToastProvider />
+      </AuthProvider>
     </QueryClientProvider>
   );
-};
+}

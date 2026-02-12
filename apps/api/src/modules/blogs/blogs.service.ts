@@ -3,14 +3,14 @@ import { PrismaService } from '../../shared/infrastructure/prisma.service';
 import { Session } from '../../types/session';
 import { AddBlogDto } from './dto/add-blog.dto';
 import { DeleteBlogDto } from './dto/remove-blog.dto';
-import { LogsService } from '../logs/logs.service';
+import { CreateLogService } from '../logs/usecases/create-log/create-log.service';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 
 @Injectable()
 export class BlogsService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly logsService: LogsService,
+    private readonly createLogService: CreateLogService,
   ) {}
 
   async getAllBlogs() {
@@ -28,13 +28,13 @@ export class BlogsService {
       data,
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'AJOUT',
       message: `L'utilisateur ${user.name} a ajouté un blog. ID: ${blog.id}`,
       userId: user.id,
     });
 
-    return { message: 'Le nouveau blog a été ajouté.' };
+    return { message: 'Le nouveau blogs a été ajouté.' };
   }
 
   async delete(data: DeleteBlogDto, user: Session['user']) {
@@ -49,16 +49,16 @@ export class BlogsService {
       },
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'SUPPRESSION',
       message: `L'utilisateur ${user.name} a supprimé un blog.`,
       userId: user.id,
     });
 
     if (!blog) {
-      return { message: "Le blog n'a pas pu être supprimé." };
+      return { message: "Le blogs n'a pas pu être supprimé." };
     }
-    return { message: 'Le blog a bien été supprimé.' };
+    return { message: 'Le blogs a bien été supprimé.' };
   }
 
   async update(data: UpdateBlogDto, user: Session['user']) {
@@ -74,15 +74,15 @@ export class BlogsService {
       data,
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'MODIFICATION',
       message: `L'utilisateur ${user.name} a modifié un blog. ID: ${blog.id}`,
       userId: user.id,
     });
 
     if (!blog) {
-      return { message: "Le blog n'a pas pu être modifié." };
+      return { message: "Le blogs n'a pas pu être modifié." };
     }
-    return { message: 'Le blog a bien été modifié.' };
+    return { message: 'Le blogs a bien été modifié.' };
   }
 }

@@ -2,13 +2,13 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PrismaService } from '../../shared/infrastructure/prisma.service';
 import { Session } from '../../types/session';
 import { AddLinkDto } from './dto/add-link.dto';
-import { LogsService } from '../logs/logs.service';
+import { CreateLogService } from '../logs/usecases/create-log/create-log.service';
 
 @Injectable()
 export class LinksService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly logsService: LogsService,
+    private readonly createLogService: CreateLogService,
   ) {}
 
   async getAllLinks() {
@@ -17,9 +17,7 @@ export class LinksService {
 
   async updateOrInsert(data: AddLinkDto, user: Session['user']) {
     if (!user) {
-      throw new UnauthorizedException(
-        'Demande non autorisée. Veuillez vous connecter.',
-      );
+      throw new UnauthorizedException('Demande non autorisee. Veuillez vous connecter.');
     }
 
     const existingLink = await this.prisma.link.findFirst();
@@ -31,17 +29,15 @@ export class LinksService {
         data,
       });
     } else {
-      link = await this.prisma.link.create({
-        data,
-      });
+      link = await this.prisma.link.create({ data });
     }
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'MODIFICATION/AJOUT',
-      message: `L'utilisateur ${user.name} a mis à jour ou inséré un lien. ID: ${link.id}`,
+      message: `L'utilisateur ${user.name} a mis a jour ou insere un lien. ID: ${link.id}`,
       userId: user.id,
     });
 
-    return { message: 'Le lien a été mis à jour ou inséré avec succès.' };
+    return { message: 'Le lien a ete mis a jour ou insere avec succes.' };
   }
 }

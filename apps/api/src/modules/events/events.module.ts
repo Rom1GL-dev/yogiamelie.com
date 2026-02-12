@@ -1,13 +1,11 @@
 import { Module } from '@nestjs/common';
-
 import { SharedModule } from '../../shared/shared.module';
 import { EventsService } from './events.service';
 import { EventsController } from './events.controller';
-import { LogsModule } from '../logs/logs.module';
-import { ImagesModule } from '../images/images.module';
+import { LogModule } from '../logs/log.module';
 
 @Module({
-  imports: [SharedModule, LogsModule, ImagesModule],
+  imports: [SharedModule, LogModule],
   providers: [EventsService],
   controllers: [EventsController],
   exports: [],

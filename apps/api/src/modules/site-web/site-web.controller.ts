@@ -8,10 +8,11 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { routesV1 } from '../../config/app.routes';
-import { AddSiteWebDetailDto } from './dto/create-section.dto';
+import { AuthGuard } from '../../shared/applications/guards/auth.guard';
 import { SiteWebService } from './site-web.service';
+import { AddSiteWebDetailDto } from './dto/create-section.dto';
 import { UpdateSiteWebDetailDto } from './dto/update-section.dto';
-import { AuthGuard } from '../auth/auth.guard';
+import { BulkUpsertSectionDto } from './dto/bulk-upsert-section.dto';
 
 @Controller(routesV1.version)
 export class SiteWebController {
@@ -25,16 +26,14 @@ export class SiteWebController {
 
   @UseGuards(AuthGuard)
   @Post(routesV1.siteWeb.root)
-  async add(@Body() AddSiteWebDetailDto: AddSiteWebDetailDto) {
-    const siteWebDetail = await this.siteWebService.add(AddSiteWebDetailDto);
-
-    return { siteWebDetail: siteWebDetail };
+  async add(@Body() addSiteWebDetailDto: AddSiteWebDetailDto) {
+    const siteWebDetail = await this.siteWebService.add(addSiteWebDetailDto);
+    return { siteWebDetail };
   }
 
   @UseGuards(AuthGuard)
   @Put(routesV1.siteWeb.root)
-  async update(@Body() updateDto: UpdateSiteWebDetailDto) {
-    const updated = await this.siteWebService.update(updateDto);
-    return { updated };
+  async bulkUpsert(@Body() dto: BulkUpsertSectionDto) {
+    return this.siteWebService.bulkUpsert(dto);
   }
 }

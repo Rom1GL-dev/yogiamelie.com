@@ -1,5 +1,4 @@
 import {
-  Body,
   Controller,
   Get,
   Param,
@@ -9,76 +8,58 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { diskStorage, Multer } from 'multer';
-import * as fs from 'fs';
-import * as path from 'path';
+import { memoryStorage, Multer } from 'multer';
 import { Response as ExpressResponse } from 'express';
 import { routesV1 } from '../../config/app.routes';
-import { ConfigService } from '@nestjs/config';
+import { MinioService } from '../../shared/infrastructure/minio.service';
 
 @Controller(routesV1.version)
 export class ImagesController {
-  private readonly basePath: string;
-
-  constructor(private readonly configService: ConfigService) {
-    this.basePath =
-      this.configService.get<string>('UPLOAD_PATH') ?? '/tmp/uploads';
-  }
+  constructor(private readonly minioService: MinioService) {}
 
   @Post(routesV1.image.upload)
   @UseInterceptors(
     FileInterceptor('image', {
-      storage: diskStorage({
-        destination: (req, file, cb) => {
-          const category = req.params.category;
-          const uploadBasePath = process.env.UPLOAD_PATH || '/tmp/uploads';
-          const uploadPath = path.join(uploadBasePath, category);
-
-          fs.mkdirSync(uploadPath, { recursive: true });
-          cb(null, uploadPath);
-        },
-        filename: (req, file, cb) => {
-          if (!file) {
-            return cb(new Error('No file provided'), null);
-          }
-          cb(null, file.originalname);
-        },
-      }),
+      storage: memoryStorage(),
     }),
   )
-  uploadImage(
+  async uploadImage(
     @UploadedFile() file: Multer.File,
     @Param('category') category: string,
-    @Body() body: any,
   ) {
     if (!file) {
       return { message: 'No file uploaded.' };
     }
 
-    const title = body.title;
-    if (!title) {
-      return { message: 'TitleCours is required.' };
-    }
+    const url = await this.minioService.upload(
+      category,
+      file.originalname,
+      file.buffer,
+      file.mimetype,
+    );
 
-    const imagePath = path.join(this.basePath, category, file.filename);
     return {
-      message: 'Image uploaded successfully',
-      path: imagePath,
+      url,
+      fileName: file.originalname,
     };
   }
 
   @Get(routesV1.image.getImage)
-  getImage(
+  async getImage(
     @Param('category') category: string,
     @Param('imageName') imageName: string,
     @Res() res: ExpressResponse,
   ) {
-    const imagePath = path.join(this.basePath, category, imageName);
-
-    if (fs.existsSync(imagePath)) {
-      return res.sendFile(imagePath);
-    } else {
-      return res.status(404).json({ message: 'Image not found' });
+    try {
+      const { stream, contentType } = await this.minioService.getObject(
+        category,
+        imageName,
+      );
+      res.setHeader('Content-Type', contentType);
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      (stream as NodeJS.ReadableStream).pipe(res);
+    } catch {
+      res.status(404).json({ message: 'Image not found' });
     }
   }
 }

@@ -1,9 +1,9 @@
-version: "3.9"
+name: "Kesharini Yoga - Development"
 
 services:
   database:
     image: postgres:17
-    container_name: yogiamelie_db
+    container_name: kesharini_yoga_db
     restart: always
     environment:
       POSTGRES_USER: ${DATABASE_USER}
@@ -15,34 +15,33 @@ services:
     networks:
       - postgres-network
     volumes:
-      - yogiamelie_data:/var/lib/postgresql/data
-
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: yogiamelie_pgadmin
-    ports:
-      - "15433:80"
-    depends_on:
-      - database
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-    networks:
-      - postgres-network
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin/
+      - kesharini_yoga_data:/var/libs/postgresql/data
 
   redis:
     image: redis:alpine
-    container_name: yogiamelie_redis
+    container_name: kesharini_yoga_redis
     ports:
       - "6379:6379"
     command: ["redis-server", "--requirepass", "${REDIS_PASSWORD}"]
     restart: always
 
+  minio:
+    image: minio/minio:latest
+    container_name: kesharini_yoga_minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minioadmin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-minioadmin}
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    restart: always
+
 volumes:
-  yogiamelie_data:
-  pgadmin_data:
+  kesharini_yoga_data:
+  minio_data:
 
 networks:
   postgres-network:

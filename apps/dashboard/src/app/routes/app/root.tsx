@@ -1,17 +1,11 @@
 import { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Loading } from '@/components/loading';
 
-export const AppRoot = () => {
-  const location = useLocation();
+export function AppRoot() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ErrorBoundary
-        key={location.pathname}
-        fallback={<div>Quelque chose fonctionne mal</div>}
-      >
-        <Outlet />
-      </ErrorBoundary>
+    <Suspense fallback={<Loading />}>
+      <Outlet />
     </Suspense>
   );
-};
+}

@@ -1,10 +1,19 @@
-import { AppProvider } from './provider';
-import { AppRouter } from './router';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/lib/react-query';
+import { AuthProvider } from '@/lib/auth';
+import { ToastProvider } from '@/providers/toast-provider';
+import { AppRouter } from '@/app/router';
 
-export const App = () => {
+export function App() {
   return (
-    <AppProvider>
-      <AppRouter />
-    </AppProvider>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <AuthProvider>
+          <AppRouter />
+          <ToastProvider />
+        </AuthProvider>
+      </QueryClientProvider>
+    </BrowserRouter>
   );
-};
+}

@@ -6,7 +6,7 @@ import {
 import { PrismaService } from '../../shared/infrastructure/prisma.service';
 import { hashPassword } from '../../shared/utils/hashPassword';
 import { AddUserDto } from './dto/add-user.dto';
-import { LogsService } from '../logs/logs.service';
+import { CreateLogService } from '../logs/usecases/create-log/create-log.service';
 import { Session } from '../../types/session';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
@@ -16,7 +16,7 @@ import { DeleteUserDto } from './dto/delete-user.dto';
 export class UsersService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly logsService: LogsService,
+    private readonly createLogService: CreateLogService,
   ) {}
 
   async getAllUsers() {
@@ -57,7 +57,7 @@ export class UsersService {
       },
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'AJOUT',
       message: `L'utilisateur ${data.name} a ajouté un utilisateur. Email: ${data.email}`,
       userId: user.id,
@@ -99,7 +99,7 @@ export class UsersService {
       data: updateData,
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'MODIFICATION',
       message: `L'utilisateur ${user.name} a modifié l'utilisateur. Email: ${data.email}`,
       userId: user.id,
@@ -120,7 +120,7 @@ export class UsersService {
       },
     });
 
-    await this.logsService.add({
+    await this.createLogService.execute({
       type: 'SUPPRESSION',
       message: `L'utilisateur ${user.name} a supprimé un utilisateur.`,
       userId: user.id,

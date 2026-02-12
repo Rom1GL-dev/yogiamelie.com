@@ -1,5 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { PrismaService } from './infrastructure/prisma.service';
+import { MinioService } from './infrastructure/minio.service';
 import { CacheStorage } from './ports/cache-storage';
 import { RedisCacheStorage } from './infrastructure/adapters/redis-cache-storage';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -23,6 +24,7 @@ import { HttpModule } from '@nestjs/axios';
   ],
   providers: [
     PrismaService,
+    MinioService,
     {
       provide: CacheStorage,
       useFactory: (configService: ConfigService) => {
@@ -35,6 +37,6 @@ import { HttpModule } from '@nestjs/axios';
       inject: [ConfigService],
     },
   ],
-  exports: [PrismaService, CacheStorage, HttpModule],
+  exports: [PrismaService, CacheStorage, HttpModule, MinioService],
 })
 export class SharedModule {}

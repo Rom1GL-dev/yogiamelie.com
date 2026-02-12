@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { routesV1 } from '../../config/app.routes';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../../shared/applications/guards/auth.guard';
 import { EventsService } from './events.service';
 import { AddEventDto } from './dto/add-event.dto';
 import { DeleteEventDto } from './dto/remove-event.dto';
@@ -23,7 +23,7 @@ export class EventsController {
   @Get(routesV1.events.root)
   async getAllEvents() {
     const events = await this.eventsService.getAllEvents();
-    return { events: events };
+    return { events };
   }
 
   @UseGuards(AuthGuard)
@@ -32,11 +32,8 @@ export class EventsController {
     @Body() addEventDto: AddEventDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const events = await this.eventsService.add(
-      addEventDto,
-      request.session.user,
-    );
-    return { events: events };
+    const events = await this.eventsService.add(addEventDto, request.session.user);
+    return { events };
   }
 
   @UseGuards(AuthGuard)
@@ -45,12 +42,8 @@ export class EventsController {
     @Body() deleteEventDto: DeleteEventDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const events = await this.eventsService.delete(
-      deleteEventDto,
-      request.session.user,
-    );
-
-    return { events: events };
+    const events = await this.eventsService.delete(deleteEventDto, request.session.user);
+    return { events };
   }
 
   @UseGuards(AuthGuard)
@@ -59,11 +52,7 @@ export class EventsController {
     @Body() updateEventDto: UpdateEventDto,
     @Req() request: AuthenticatedRequest,
   ) {
-    const data = await this.eventsService.update(
-      updateEventDto,
-      request.session.user,
-    );
-
-    return { data: data };
+    const events = await this.eventsService.update(updateEventDto, request.session.user);
+    return { events };
   }
 }

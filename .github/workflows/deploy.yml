@@ -1,0 +1,90 @@
+name: CI/CD Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_PORT }}
+          script: |
+            cd /home/debian/yogiamelie.com
+
+            echo "--- Pulling latest code ---"
+            git pull origin main
+
+            echo "--- Building and restarting containers ---"
+            docker compose --env-file .env -f docker/docker-compose.prod.yml up -d --build
+
+            echo "--- Cleaning up old images ---"
+            docker image prune -f
+
+            echo "--- Deploy complete ---"
+
+  notify:
+    name: Discord Notification
+    needs: deploy
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get commit info
+        id: commit
+        run: |
+          echo "message=$(git log -1 --pretty=format:'%s')" >> $GITHUB_OUTPUT
+          echo "author=$(git log -1 --pretty=format:'%an')" >> $GITHUB_OUTPUT
+          echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+
+      - name: Discord - Success
+        if: needs.deploy.result == 'success'
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"Kesharini Yoga - Deploy OK\",
+                \"description\": \"Le deploiement a reussi.\",
+                \"color\": 4437377,
+                \"fields\": [
+                  { \"name\": \"Commit\", \"value\": \"\`${{ steps.commit.outputs.short_sha }}\` ${{ steps.commit.outputs.message }}\", \"inline\": false },
+                  { \"name\": \"Auteur\", \"value\": \"${{ steps.commit.outputs.author }}\", \"inline\": true },
+                  { \"name\": \"Branche\", \"value\": \"main\", \"inline\": true }
+                ],
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
+              }]
+            }" \
+            "${{ secrets.DISCORD_WEBHOOK_URL }}"
+
+      - name: Discord - Failure
+        if: needs.deploy.result == 'failure'
+        run: |
+          curl -H "Content-Type: application/json" \
+            -d "{
+              \"embeds\": [{
+                \"title\": \"Kesharini Yoga - Deploy ECHOUE\",
+                \"description\": \"Le deploiement a echoue.\",
+                \"color\": 15548997,
+                \"fields\": [
+                  { \"name\": \"Commit\", \"value\": \"\`${{ steps.commit.outputs.short_sha }}\` ${{ steps.commit.outputs.message }}\", \"inline\": false },
+                  { \"name\": \"Auteur\", \"value\": \"${{ steps.commit.outputs.author }}\", \"inline\": true },
+                  { \"name\": \"Logs\", \"value\": \"[Voir les logs](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})\", \"inline\": true }
+                ],
+                \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"
+              }]
+            }" \
+            "${{ secrets.DISCORD_WEBHOOK_URL }}"
