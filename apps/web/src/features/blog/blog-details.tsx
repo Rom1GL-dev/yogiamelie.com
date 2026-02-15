@@ -1,7 +1,8 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import GoBackNavbar from '@/components/ux/go-back-navbar';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import { Blog } from '@/features/blog/usecases/list-blogs/blog';
 import { appConfig } from '@/config/app.config';
 
@@ -11,35 +12,51 @@ interface Props {
 
 export default function BlogDetails({ blog }: Props) {
   return (
-    <div className="min-h-screen bg-[#d5ddcb]">
-      <GoBackNavbar />
-
-      <div className="relative">
-        <Image
-          src={`${appConfig.apiUrl}/v1/images/blogs/${blog.image}`}
-          alt={blog.title}
-          className="h-[50vh] w-full rounded-b-[20%] object-cover"
-          width={1400}
-          height={700}
-          priority
-        />
-        <div className="absolute bottom-0 left-0 right-0 flex items-end justify-center pb-10">
-          <div className="rounded-xl bg-[rgba(255,245,230,0.5)] px-8 py-4 backdrop-blur-sm">
-            <h1 className="text-center font-[Mistrully] text-3xl md:text-4xl lg:text-5xl text-[#353F34]">
-              {blog.title}
-            </h1>
-          </div>
+    <div className="min-h-screen bg-[#faf8f5]">
+      {/* Top bar */}
+      <div className="border-b border-[#353F34]/10 bg-white/60 backdrop-blur-md">
+        <div className="mx-auto flex max-w-5xl items-center px-6 py-4">
+          <Link
+            href="/"
+            className="group flex items-center gap-2 text-sm text-[#353F34]/70 transition-colors hover:text-[#353F34]"
+          >
+            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+            Retour
+          </Link>
         </div>
       </div>
 
-      <div className="px-9 py-10 md:px-20 lg:px-32">
-        {blog.subtitle && (
-          <p className="mb-6 text-center text-lg text-[#58684E] italic">
-            {blog.subtitle}
-          </p>
-        )}
-        <div
-          className="html-content max-w-none [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#58684E] [&_h2]:mb-4 [&_h2]:mt-8 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#58684E] [&_h3]:mb-3 [&_h3]:mt-6 [&_p]:mb-3 [&_p]:leading-relaxed [&_p]:text-[#353F34] [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1 [&_a]:text-[#58684E] [&_a]:underline [&_img]:rounded-lg [&_img]:my-4"
+      {/* Hero section with warm brown background */}
+      <div className="grain bg-[#3E2F25] px-6 pb-16 pt-10 md:px-10 md:pb-20 md:pt-14">
+        <div className="mx-auto max-w-3xl">
+          {/* Image */}
+          <div className="overflow-hidden rounded-2xl shadow-2xl shadow-black/30 ring-1 ring-white/10">
+            <Image
+              src={`${appConfig.apiUrl}/v1/images/blogs/${blog.image}`}
+              alt={blog.title}
+              className="w-full object-cover"
+              width={1400}
+              height={700}
+              priority
+            />
+          </div>
+
+          {/* Title */}
+          <h1 className="mt-8 font-[Mistrully] text-3xl text-[#f0e6d8] md:mt-10 md:text-4xl lg:text-5xl">
+            {blog.title}
+          </h1>
+          {blog.subtitle && (
+            <p className="mt-3 text-base font-light text-[#f0e6d8]/70 italic md:text-lg">
+              {blog.subtitle}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="mx-auto max-w-3xl px-6 py-12 md:px-10 md:py-16">
+        <article
+          className="html-content max-w-none break-words text-base leading-[1.8] text-[#2d3640] md:text-[17px] [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#353F34] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#353F34] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1 [&_a]:text-[#c08562] [&_a]:underline [&_a]:underline-offset-2 [&_img]:max-w-full [&_img]:rounded-xl [&_img]:my-6 [&_img]:shadow-md [&_img]:h-auto"
           dangerouslySetInnerHTML={{ __html: blog.description }}
         />
       </div>

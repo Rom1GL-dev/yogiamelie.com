@@ -23,15 +23,17 @@ export default function HomeBlog() {
     <SectionLayout title="Blog" background="#fff5e6">
       <div data-aos="fade-up" data-aos-delay="350">
         <Carousel opts={{ align: 'start', loop: false }} className="w-full">
-          <CarouselContent className="-ml-4">
+          <CarouselContent className="-ml-6">
             {publishedBlogs.map((blog) => (
-              <CarouselItem key={blog.id} className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={blog.id} className="pl-6 basis-[85%] sm:basis-1/2 lg:basis-1/3">
                 <BlogCard blog={blog} />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="-left-4 lg:-left-12" />
-          <CarouselNext className="-right-4 lg:-right-12" />
+          <div className="mt-8 flex justify-center gap-4">
+            <CarouselPrevious className="static bg-white/60 backdrop-blur-sm rounded-full hover:bg-white/80" />
+            <CarouselNext className="static bg-white/60 backdrop-blur-sm rounded-full hover:bg-white/80" />
+          </div>
         </Carousel>
       </div>
     </SectionLayout>

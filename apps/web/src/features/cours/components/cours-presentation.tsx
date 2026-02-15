@@ -9,21 +9,22 @@ export default function CoursPresentation() {
   const { data: fields } = useSiteWebSection('presentationCours');
 
   return (
-    <div className="flex w-full flex-col items-center border-b-2 border-[#c08562] bg-[#fff5e6] p-5 pt-16 md:p-10 lg:flex-row lg:justify-center">
-      <div className="relative w-3/4">
-        <div className="relative z-10 flex flex-col items-center">
-          <Image src="/images/logo.png" alt="Logo" title="Logo" width={190} height={190} />
+    <div className="grain relative w-full overflow-hidden bg-[#353F34] px-6 pt-24 pb-16 md:px-10 md:pt-28 md:pb-20 lg:pb-0">
+      <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-16">
+        {/* Text */}
+        <div className="flex flex-col items-center text-center lg:w-1/2 lg:items-start lg:text-left">
+          <Image src="/images/logo.png" alt="Logo" title="Logo" width={140} height={140} className="mb-8 opacity-90" />
           <h1
-            className="text-shadow mt-10 text-center font-[Seasons] text-5xl text-[#c08562]"
+            className="font-[Seasons] text-4xl text-[#d5ddcb] md:text-5xl lg:text-6xl"
             data-aos="fade-up"
-            data-aos-delay="300"
+            data-aos-delay="200"
           >
             <SeasonsText>{fields?.title ?? ''}</SeasonsText>
           </h1>
           <h2
-            className="text-shadow mt-7 text-center text-xl font-light uppercase tracking-[.15em] text-[#caa168]"
+            className="mt-5 text-lg font-light tracking-[.12em] text-[#d5ddcb]/60 uppercase md:text-xl"
             data-aos="fade-up"
-            data-aos-delay="350"
+            data-aos-delay="300"
           >
             {fields?.description ?? ''}
           </h2>
@@ -31,7 +32,7 @@ export default function CoursPresentation() {
             <Link
               href={fields.buttonLink}
               target="_blank"
-              className="mt-20 rounded-full border-2 border-[#a9b394] bg-[#d5ddcb] px-9 py-3 text-2xl uppercase text-[#caa168]"
+              className="mt-10 rounded-full bg-[#c08562] px-8 py-3.5 text-sm font-medium tracking-wider text-white uppercase transition-all duration-300 hover:bg-[#b07752] hover:shadow-lg"
               data-aos="fade-up"
               data-aos-delay="400"
             >
@@ -39,18 +40,22 @@ export default function CoursPresentation() {
             </Link>
           )}
         </div>
-      </div>
-      {fields?.image && (
-        <div className="z-20 mt-10 flex w-full justify-center lg:mt-0 lg:ml-5">
-          <img
-            src={`${appConfig.apiUrl}/v1/images/site-web/${fields.image}`}
-            alt="Image Cours"
-            className="h-[486px] w-full max-w-full rounded-xl object-cover md:h-[586px] lg:h-[686px] lg:max-w-[686px]"
+
+        {/* Image */}
+        {fields?.image && (
+          <div
+            className="lg:w-1/2"
             data-aos="fade-up"
             data-aos-delay="100"
-          />
-        </div>
-      )}
+          >
+            <img
+              src={`${appConfig.apiUrl}/v1/images/site-web/${fields.image}`}
+              alt="Image Cours"
+              className="w-full rounded-2xl object-cover shadow-2xl shadow-black/30 lg:max-h-[600px]"
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

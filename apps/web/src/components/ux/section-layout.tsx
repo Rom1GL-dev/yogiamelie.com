@@ -8,12 +8,12 @@ interface SectionLayoutProps {
 
 export default function SectionLayout({ title, background, children }: SectionLayoutProps) {
   return (
-    <div className="p-10 px-14 lg:p-20 lg:px-32" style={{ backgroundColor: background }}>
+    <div className="grain overflow-hidden px-6 py-16 md:px-14 lg:px-32 lg:py-24" style={{ backgroundColor: background }}>
       {title && (
         <h2
-          className="mb-10 font-[Mistrully] text-4xl xl:text-5xl"
+          className="mb-12 font-[Mistrully] text-4xl tracking-wide xl:text-5xl"
           data-aos="fade-up"
-          data-aos-delay="300"
+          data-aos-delay="100"
         >
           {title}
         </h2>

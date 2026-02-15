@@ -6,25 +6,28 @@ export default function HomePresentation() {
   const { data: fields } = useSiteWebSection('presentation');
 
   return (
-    <div className="relative flex h-3/4 w-full items-center justify-center">
+    <div className="relative flex h-[70vh] w-full items-end justify-center pb-20 md:h-[85vh] md:items-center md:pb-0">
       <img
         src="/images/homeAmelie.webp"
         alt="Home background"
-        className="block h-[50vh] w-full object-cover md:hidden"
+        className="absolute inset-0 block h-full w-full object-cover md:hidden"
       />
       <video
         autoPlay
         loop
         muted
         playsInline
-        className="hidden h-full w-full object-cover md:block"
+        className="absolute inset-0 hidden h-full w-full object-cover md:block"
       >
         <source src="/home-amelie.mp4" type="video/mp4" />
         Votre navigateur ne supporte pas la vidéo HTML5.
       </video>
-      <div className="absolute bottom-10 text-center text-white lg:bottom-14 xl:bottom-20">
+
+      <div className="absolute inset-0 bg-gradient-to-t from-[#353F34]/50 via-[#353F34]/10 to-transparent" />
+
+      <div className="relative z-10 flex flex-col items-center gap-8 px-6 text-center md:gap-12">
         <h1
-          className="mb-10 font-[Mistrully] text-4xl text-[#d5ddcb] [text-shadow:_0_1px_0_rgb(0_0_0_/_60%)] md:mb-14 lg:mb-20 lg:text-6xl xl:mb-32 xl:text-8xl"
+          className="font-[Mistrully] text-4xl text-[#d5ddcb] drop-shadow-lg md:text-5xl lg:text-6xl xl:text-7xl"
           data-aos="fade-up"
           data-aos-delay="300"
         >
@@ -34,13 +37,20 @@ export default function HomePresentation() {
           <Link
             href={fields.buttonLink}
             title={fields.button}
-            className="text-md cursor-pointer rounded-lg bg-[#d08349] px-12 py-2.5 font-light shadow-md transition hover:bg-[#ab6a39]"
+            className="rounded-full border border-white/20 bg-white/15 px-10 py-3 text-sm font-light tracking-wider text-white uppercase backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
             data-aos="fade-up"
             data-aos-delay="350"
           >
             {fields.button}
           </Link>
         )}
+      </div>
+
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-[bounce_2s_ease-in-out_infinite]">
+        <div className="flex flex-col items-center gap-1">
+          <span className="text-[10px] font-light tracking-[0.3em] text-white/60 uppercase">Scroll</span>
+          <div className="h-8 w-[1px] bg-gradient-to-b from-white/60 to-transparent" />
+        </div>
       </div>
     </div>
   );

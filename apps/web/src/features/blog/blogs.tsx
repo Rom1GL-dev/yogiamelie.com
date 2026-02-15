@@ -1,5 +1,4 @@
 'use client';
-import SectionLayout from '@/components/ux/section-layout';
 import BlogCard from '@/components/ux/blog-card';
 import { useListBlogs } from '@/features/blog/usecases/list-blogs/use-list-blog';
 import GoBackNavbar from '@/components/ux/go-back-navbar';
@@ -13,11 +12,11 @@ export const Blogs = () => {
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
   return (
-    <div className="min-h-screen bg-[#fff5e6]">
+    <div className="grain min-h-screen overflow-hidden bg-[#fff5e6]">
       <GoBackNavbar />
-      <div className="pt-16 p-10 px-9 md:px-20 lg:px-32">
+      <div className="pt-16 px-6 py-16 md:px-14 lg:px-32">
         <h1
-          className="mb-10 font-[Mistrully] text-4xl xl:text-5xl"
+          className="mb-12 font-[Mistrully] text-4xl tracking-wide xl:text-5xl"
           data-aos="fade-up"
           data-aos-delay="300"
         >
@@ -37,7 +36,7 @@ export const Blogs = () => {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {publishedBlogs.map((blog, index) => (
               <div
                 key={blog.id}

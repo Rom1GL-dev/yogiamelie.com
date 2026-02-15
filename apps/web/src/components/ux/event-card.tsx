@@ -27,25 +27,22 @@ export default function EventCard({ event }: { event: Event }) {
   return (
     <Link
       href={`/evenements/${slugify(event.title, event.id)}`}
-      className="mb-7 block h-full w-full cursor-pointer overflow-hidden rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-[1.01]"
+      className="group relative mb-7 block h-[380px] w-full cursor-pointer overflow-hidden rounded-3xl card-hover"
     >
       <img
         src={`${appConfig.apiUrl}/v1/images/events/${event.image}`}
         title={event.title}
         alt={event.title}
-        className="h-1/2 w-full rounded-3xl object-cover"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
-      <div className="flex flex-1 flex-col items-center justify-between p-3 text-center">
-        <div>
-          <p className="text-md font-semibold">
-            {formatDate(event.startDate, event.startHour, event.endDate, event.endHour)}
-          </p>
-          <p className="text-md font-semibold">{event.location}</p>
-        </div>
-        <div className="mt-3 flex flex-col items-center">
-          <p className="font-[Mistrully] text-3xl">{event.title}</p>
-          <p className="mt-2 font-light tracking-[0.06em]">{event.subtitle}</p>
-        </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-[#353F34]/90 via-[#353F34]/50 to-[#353F34]/10" />
+      <div className="absolute inset-x-0 bottom-0 p-5 text-white drop-shadow-md">
+        <p className="text-xs font-semibold uppercase tracking-widest [text-shadow:_0_1px_3px_rgb(0_0_0_/_60%)]">
+          {formatDate(event.startDate, event.startHour, event.endDate, event.endHour)}
+        </p>
+        <p className="text-sm font-semibold [text-shadow:_0_1px_3px_rgb(0_0_0_/_60%)]">{event.location}</p>
+        <p className="mt-2 font-[Mistrully] text-3xl [text-shadow:_0_2px_6px_rgb(0_0_0_/_50%)]">{event.title}</p>
+        <p className="mt-1 font-light tracking-[0.06em] [text-shadow:_0_1px_3px_rgb(0_0_0_/_60%)]">{event.subtitle}</p>
       </div>
     </Link>
   );

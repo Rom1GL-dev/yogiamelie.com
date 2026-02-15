@@ -27,8 +27,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 z-10 flex w-full justify-between whitespace-nowrap transition-colors duration-300 ${
-        scrolled ? 'bg-white shadow-md' : 'bg-transparent'
+      className={`fixed top-0 left-0 z-10 flex w-full justify-between whitespace-nowrap transition-all duration-300 ${
+        scrolled ? 'bg-white/80 shadow-sm backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <ul className="hidden w-1/3 lg:flex" />
@@ -52,32 +52,32 @@ export default function Navbar() {
         className={`hidden w-1/3 justify-end space-x-8 p-5 lg:flex ${scrolled ? 'items-center' : ''}`}
       >
         <li>
-          <button onClick={() => scrollToSection('universe')} className="cursor-pointer">
+          <button onClick={() => scrollToSection('universe')} className="link-hover cursor-pointer">
             À propos
           </button>
         </li>
         <li>
-          <Link href="/cours" className="cursor-pointer">
+          <Link href="/cours" className="link-hover cursor-pointer">
             Cours
           </Link>
         </li>
         <li>
-          <button onClick={() => scrollToSection('join')} className="cursor-pointer">
+          <button onClick={() => scrollToSection('join')} className="link-hover cursor-pointer">
             Agenda
           </button>
         </li>
         <li>
-          <button onClick={() => scrollToSection('blog')} className="cursor-pointer">
+          <button onClick={() => scrollToSection('blog')} className="link-hover cursor-pointer">
             Blog
           </button>
         </li>
         <li>
-          <button onClick={() => scrollToSection('newsletter')} className="cursor-pointer">
+          <button onClick={() => scrollToSection('newsletter')} className="link-hover cursor-pointer">
             Newsletter
           </button>
         </li>
         <li>
-          <button onClick={() => scrollToSection('contact')} className="cursor-pointer">
+          <button onClick={() => scrollToSection('contact')} className="link-hover cursor-pointer">
             Contact
           </button>
         </li>
@@ -94,7 +94,7 @@ export default function Navbar() {
       {isSidebarOpen && (
         <div className="fixed inset-0 z-20 bg-black/50 lg:hidden" onClick={toggleSidebar}>
           <div
-            className="fixed top-0 right-0 z-30 h-full w-3/4 space-y-6 bg-white p-6"
+            className="fixed top-0 right-0 z-30 h-full w-3/4 space-y-6 bg-white/95 p-6 backdrop-blur-md"
             onClick={(e) => e.stopPropagation()}
           >
             <ul className="flex flex-col space-y-4">

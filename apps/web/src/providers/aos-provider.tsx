@@ -10,8 +10,9 @@ interface Props {
 export default function AosProvider({ children }: Props) {
   useEffect(() => {
     AOS.init({
-      duration: 500,
-      easing: 'ease-in-out',
+      duration: 700,
+      easing: 'ease-out-cubic',
+      offset: 80,
       once: true
     });
   }, []);

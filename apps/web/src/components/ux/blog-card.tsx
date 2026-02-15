@@ -9,8 +9,8 @@ function slugify(title: string, id: string) {
 }
 
 function stripHtml(html: string) {
-  const withoutTags = html.replace(/<[^>]+>/g, '');
-  const decoded = withoutTags.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+  const withSpaces = html.replace(/<[^>]+>/g, ' ');
+  const decoded = withSpaces.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
   return decoded.replace(/\s+/g, ' ').trim();
 }
 
@@ -18,26 +18,39 @@ export default function BlogCard({ blog }: { blog: Blog }) {
   return (
     <Link
       href={`/blogs/${slugify(blog.title, blog.id)}`}
-      className="mb-7 flex h-[300px] w-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-[#a9b394] text-white transition-all duration-300 hover:scale-[1.01] md:h-[250px] lg:h-[350px]"
+      className="group mb-7 flex h-[300px] w-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-white/80 shadow-sm ring-1 ring-black/5 card-hover md:h-[250px] lg:h-[350px]"
     >
-      <img
-        src={`${appConfig.apiUrl}/v1/images/blogs/${blog.image}`}
-        alt={blog.title}
-        title={blog.title}
-        className="h-1/2 w-full rounded-t-3xl object-cover"
-      />
+      <div className="relative h-1/2 overflow-hidden">
+        <img
+          src={`${appConfig.apiUrl}/v1/images/blogs/${blog.image}`}
+          alt={blog.title}
+          title={blog.title}
+          className="h-full w-full rounded-t-3xl object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#353F34]/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      </div>
       <div className="flex flex-1 flex-col justify-between px-3 py-2 lg:p-3">
         <div>
-          <p className="text-md font-bold">{blog.title}</p>
-          <p className="mt-1 font-bold tracking-[0.06em]">{blog.subtitle}</p>
-          <p className="mt-3 line-clamp-1 font-light tracking-[0.06em] lg:line-clamp-2">
+          <p className="text-md font-bold text-[#353F34]">{blog.title}</p>
+          <p className="mt-1 font-bold tracking-[0.06em] text-[#58684E]">{blog.subtitle}</p>
+          <p className="mt-3 line-clamp-1 font-light tracking-[0.06em] text-[#353F34]/70 lg:line-clamp-2">
             {stripHtml(blog.description)}
           </p>
         </div>
-        <div className="mt-2 flex justify-end">
-          <span className="cursor-pointer rounded-md border border-black bg-[#eed7c1] px-2 py-1 text-black italic">
+        <div className="mt-2 flex items-center justify-end gap-1">
+          <span className="cursor-pointer text-[#c08562] italic">
             Lire plus
           </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-4 w-4 text-[#c08562] transition-transform duration-300 group-hover:translate-x-1"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
         </div>
       </div>
     </Link>

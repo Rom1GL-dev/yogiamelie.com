@@ -125,6 +125,78 @@
   text-decoration: underline;
 }
 
+.html-content strong,
+.html-content b {
+  font-weight: 700;
+}
+
+.html-content em,
+.html-content i {
+  font-style: italic;
+}
+
+.html-content ul {
+  list-style-type: disc;
+}
+
+.html-content ol {
+  list-style-type: decimal;
+}
+
+/* ── Grain texture (subtle paper noise) ── */
+.grain {
+  position: relative;
+}
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  z-index: 1;
+}
+.grain > *:not([class*="absolute"]) {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Glass morphism ── */
+.glass {
+  background: rgba(255, 245, 230, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ── Card hover lift ── */
+.card-hover {
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(53, 63, 52, 0.15);
+}
+
+/* ── Link hover underline animation ── */
+.link-hover {
+  position: relative;
+}
+.link-hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1.5px;
+  background-color: currentColor;
+  transition: width 0.3s ease-out;
+}
+.link-hover:hover::after {
+  width: 100%;
+}
+
 @theme inline {
   --color-sidebar: var(--sidebar);
   --color-sidebar-foreground: var(--sidebar-foreground);
