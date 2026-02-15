@@ -55,12 +55,23 @@ FROM nginx:alpine AS production
 
 COPY --from=installer /app/apps/dashboard/dist /usr/share/nginx/html
 
-# SPA routing: redirect all routes to index.html
+# SPA routing with security hardening
 RUN printf 'server {\n\
   listen 80;\n\
   server_name _;\n\
   root /usr/share/nginx/html;\n\
   index index.html;\n\
+\n\
+  # Block access to hidden files (.env, .git, etc.)\n\
+  location ~ /\\. {\n\
+    deny all;\n\
+    return 404;\n\
+  }\n\
+\n\
+  # Block common scan targets\n\
+  location ~* (wp-config|phpinfo|credentials|docker-compose|actuator|telescope|horizon|_profiler|server-status|server-info) {\n\
+    return 404;\n\
+  }\n\
 \n\
   location / {\n\
     try_files $uri $uri/ /index.html;\n\

@@ -6,9 +6,16 @@ import { Home } from '@/features/home/home';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const metadata: Metadata = {
-  title: 'Kesharini Yoga - Professeur de Yoga',
+  title: {
+    absolute: 'Kesharini Yoga - Amélie Vetcour | Cours de Yoga en Belgique'
+  },
   description:
-    "Kesharini Yoga, professeur de yoga certifiée. Accompagnement personnalisé pour une pratique du yoga adaptée, bien-être corporel, souplesse et sérénité intérieure.",
+    'Kesharini Yoga par Amélie Vetcour, professeur de yoga certifiée en Belgique. Cours collectifs et individuels, hatha yoga, vinyasa, ateliers, événements et retraites. Retrouvez harmonie du corps et de l\'esprit.',
+  openGraph: {
+    title: 'Kesharini Yoga - Amélie Vetcour | Cours de Yoga en Belgique',
+    description: 'Cours de yoga collectifs et individuels par Amélie Vetcour. Hatha yoga, vinyasa, ateliers et événements en Belgique.',
+    url: 'https://keshariniyoga.com',
+  },
 };
 
 export default async function Page() {

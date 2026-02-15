@@ -18,8 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const event = events.find((e: any) => e.id === id);
 
   return {
-    title: event ? `${event.title} - Kesharini Yoga` : 'Événement - Kesharini Yoga',
-    description: event?.subtitle || "Détails de l'événement Kesharini Yoga.",
+    title: event?.title || 'Événement',
+    description: event?.subtitle || 'Événement yoga par Kesharini Yoga en Belgique. Ateliers, retraites et stages.',
+    openGraph: {
+      title: event ? `${event.title} | Kesharini Yoga` : 'Événement | Kesharini Yoga',
+      description: event?.subtitle || 'Événement yoga par Kesharini Yoga.',
+      type: 'article',
+    },
   };
 }
 

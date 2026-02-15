@@ -18,8 +18,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const blog = blogs.find((b: any) => id === b.id || id.endsWith(b.id));
 
   return {
-    title: blog ? `${blog.title} - Kesharini Yoga` : 'Blog - Kesharini Yoga',
-    description: blog?.subtitle || 'Article du blog Kesharini Yoga.',
+    title: blog?.title || 'Blog',
+    description: blog?.subtitle || 'Article du blog Kesharini Yoga sur la pratique du yoga et le bien-être.',
+    openGraph: {
+      title: blog ? `${blog.title} | Kesharini Yoga` : 'Blog | Kesharini Yoga',
+      description: blog?.subtitle || 'Article du blog Kesharini Yoga.',
+      type: 'article',
+    },
   };
 }
 

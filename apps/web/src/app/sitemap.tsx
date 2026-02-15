@@ -3,46 +3,34 @@ import type { MetadataRoute } from 'next';
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://yogiamelie.com/',
+      url: 'https://keshariniyoga.com',
       lastModified: new Date(),
-      changeFrequency: 'yearly',
+      changeFrequency: 'weekly',
       priority: 1
     },
     {
-      url: 'https://yogiamelie.com/a-propos-de-moi',
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8
-    },
-    {
-      url: 'https://yogiamelie.com/blogs',
+      url: 'https://keshariniyoga.com/cours',
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7
+      priority: 0.9
     },
     {
-      url: 'https://yogiamelie.com/tarifications',
+      url: 'https://keshariniyoga.com/blogs',
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.8
     },
     {
-      url: 'https://yogiamelie.com/politique-de-confidentialite',
+      url: 'https://keshariniyoga.com/politique-de-confidentialite',
       lastModified: new Date(),
       changeFrequency: 'yearly',
-      priority: 0.5
+      priority: 0.3
     },
     {
-      url: 'https://yogiamelie.com/contact',
+      url: 'https://keshariniyoga.com/mentions-legales',
       lastModified: new Date(),
       changeFrequency: 'yearly',
-      priority: 0.6
-    },
-    {
-      url: 'https://yogiamelie.com/mentions-legales',
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.6
+      priority: 0.3
     }
   ];
 }

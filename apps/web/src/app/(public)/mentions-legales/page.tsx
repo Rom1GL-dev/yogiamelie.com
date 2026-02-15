@@ -6,9 +6,10 @@ import { MentionsLegales } from '@/features/mentions-legales/mentions-legales';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const metadata: Metadata = {
-  title: 'Mentions légales - Kesharini Yoga',
+  title: 'Mentions légales',
   description:
-    "Mentions légales du site yogiamelie.com. Informations sur l'éditeur, l'hébergement et la propriété intellectuelle.",
+    'Mentions légales du site keshariniyoga.com. Informations sur l\'éditeur, l\'hébergement et la propriété intellectuelle.',
+  robots: { index: false },
 };
 
 export default async function Page() {

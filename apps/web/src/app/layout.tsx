@@ -6,51 +6,73 @@ import { ClientProvider } from '@/providers/client-provider';
 import { ToastProvider } from '@/providers/toast-provider';
 
 export const metadata: Metadata = {
-  title: 'Kesharini Yoga - Amélie Vetcour',
+  metadataBase: new URL('https://keshariniyoga.com'),
+  title: {
+    default: 'Kesharini Yoga - Amélie Vetcour | Cours de Yoga en Belgique',
+    template: '%s | Kesharini Yoga'
+  },
   description:
-    'Kesharini Yoga par Amélie Vetcour, professeur de yoga passionnée. Cours de yoga collectifs et individuels, événements et ateliers. Retrouvez harmonie du corps et de l\'esprit.',
+    'Kesharini Yoga par Amélie Vetcour, professeur de yoga certifiée en Belgique. Cours de yoga collectifs et individuels, événements, ateliers et retraites. Hatha yoga, vinyasa, yoga doux. Retrouvez harmonie du corps et de l\'esprit.',
   keywords: [
     'Kesharini Yoga',
     'Amélie Vetcour',
-    'Yoga',
-    'Cours de yoga',
-    'Professeur de yoga',
-    'Bien-être',
-    'Méditation',
-    'Hatha yoga',
-    'Vinyasa',
-    'Yoga doux',
-    'Yoga dynamique',
-    'Relaxation',
-    'Harmonie',
-    'Corps et esprit',
-    'Ateliers yoga',
-    'Événements yoga',
-    'Yoga Belgique',
-    'yogiamelie'
+    'cours de yoga Belgique',
+    'professeur de yoga certifiée',
+    'hatha yoga',
+    'vinyasa yoga',
+    'yoga doux',
+    'yoga dynamique',
+    'cours de yoga collectifs',
+    'cours de yoga individuels',
+    'ateliers yoga',
+    'événements yoga',
+    'retraite yoga Belgique',
+    'bien-être',
+    'méditation',
+    'relaxation',
+    'souplesse',
+    'sérénité'
   ],
   authors: [{ name: 'Romain GILOT', url: 'https://romain-gilot.fr/' }],
+  creator: 'Amélie Vetcour',
+  publisher: 'Kesharini Yoga',
+  alternates: {
+    canonical: 'https://keshariniyoga.com'
+  },
   openGraph: {
-    title: 'Kesharini Yoga - Amélie Vetcour',
+    title: 'Kesharini Yoga - Amélie Vetcour | Cours de Yoga en Belgique',
     description:
-      'Kesharini Yoga par Amélie Vetcour. Cours de yoga, événements et ateliers pour retrouver harmonie du corps et de l\'esprit.',
+      'Cours de yoga collectifs et individuels par Amélie Vetcour. Hatha yoga, vinyasa, ateliers et événements en Belgique.',
     images: [
       {
-        url: '/images/home-logo.svg',
+        url: '/images/logo.png',
         width: 500,
         height: 300,
         alt: 'Kesharini Yoga - Amélie Vetcour'
       }
     ],
-    url: 'https://yogiamelie.com',
-    type: 'website'
+    url: 'https://keshariniyoga.com',
+    type: 'website',
+    locale: 'fr_BE',
+    siteName: 'Kesharini Yoga'
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Kesharini Yoga - Amélie Vetcour',
+    title: 'Kesharini Yoga - Amélie Vetcour | Cours de Yoga',
     description:
-      'Kesharini Yoga par Amélie Vetcour. Cours de yoga, événements et ateliers pour retrouver harmonie du corps et de l\'esprit.',
-    images: '/images/home-logo.svg'
+      'Cours de yoga collectifs et individuels par Amélie Vetcour. Hatha yoga, vinyasa, ateliers et événements en Belgique.',
+    images: '/images/logo.png'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
   }
 };
 
@@ -68,12 +90,23 @@ export default function RootLayout({
             '@type': 'LocalBusiness',
             name: 'Kesharini Yoga',
             description:
-              'Kesharini Yoga par Amélie Vetcour, professeur de yoga passionnée. Cours de yoga collectifs et individuels, événements et ateliers.',
-            url: 'https://yogiamelie.com',
-            logo: '/images/home-logo.svg',
-            image: '/images/home-logo.svg',
+              'Kesharini Yoga par Amélie Vetcour, professeur de yoga certifiée en Belgique. Cours de yoga collectifs et individuels, hatha yoga, vinyasa, ateliers, événements et retraites.',
+            url: 'https://keshariniyoga.com',
+            logo: 'https://keshariniyoga.com/images/logo.png',
+            image: 'https://keshariniyoga.com/images/logo.png',
             telephone: '+32493574615',
-            email: 'hello@yogiamelie.be'
+            email: 'hello@yogiamelie.be',
+            address: {
+              '@type': 'PostalAddress',
+              addressCountry: 'BE'
+            },
+            sameAs: [],
+            priceRange: '€€',
+            openingHoursSpecification: [],
+            areaServed: {
+              '@type': 'Country',
+              name: 'Belgique'
+            }
           })}
         </script>
       </head>

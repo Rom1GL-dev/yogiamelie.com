@@ -4,9 +4,10 @@ import Link from 'next/link';
 import Title from '@/components/ux/title';
 
 export const metadata: Metadata = {
-  title: 'Politique de confidentialité - Kesharini Yoga',
+  title: 'Politique de confidentialité',
   description:
-    "Politique de confidentialité du site yogiamelie.com. Informations sur la gestion de vos données personnelles.",
+    'Politique de confidentialité du site keshariniyoga.com. Informations sur la gestion de vos données personnelles.',
+  robots: { index: false },
 };
 
 export default function PolitiquedeConfidentialitePage() {
@@ -28,10 +29,10 @@ export default function PolitiquedeConfidentialitePage() {
               informer sur la manière dont nous gérons les informations sur
               notre site{' '}
               <Link
-                href={'https://yogiamelie.com/'}
+                href={'https://keshariniyoga.com/'}
                 className={'font-semibold'}
               >
-                https://yogiamelie.com/
+                https://keshariniyoga.com/
               </Link>
               . En utilisant notre site, vous acceptez les pratiques décrites
               dans cette politique.
@@ -92,10 +93,10 @@ export default function PolitiquedeConfidentialitePage() {
               Pour toute question ou demande d&apos;information concernant le
               site{' '}
               <Link
-                href={'https://yogiamelie.com/'}
+                href={'https://keshariniyoga.com/'}
                 className={'font-semibold'}
               >
-                https://yogiamelie.com/
+                https://keshariniyoga.com/
               </Link>
               , veuillez contacter <b>Kesharini Yoga</b> à l&apos;adresse email
               suivante : hello@yogiamelie.be.

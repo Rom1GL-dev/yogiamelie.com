@@ -6,9 +6,14 @@ import { Blogs } from '@/features/blog/blogs';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const metadata: Metadata = {
-  title: 'Blog - Kesharini Yoga, Professeur de Yoga',
+  title: 'Blog Yoga - Articles et conseils',
   description:
-    "Articles et conseils en yoga par Kesharini Yoga. Découvrez des astuces pour une pratique épanouissante et un mode de vie sain.",
+    'Articles et conseils en yoga par Amélie Vetcour. Découvrez des astuces pour une pratique épanouissante, le bien-être et un mode de vie sain.',
+  openGraph: {
+    title: 'Blog Yoga | Kesharini Yoga',
+    description: 'Articles et conseils en yoga par Amélie Vetcour. Astuces pour une pratique épanouissante et un mode de vie sain.',
+    url: 'https://keshariniyoga.com/blogs',
+  },
 };
 
 export default async function Page() {

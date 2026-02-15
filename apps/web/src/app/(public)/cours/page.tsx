@@ -6,8 +6,13 @@ import { Cours } from '@/features/cours/cours';
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const metadata: Metadata = {
-  title: 'Cours - Kesharini Yoga',
-  description: 'Découvrez les cours de yoga proposés par Kesharini Yoga. Cours collectifs, tarifs, lieux et horaires.',
+  title: 'Cours de Yoga collectifs et individuels',
+  description: 'Découvrez les cours de yoga proposés par Kesharini Yoga en Belgique. Hatha yoga, vinyasa, yoga doux. Tarifs, lieux, horaires et inscriptions.',
+  openGraph: {
+    title: 'Cours de Yoga | Kesharini Yoga',
+    description: 'Cours de yoga collectifs et individuels en Belgique. Hatha yoga, vinyasa, yoga doux. Tarifs et inscriptions.',
+    url: 'https://keshariniyoga.com/cours',
+  },
 };
 
 async function prefetchSiteWeb(queryClient: any, section: string) {

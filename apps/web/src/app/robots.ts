@@ -5,8 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin/'],
     },
-    sitemap: 'https://yogiamelie.com/sitemap.xml',
+    sitemap: 'https://keshariniyoga.com/sitemap.xml',
   };
 }
