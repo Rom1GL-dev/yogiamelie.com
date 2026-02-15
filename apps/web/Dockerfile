@@ -36,9 +36,9 @@ WORKDIR /app
 RUN corepack enable && corepack prepare yarn@$YARN_VERSION
 
 COPY --from=builder /app/out/json/ .
-COPY --from=builder /app/out/yarn.lock ./yarn.lock
+COPY --from=builder /app/yarn.lock ./yarn.lock
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY --from=builder /app/out/full/ .
 COPY turbo.json turbo.json
