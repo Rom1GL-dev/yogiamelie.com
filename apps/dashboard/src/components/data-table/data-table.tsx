@@ -23,7 +23,7 @@ import * as React from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
-const globalSearchFilter: FilterFn<any> = (row, columnId, filterValue) => {
+const globalSearchFilter: FilterFn<any> = (row, _columnId, filterValue) => {
   const search = String(filterValue).toLowerCase();
   const values = row.getAllCells()
     .map((cell) => cell.getValue())

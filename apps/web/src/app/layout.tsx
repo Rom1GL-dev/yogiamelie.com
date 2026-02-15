@@ -61,6 +61,7 @@ export default function RootLayout({
     <html lang="fr">
       <head>
         <link rel="icon" href="/favicon.ico" />
+        <script defer src="https://analytics.romain-gilot.fr/script.js" data-website-id="03868712-b356-47e7-a7cd-419af93791c0"></script>
         <script type="application/ld+json">
           {JSON.stringify({
             '@context': 'https://schema.org',
