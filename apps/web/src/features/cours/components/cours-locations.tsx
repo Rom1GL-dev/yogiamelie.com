@@ -1,19 +1,19 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useLocations, type Location } from '@/hooks/use-locations';
 import { appConfig } from '@/config/app.config';
-import { MapPin, Car, Calendar } from 'lucide-react';
+import { MapPin, Car, Calendar, X } from 'lucide-react';
 import Link from 'next/link';
 
 function isValidContent(content: string) {
   return content.trim() !== '' && content.trim() !== '<p><br></p>';
 }
 
-function LocationCard({ location, isActive, onClick }: { location: Location; isActive: boolean; onClick: () => void }) {
+function LocationCard({ location, onClick }: { location: Location; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className={`group relative h-72 w-full cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl sm:h-80 md:w-72 ${isActive ? 'ring-2 ring-[#c08562] ring-offset-2' : ''}`}
+      className="group relative h-72 w-full cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:shadow-xl sm:h-80 md:w-72"
       data-aos="fade-up"
       data-aos-delay="200"
     >
@@ -30,66 +30,76 @@ function LocationCard({ location, isActive, onClick }: { location: Location; isA
   );
 }
 
-function LocationDetail({ location }: { location: Location }) {
+function LocationModal({ location, onClose }: { location: Location; onClose: () => void }) {
   return (
-    <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-14">
-      <div className="flex-1">
-        <h3
-          className="mb-2 font-[Mistrully] text-3xl text-[#353F34] md:text-4xl"
-          data-aos="fade-up"
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative mx-4 max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-[#faf8f5] p-8 shadow-2xl md:p-10"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[#353F34]/10 text-[#353F34] transition-colors hover:bg-[#353F34]/20"
         >
-          {location.title}
-        </h3>
-        {location.subtitle && (
-          <div
-            className="html-content mb-8 text-base text-[#353F34]/60"
-            dangerouslySetInnerHTML={{ __html: location.subtitle }}
-            data-aos="fade-up"
-            data-aos-delay="100"
-          />
-        )}
+          <X size={18} />
+        </button>
 
-        <div className="space-y-5">
-          {isValidContent(location.lieu ?? '') && (
-            <div className="flex gap-3" data-aos="fade-up" data-aos-delay="200">
-              <MapPin size={18} className="mt-1 shrink-0 text-[#c08562]" />
-              <div className="html-content text-base text-[#2d3640]" dangerouslySetInnerHTML={{ __html: location.lieu }} />
-            </div>
-          )}
-          {isValidContent(location.parking ?? '') && (
-            <div className="flex gap-3" data-aos="fade-up" data-aos-delay="300">
-              <Car size={18} className="mt-1 shrink-0 text-[#c08562]" />
-              <div className="html-content text-base text-[#2d3640]" dangerouslySetInnerHTML={{ __html: location.parking }} />
-            </div>
-          )}
-          {isValidContent(location.planning ?? '') && (
-            <div className="flex gap-3" data-aos="fade-up" data-aos-delay="400">
-              <Calendar size={18} className="mt-1 shrink-0 text-[#c08562]" />
-              <div className="html-content text-base text-[#2d3640]" dangerouslySetInnerHTML={{ __html: location.planning }} />
-            </div>
-          )}
-        </div>
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:gap-10">
+          <div className="flex-1">
+            <h3 className="mb-2 font-[Mistrully] text-3xl text-[#353F34] md:text-4xl">
+              {location.title}
+            </h3>
+            {location.subtitle && (
+              <div
+                className="html-content mb-6 text-base text-[#353F34]/60"
+                dangerouslySetInnerHTML={{ __html: location.subtitle }}
+              />
+            )}
 
-        {location.buttonLink && (
-          <div className="mt-8" data-aos="fade-up" data-aos-delay="500">
-            <Link
-              href={location.buttonLink}
-              target="_blank"
-              className="inline-block rounded-full bg-[#353F34] px-8 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#2a3229]"
-            >
-              {location.buttonText || "Je m'inscris"}
-            </Link>
+            <div className="space-y-5">
+              {isValidContent(location.lieu ?? '') && (
+                <div className="flex gap-3">
+                  <MapPin size={18} className="mt-1 shrink-0 text-[#c08562]" />
+                  <div className="html-content text-base text-[#2d3640]" dangerouslySetInnerHTML={{ __html: location.lieu }} />
+                </div>
+              )}
+              {isValidContent(location.parking ?? '') && (
+                <div className="flex gap-3">
+                  <Car size={18} className="mt-1 shrink-0 text-[#c08562]" />
+                  <div className="html-content text-base text-[#2d3640]" dangerouslySetInnerHTML={{ __html: location.parking }} />
+                </div>
+              )}
+              {isValidContent(location.planning ?? '') && (
+                <div className="flex gap-3">
+                  <Calendar size={18} className="mt-1 shrink-0 text-[#c08562]" />
+                  <div className="html-content text-base text-[#2d3640]" dangerouslySetInnerHTML={{ __html: location.planning }} />
+                </div>
+              )}
+            </div>
+
+            {location.buttonLink && (
+              <div className="mt-8">
+                <Link
+                  href={location.buttonLink}
+                  target="_blank"
+                  className="inline-block rounded-full bg-[#353F34] px-8 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:bg-[#2a3229]"
+                >
+                  {location.buttonText || "Je m'inscris"}
+                </Link>
+              </div>
+            )}
           </div>
-        )}
-      </div>
 
-      <img
-        src={`${appConfig.apiUrl}/v1/images/locations/${location.image}`}
-        alt={location.title}
-        className="w-full rounded-2xl object-cover shadow-lg lg:max-h-[420px] lg:w-[400px]"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      />
+          <img
+            src={`${appConfig.apiUrl}/v1/images/locations/${location.image}`}
+            alt={location.title}
+            className="w-full rounded-2xl object-cover shadow-lg lg:max-h-[350px] lg:w-[320px]"
+          />
+        </div>
+      </div>
     </div>
   );
 }
@@ -97,13 +107,6 @@ function LocationDetail({ location }: { location: Location }) {
 export default function CoursLocations() {
   const { data: locations } = useLocations();
   const [selected, setSelected] = useState<Location | undefined>();
-  const detailRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (selected && detailRef.current) {
-      detailRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [selected]);
 
   const publishedLocations = (locations ?? []).filter((l) => l.published);
   if (publishedLocations.length === 0) return null;
@@ -123,8 +126,7 @@ export default function CoursLocations() {
               <LocationCard
                 key={location.id}
                 location={location}
-                isActive={selected?.id === location.id}
-                onClick={() => setSelected(selected?.id === location.id ? undefined : location)}
+                onClick={() => setSelected(location)}
               />
             ))}
           </div>
@@ -132,11 +134,7 @@ export default function CoursLocations() {
       </div>
 
       {selected && (
-        <div ref={detailRef} className="bg-[#faf8f5] px-6 py-14 md:px-10 md:py-20 lg:px-16">
-          <div className="mx-auto max-w-5xl">
-            <LocationDetail location={selected} />
-          </div>
-        </div>
+        <LocationModal location={selected} onClose={() => setSelected(undefined)} />
       )}
     </>
   );

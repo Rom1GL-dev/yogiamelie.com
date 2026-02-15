@@ -21,23 +21,12 @@ export default function HomeNewsletter() {
         />
 
         {fields.button && (
-          fields.buttonLink ? (
-            <a
-              href={fields.buttonLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-block cursor-pointer rounded-full bg-[#d08349]/80 px-8 py-3 text-white transition-all duration-300 hover:scale-105 hover:bg-[#d08349]"
-            >
-              {fields.button}
-            </a>
-          ) : (
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="mt-5 cursor-pointer rounded-full bg-[#d08349]/80 px-8 py-3 text-white transition-all duration-300 hover:scale-105 hover:bg-[#d08349]"
-            >
-              {fields.button}
-            </button>
-          )
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="mt-5 cursor-pointer rounded-full bg-[#d08349]/80 px-8 py-3 text-white transition-all duration-300 hover:scale-105 hover:bg-[#d08349]"
+          >
+            {fields.button}
+          </button>
         )}
       </div>
 

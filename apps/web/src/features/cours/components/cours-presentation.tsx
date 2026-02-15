@@ -9,7 +9,7 @@ export default function CoursPresentation() {
   const { data: fields } = useSiteWebSection('presentationCours');
 
   return (
-    <div className="grain relative w-full overflow-hidden bg-[#353F34] px-6 pt-24 pb-16 md:px-10 md:pt-28 md:pb-20 lg:pb-0">
+    <div className="grain relative w-full overflow-hidden bg-[#353F34] px-6 pt-24 pb-16 md:px-10 md:pt-28 md:pb-20 lg:pb-16">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 lg:flex-row lg:items-center lg:gap-16">
         {/* Text */}
         <div className="flex flex-col items-center text-center lg:w-1/2 lg:items-start lg:text-left">
