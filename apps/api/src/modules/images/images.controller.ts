@@ -10,6 +10,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { memoryStorage, Multer } from 'multer';
 import { Response as ExpressResponse } from 'express';
+import { randomUUID } from 'crypto';
 import { routesV1 } from '../../config/app.routes';
 import { MinioService } from '../../shared/infrastructure/minio.service';
 
@@ -32,16 +33,21 @@ export class ImagesController {
       return { message: 'No file uploaded.' };
     }
 
+    const ext = file.originalname.includes('.')
+      ? file.originalname.substring(file.originalname.lastIndexOf('.'))
+      : '';
+    const uniqueName = `${randomUUID()}${ext}`;
+
     const url = await this.minioService.upload(
       category,
-      file.originalname,
+      uniqueName,
       file.buffer,
       file.mimetype,
     );
 
     return {
       url,
-      fileName: file.originalname,
+      fileName: uniqueName,
     };
   }
 

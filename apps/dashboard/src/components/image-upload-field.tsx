@@ -25,10 +25,10 @@ export function ImageUploadField({ id, value, label, category, onChange }: Props
       const formData = new FormData();
       formData.append('image', file);
       formData.append('title', id);
-      await api.post(`/v1/images/upload/${category}`, formData, {
+      const res = await api.post(`/v1/images/upload/${category}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-      onChange(file.name);
+      onChange(res.data.fileName);
       toast.success('Image uploadée.');
     } catch {
       toast.error("Erreur lors de l'upload.");
