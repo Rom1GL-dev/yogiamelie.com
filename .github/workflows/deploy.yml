@@ -19,6 +19,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
+            set -e
+
             cd /home/debian/yogiamelie.com
 
             echo "--- Pulling latest code ---"
