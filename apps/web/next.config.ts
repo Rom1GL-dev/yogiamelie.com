@@ -65,6 +65,11 @@ const nextConfig: NextConfig = {
         hostname: 'minio',
         port: '9000',
         pathname: '/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.yogiamelie.com',
+        pathname: '/v1/images/**'
       }
     ]
   }
