@@ -24,13 +24,39 @@ jobs:
             cd /home/debian/yogiamelie.com
 
             echo "--- Pulling latest code ---"
+            OLD_HEAD=$(git rev-parse HEAD)
             git pull origin main
+            NEW_HEAD=$(git rev-parse HEAD)
 
-            echo "--- Building and restarting containers ---"
-            docker compose --env-file .env -f docker/docker-compose.prod.yml up -d --build
+            CHANGED=$(git diff --name-only $OLD_HEAD $NEW_HEAD)
+            echo "--- Changed files ---"
+            echo "$CHANGED"
 
-            echo "--- Cleaning up old images ---"
-            docker image prune -f
+            SERVICES=""
+
+            # packages/ or docker/ or root config = rebuild all
+            if echo "$CHANGED" | grep -qE '^(packages/|docker/|turbo\.json|package\.json|yarn\.lock)'; then
+              SERVICES="api web dashboard"
+            else
+              echo "$CHANGED" | grep -q '^apps/api/' && SERVICES="$SERVICES api"
+              echo "$CHANGED" | grep -q '^apps/web/' && SERVICES="$SERVICES web"
+              echo "$CHANGED" | grep -q '^apps/dashboard/' && SERVICES="$SERVICES dashboard"
+            fi
+
+            SERVICES=$(echo "$SERVICES" | xargs)
+
+            if [ -z "$SERVICES" ]; then
+              echo "--- No service to rebuild ---"
+            else
+              echo "--- Building: $SERVICES ---"
+              docker compose --env-file .env -f docker/docker-compose.prod.yml build $SERVICES
+
+              echo "--- Restarting: $SERVICES ---"
+              docker compose --env-file .env -f docker/docker-compose.prod.yml up -d $SERVICES
+
+              echo "--- Cleaning up old images ---"
+              docker image prune -f
+            fi
 
             echo "--- Deploy complete ---"
 

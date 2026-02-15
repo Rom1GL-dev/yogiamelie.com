@@ -47,25 +47,25 @@ export default async function Page() {
       },
     }),
     queryClient.prefetchQuery({
-      queryKey: ['site-web', 'principalePresentation'],
+      queryKey: ['site-web', 'presentation'],
       queryFn: async () => {
-        const res = await fetch(`${API_URL}/v1/site-web/principalePresentation`);
+        const res = await fetch(`${API_URL}/v1/site-web/presentation`);
         const data = await res.json();
         return data.details ?? {};
       },
     }),
     queryClient.prefetchQuery({
-      queryKey: ['site-web', 'principaleBienvenue'],
+      queryKey: ['site-web', 'welcome'],
       queryFn: async () => {
-        const res = await fetch(`${API_URL}/v1/site-web/principaleBienvenue`);
+        const res = await fetch(`${API_URL}/v1/site-web/welcome`);
         const data = await res.json();
         return data.details ?? {};
       },
     }),
     queryClient.prefetchQuery({
-      queryKey: ['site-web', 'principaleNewsletter'],
+      queryKey: ['site-web', 'newsletter'],
       queryFn: async () => {
-        const res = await fetch(`${API_URL}/v1/site-web/principaleNewsletter`);
+        const res = await fetch(`${API_URL}/v1/site-web/newsletter`);
         const data = await res.json();
         return data.details ?? {};
       },

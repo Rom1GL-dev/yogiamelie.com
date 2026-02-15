@@ -62,11 +62,11 @@ export default async function CoursPage() {
         return data.links?.[0] ?? { youtube: '', instagram: '', tiktok: '', facebook: '' };
       },
     }),
-    prefetchSiteWeb(queryClient, 'coursPresentation'),
-    prefetchSiteWeb(queryClient, 'coursBienvenue'),
-    prefetchSiteWeb(queryClient, 'coursFaq'),
+    prefetchSiteWeb(queryClient, 'presentationCours'),
+    prefetchSiteWeb(queryClient, 'aboutCours'),
+    prefetchSiteWeb(queryClient, 'faqCours'),
     prefetchSiteWeb(queryClient, 'tarifsCours'),
-    prefetchSiteWeb(queryClient, 'coursMateriel'),
+    prefetchSiteWeb(queryClient, 'materielsCours'),
   ]);
 
   return (
