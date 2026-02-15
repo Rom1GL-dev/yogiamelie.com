@@ -1,4 +1,5 @@
 'use client';
+import HomeNavbar from '@/features/home/components/home-navbar';
 import HomePresentation from '@/features/home/components/home-presentation';
 import HomeWelcome from '@/features/home/components/home-welcome';
 import HomeEvents from '@/features/home/components/home-events';
@@ -9,6 +10,7 @@ import { Footer } from '@/components/ux/footer';
 export const Home = () => {
   return (
     <div className="scroll-smooth">
+      <HomeNavbar />
       <div id="home">
         <HomePresentation />
       </div>

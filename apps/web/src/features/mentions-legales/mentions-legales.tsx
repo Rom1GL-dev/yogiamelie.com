@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import Title from '@/components/ux/title';
+import Link from 'next/link';
+import { ArrowLeft } from 'lucide-react';
 import { useSiteWebSection } from '@/hooks/use-site-web-section';
 
 export function MentionsLegales() {
@@ -9,23 +10,42 @@ export function MentionsLegales() {
   const content = data?.content ?? '';
 
   return (
-    <div className={'p-10'}>
-      <Title title={'Mentions Légales'} />
-      <div
-        className={'mt-14 flex flex-col items-center'}
-        data-aos="fade-up"
-        data-aos-delay="300"
-      >
-        <div className={'w-full md:w-3/4'}>
-          {content ? (
-            <div
-              className="html-content max-w-none space-y-10 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#58684E] [&_h2]:mb-5 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#58684E] [&_p]:mb-2"
-              dangerouslySetInnerHTML={{ __html: content }}
-            />
-          ) : (
-            <p className="text-center text-gray-500">Aucune mention légale configurée.</p>
-          )}
+    <div className="min-h-screen bg-[#faf8f5]">
+      {/* Top bar */}
+      <div className="border-b border-[#353F34]/10 bg-white/60 backdrop-blur-md">
+        <div className="mx-auto flex max-w-5xl items-center px-6 py-4">
+          <Link
+            href="/"
+            className="group flex items-center gap-2 text-sm text-[#353F34]/70 transition-colors hover:text-[#353F34]"
+          >
+            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+            Retour
+          </Link>
         </div>
+      </div>
+
+      {/* Header */}
+      <div className="grain bg-[#353F34] px-6 pb-12 pt-10 md:px-10 md:pb-16 md:pt-14">
+        <div className="mx-auto max-w-3xl">
+          <h1 className="font-[Mistrully] text-3xl text-[#d5ddcb] md:text-4xl lg:text-5xl">
+            Mentions Légales
+          </h1>
+          <p className="mt-3 text-base font-light text-[#d5ddcb]/60 md:text-lg">
+            Informations légales relatives au site keshariniyoga.com
+          </p>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="mx-auto max-w-3xl px-6 py-12 md:px-10 md:py-16">
+        {content ? (
+          <article
+            className="html-content max-w-none break-words text-base leading-[1.8] text-[#2d3640] md:text-[17px] [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#353F34] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#353F34] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1 [&_a]:text-[#c08562] [&_a]:underline [&_a]:underline-offset-2"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
+        ) : (
+          <p className="text-center text-[#353F34]/50">Aucune mention légale configurée.</p>
+        )}
       </div>
     </div>
   );
