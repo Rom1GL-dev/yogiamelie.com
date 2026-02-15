@@ -18,14 +18,17 @@ export function MentionsLegales() {
             href="/"
             className="group flex items-center gap-2 text-sm text-[#353F34]/70 transition-colors hover:text-[#353F34]"
           >
-            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-0.5" />
+            <ArrowLeft
+              size={16}
+              className="transition-transform group-hover:-translate-x-0.5"
+            />
             Retour
           </Link>
         </div>
       </div>
 
       {/* Header */}
-      <div className="grain bg-[#353F34] px-6 pb-12 pt-10 md:px-10 md:pb-16 md:pt-14">
+      <div className="grain bg-[#353F34] px-6 pt-10 pb-12 md:px-0 md:pt-14 md:pb-16">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-[Mistrully] text-3xl text-[#d5ddcb] md:text-4xl lg:text-5xl">
             Mentions Légales
@@ -37,14 +40,16 @@ export function MentionsLegales() {
       </div>
 
       {/* Content */}
-      <div className="mx-auto max-w-3xl px-6 py-12 md:px-10 md:py-16">
+      <div className="mx-auto max-w-3xl px-6 py-12 md:px-0 md:py-16">
         {content ? (
           <article
-            className="html-content max-w-none break-words text-base leading-[1.8] text-[#2d3640] md:text-[17px] [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#353F34] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#353F34] [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:mb-4 [&_li]:mb-1 [&_a]:text-[#c08562] [&_a]:underline [&_a]:underline-offset-2"
+            className="html-content max-w-none text-base leading-[1.8] break-words text-[#2d3640] md:text-[17px] [&_a]:text-[#c08562] [&_a]:underline [&_a]:underline-offset-2 [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:text-[#353F34] [&_h3]:mt-6 [&_h3]:mb-3 [&_h3]:text-xl [&_h3]:font-semibold [&_h3]:text-[#353F34] [&_li]:mb-1 [&_ol]:mb-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-6"
             dangerouslySetInnerHTML={{ __html: content }}
           />
         ) : (
-          <p className="text-center text-[#353F34]/50">Aucune mention légale configurée.</p>
+          <p className="text-center text-[#353F34]/50">
+            Aucune mention légale configurée.
+          </p>
         )}
       </div>
     </div>

@@ -62,6 +62,17 @@ RUN printf 'server {\n\
   root /usr/share/nginx/html;\n\
   index index.html;\n\
 \n\
+  # Security headers\n\
+  add_header X-Frame-Options "SAMEORIGIN" always;\n\
+  add_header X-Content-Type-Options "nosniff" always;\n\
+  add_header X-XSS-Protection "1; mode=block" always;\n\
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;\n\
+  add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;\n\
+  add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;\n\
+\n\
+  # Hide nginx version\n\
+  server_tokens off;\n\
+\n\
   # Block access to hidden files (.env, .git, etc.)\n\
   location ~ /\\. {\n\
     deny all;\n\
@@ -69,7 +80,12 @@ RUN printf 'server {\n\
   }\n\
 \n\
   # Block common scan targets\n\
-  location ~* (wp-config|phpinfo|credentials|docker-compose|actuator|telescope|horizon|_profiler|server-status|server-info) {\n\
+  location ~* (wp-config|phpinfo|credentials|docker-compose|actuator|telescope|horizon|_profiler|server-status|server-info|graphql|swagger|phpmyadmin|adminer|debug|cgi-bin) {\n\
+    return 404;\n\
+  }\n\
+\n\
+  # Block script probing\n\
+  location ~* \\.(php|asp|aspx|jsp|cgi|pl|py|sh|sql|bak|old|save|swp|tmp)$ {\n\
     return 404;\n\
   }\n\
 \n\
